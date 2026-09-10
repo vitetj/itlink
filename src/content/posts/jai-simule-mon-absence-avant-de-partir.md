@@ -1,6 +1,6 @@
 ---
 title: "J'ai simulé mon absence avant de partir"
-description: "Avant un congé long, j'ai passé une journée entière au bureau sans répondre à personne. Pas un plan de continuité de quarante pages : un test grandeur nature. Ce que ça a révélé, et ce que ça n'a pas révélé."
+description: "Avant un congé long, j'ai passé une journée entière au bureau sans répondre à personne. Pas un plan de continuité de quarante pages : un test grandeur nature. Ce que ça a révélé, et ce que ça a raté."
 published: 2025-11-28
 category: retex
 tags: [continuite-de-service, ticketing, documentation, it-solo, organisation]
