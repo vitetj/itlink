@@ -9,6 +9,8 @@ level: intermédiaire
 status: à jour
 featured: false
 tested_on: [VxRail E560F, iDRAC 9, VxRail Manager 8.0.x]
+sidebar:
+  label: "Collecter un TSR VxRail et ouvrir un ticket…"
 ---
 
 En deux ans d'exploitation d'un cluster VxRail, j'ai ouvert des dossiers Dell pour à peu près tout ce qu'un

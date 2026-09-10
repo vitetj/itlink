@@ -7,6 +7,8 @@ tags: [exchange-online, ndr, pieces-jointes, hornetsecurity, regle-de-flux, supp
 level: débutant
 status: à jour
 featured: false
+sidebar:
+  label: "Pièce jointe sortante bloquée"
 ---
 
 Le ticket s'appelait « collision robot ». En le lisant, on comprenait qu'un robot d'atelier était entré en collision,

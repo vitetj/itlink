@@ -5,9 +5,13 @@ import { getTagIndex } from '@/lib/content';
 
 const tags = await getTagIndex();
 const max = Math.max(1, ...tags.map((t) => t.count));
-/** Au-delà de deux occurrences, un tag est un vrai sujet ; en dessous, c'est de la longue traîne. */
+/**
+ * Au-delà de deux occurrences, un tag est un vrai sujet de fond ; en dessous,
+ * c'est de la longue traîne, utile en recherche mais illisible en nuage. Elle est
+ * donc repliée : la page reste scannable sans rien rendre inaccessible.
+ */
 const main = tags.filter((t) => t.count >= 3);
-const tail = tags.filter((t) => t.count < 3);
+const tail = tags.filter((t) => t.count < 3).sort((a, b) => a.tag.localeCompare(b.tag, 'fr'));
 ---
 
 <BaseLayout seo={{ title: 'Tags', description: 'Tous les sujets abordés sur le site, docs, blog, lab et voyages confondus.', image: '/og/tags.png' }}>
@@ -31,17 +35,21 @@ const tail = tags.filter((t) => t.count < 3);
       }
     </ul>
 
-    <h2 class="eyebrow mt-10">// et {tail.length} sujets plus pointus</h2>
-    <ul class="mt-3 flex flex-wrap gap-2" role="list">
-      {
-        tail.map((t) => (
-          <li>
-            <a href={`/tags/${t.slug}/`} class="tag text-xs">
-              #{t.tag} <span class="text-fg-subtle">{t.count}</span>
-            </a>
-          </li>
-        ))
-      }
-    </ul>
+    <details class="mt-10 border-t border-line pt-4">
+      <summary class="cursor-pointer font-mono text-sm text-fg-muted hover:text-fg">
+        et {tail.length} sujets plus pointus, par ordre alphabétique
+      </summary>
+      <ul class="mt-4 flex flex-wrap gap-2" role="list">
+        {
+          tail.map((t) => (
+            <li>
+              <a href={`/tags/${t.slug}/`} class="tag text-xs">
+                #{t.tag} <span class="text-fg-subtle">{t.count}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </details>
   </div>
 </BaseLayout>

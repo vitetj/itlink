@@ -8,6 +8,8 @@ level: intermédiaire
 status: à jour
 featured: false
 tested_on: [UniFi Dream Machine]
+sidebar:
+  label: "UniFi Dream Machine"
 ---
 
 Fin 2024, ma boîte ouvre une filiale aux États-Unis. Le bâtiment est prêt, le rack est câblé, l'équipe est sur

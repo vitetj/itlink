@@ -8,6 +8,8 @@ level: intermédiaire
 status: à jour
 featured: false
 tested_on: [Windows 11]
+sidebar:
+  label: "Revenir à un pilote graphique antérieur et…"
 ---
 
 En août 2026, un lot de stations de travail mobiles neuves, équipées de GPU professionnels de dernière

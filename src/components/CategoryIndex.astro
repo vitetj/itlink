@@ -1,29 +1,61 @@
 ---
-/** Liste des fiches d'une catégorie de documentation (utilisé dans les pages index de catégorie). */
-import Card from './Card.astro';
+/**
+ * Liste des fiches d'une catégorie de documentation.
+ *
+ * Regroupées par niveau (du plus accessible au plus pointu) : sur une catégorie
+ * qui compte une douzaine de fiches, une liste à plat datée n'aide personne à
+ * choisir par où commencer.
+ */
+import DocRows from './DocRows.astro';
 import { docCategorySlug, docToCard, getDocs } from '@/lib/content';
+import type { CardItem } from '@/lib/content';
 
 interface Props {
   category: string;
 }
 const { category } = Astro.props;
+
 const docs = (await getDocs()).filter((d) => docCategorySlug(d) === category).map(docToCard);
-const byLevel = ['débutant', 'intermédiaire', 'avancé', 'expert'] as const;
+
+const LEVELS = [
+  { key: 'débutant', label: 'Pour démarrer' },
+  { key: 'intermédiaire', label: 'Intermédiaire' },
+  { key: 'avancé', label: 'Avancé' },
+  { key: 'expert', label: 'Expert' },
+] as const;
+
+/** Les fiches sans niveau déclaré rejoignent le groupe intermédiaire plutôt que de disparaître. */
+const groups = LEVELS.map(({ key, label }) => ({
+  label,
+  items: docs
+    .filter((d) => (d.level ?? 'intermédiaire') === key)
+    .sort((a, b) => b.published.getTime() - a.published.getTime()) as CardItem[],
+})).filter((g) => g.items.length > 0);
+
+const tested = docs.filter((d) => d.tested).length;
 ---
 
 <div class="not-content hue-docs">
   {
-    docs.length > 0 ? (
-      <div class="flex flex-col">{docs.map((d) => <Card item={d} variant="row" headingLevel="h2" />)}</div>
-    ) : (
+    docs.length === 0 ? (
       <p class="text-fg-muted">Aucune fiche publiée pour l'instant dans cette catégorie. Les brouillons s'accumulent, promis.</p>
-    )
-  }
-  {
-    docs.length > 3 && (
-      <p class="mt-6 font-mono text-xs text-fg-subtle">
-        Répartition : {byLevel.map((l) => `${docs.filter((d) => d.level === l).length} ${l}`).join(' · ')}
+    ) : (
+      <p class="mb-8 font-mono text-xs text-fg-subtle">
+        {docs.length} fiche{docs.length > 1 ? 's' : ''}
+        {tested > 0 && <> · {tested} testée{tested > 1 ? 's' : ''} sur le terrain</>}
       </p>
     )
+  }
+
+  {
+    groups.map((group) => (
+      <section class="mb-9 last:mb-0">
+        <h2 class="mb-1 flex items-baseline gap-2 font-mono text-xs font-medium tracking-wide text-hue uppercase">
+          {group.label}
+          <span class="font-normal text-fg-subtle">{group.items.length}</span>
+        </h2>
+        <DocRows items={group.items} />
+      </section>
+    ))
   }
 </div>

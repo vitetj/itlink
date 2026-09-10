@@ -8,6 +8,8 @@ level: avancé
 status: à jour
 featured: false
 tested_on: [Ubuntu Server 24.04 LTS, Docker CE]
+sidebar:
+  label: "Déployer un concentrateur rsyslog en Docker…"
 ---
 
 Quand une PME souscrit à un Micro-SOC, le contrat commence rarement par de la détection. Il commence par une

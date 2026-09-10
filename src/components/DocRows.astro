@@ -1,0 +1,111 @@
+---
+/**
+ * Liste compacte de fiches : un titre par ligne, la métadonnée à droite, la
+ * description sur une ligne. Pensée pour la colonne étroite de la documentation,
+ * où une grille de cartes finirait en titres sur cinq lignes.
+ */
+import type { CardItem } from '@/lib/content';
+import { formatDate, isoDate } from '@/lib/dates';
+
+interface Props {
+  items: CardItem[];
+  /** Affiche la catégorie devant le titre (utile hors d'une page de catégorie). */
+  showCategory?: boolean;
+}
+const { items, showCategory = false } = Astro.props;
+---
+
+<ul class="doc-rows" role="list">
+  {
+    items.map((item) => (
+      <li class="doc-row">
+        <a href={item.href} class="doc-row-link">
+          <span class="doc-row-title">
+            {showCategory && item.categoryLabel && <span class="doc-row-cat">{item.categoryLabel}</span>}
+            {item.title}
+          </span>
+          <span class="doc-row-meta">
+            {item.tested && <span class="doc-row-tested" title="Procédure réellement testée">testé</span>}
+            <span>{item.readingMinutes} min</span>
+            <time datetime={isoDate(item.published)}>{formatDate(item.published, 'short')}</time>
+          </span>
+        </a>
+        <p class="doc-row-desc">{item.description}</p>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .doc-rows {
+    border-top: 1px solid var(--c-line);
+  }
+  .doc-row {
+    padding-block: 0.6rem;
+    border-bottom: 1px solid color-mix(in srgb, var(--c-line) 70%, transparent);
+  }
+  .doc-row-link {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1.5rem;
+    text-decoration: none;
+    color: inherit;
+  }
+  .doc-row-title {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.35;
+    text-wrap: balance;
+  }
+  .doc-row-cat {
+    margin-inline-end: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--hue, var(--c-accent));
+  }
+  .doc-row-link:hover .doc-row-title,
+  .doc-row-link:focus-visible .doc-row-title {
+    color: var(--hue, var(--c-accent));
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+  .doc-row-meta {
+    display: flex;
+    flex-shrink: 0;
+    align-items: baseline;
+    gap: 0.6rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--c-fg-subtle);
+    white-space: nowrap;
+  }
+  .doc-row-tested {
+    color: var(--c-lab);
+  }
+  .doc-row-desc {
+    margin-top: 0.15rem;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    font-size: 0.875rem;
+    color: var(--c-fg-muted);
+  }
+  /* Sur mobile, la méta passe sous le titre plutôt que de l'écraser. */
+  @media (max-width: 34rem) {
+    .doc-row-link {
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+    .doc-row-desc {
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+    }
+  }
+</style>

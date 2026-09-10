@@ -8,6 +8,8 @@ level: avancé
 status: à jour
 featured: false
 tested_on: [Windows Server 2022, Windows Server 2025]
+sidebar:
+  label: "Pare-feu Windows par rôle via GPO"
 ---
 
 Sur un parc de serveurs qui a grandi pendant quinze ans, le pare-feu Windows finit dans un état hétérogène :

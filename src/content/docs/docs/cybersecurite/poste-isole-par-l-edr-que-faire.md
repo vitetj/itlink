@@ -8,6 +8,8 @@ level: intermédiaire
 status: à jour
 featured: false
 tested_on: [SentinelOne, Omron Sysmac Studio, Omron CX-One]
+sidebar:
+  label: "Un poste isolé par l’EDR"
 ---
 
 Le scénario commence toujours pareil : un utilisateur appelle parce que « plus rien ne marche ». Pas de

@@ -8,6 +8,8 @@ level: intermédiaire
 status: à jour
 featured: false
 tested_on: [Vade Cloud, Hornetsecurity Email Protection, Hornetsecurity 365 Total Backup, Microsoft 365]
+sidebar:
+  label: "Migrer un antispam Vade vers Hornetsecurity…"
 ---
 
 En novembre 2025, dans le cadre d'un renouvellement global de la sécurité (antispam et sauvegarde Microsoft 365

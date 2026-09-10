@@ -7,6 +7,8 @@ tags: [communication, gouvernance, charte-ia, adressage-ip, it-solo, wetransfer]
 level: débutant
 status: à jour
 featured: false
+sidebar:
+  label: "Écrire des communications IT que les gens lisent"
 ---
 
 En un an, j'ai envoyé trois communications de gouvernance, en français et en anglais : la fin de WeTransfer à toute ma boîte en juillet 2025, un rappel sur l'adressage IP privé aux techniciens en juillet 2026, et le lendemain, à l'ensemble des sites, une charte d'encadrement des outils d'intelligence artificielle. Trois sujets différents, trois publics différents, une seule trame. Elle n'a rien d'original ; elle a l'avantage d'avoir été lue, et d'avoir produit des réponses plutôt que du silence.

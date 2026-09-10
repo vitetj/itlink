@@ -8,6 +8,8 @@ level: intermédiaire
 status: à jour
 featured: false
 tested_on: [GitLab, Docker, Cloudron]
+sidebar:
+  label: "GitLab auto-hébergé en conteneur"
 ---
 
 Mon GitLab interne ne fait pas de bruit. Il héberge les scripts qui font tourner la boutique : la

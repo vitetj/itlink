@@ -8,6 +8,8 @@ level: avancé
 status: à jour
 featured: true
 tested_on: [Windows Server 2022, Windows Server 2025, AD CS, Mitel MiCollab, Rocky Linux]
+sidebar:
+  label: "Réparer l'authentification LDAPS d'un…"
 ---
 
 Un IPBX Mitel MiCollab, hébergé sur Rocky Linux, synchronise ses utilisateurs depuis l'Active Directory en LDAPS.

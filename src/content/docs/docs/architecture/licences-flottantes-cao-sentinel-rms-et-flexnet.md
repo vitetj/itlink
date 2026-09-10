@@ -9,6 +9,8 @@ level: avancé
 status: à jour
 featured: false
 tested_on: [TopSolid 7, Sentinel RMS License Manager, Creo Elements/Direct V19 M070, Windows Server]
+sidebar:
+  label: "Licences flottantes de CAO"
 ---
 
 Une licence flottante, c'est un trousseau de clés posé sur une table au milieu de l'atelier. Chacun prend une clé quand il ouvre son logiciel, la repose quand il le ferme. Tant que la table est là, personne ne se pose de question. Le jour où elle disparaît — serveur de licences mal redémarré, fichier annuel non injecté, mauvaises entrées effacées — c'est le bureau d'études et la programmation d'usinage qui s'arrêtent en même temps. Et vous l'apprenez par téléphone, pas par une supervision.

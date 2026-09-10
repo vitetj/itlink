@@ -1,6 +1,6 @@
 ---
 /** Accueil de la documentation : catégories avec compteurs et fiches mises en avant. */
-import Card from './Card.astro';
+import DocRows from './DocRows.astro';
 import Icon from './Icon.astro';
 import { docToCard, getDocCategoriesWithCounts, getDocs } from '@/lib/content';
 
@@ -32,14 +32,14 @@ const latest = docs.slice(0, 6).map(docToCard);
   {
     featured.length > 0 && (
       <>
-        <h2 class="eyebrow mt-12 mb-4">Fiches mises en avant</h2>
-        <div class="grid gap-x-10 md:grid-cols-2">{featured.map((d) => <Card item={d} variant="row" headingLevel="h3" />)}</div>
+        <h2 class="eyebrow mt-12 mb-3">Fiches mises en avant</h2>
+        <DocRows items={featured} showCategory />
       </>
     )
   }
 
-  <h2 class="eyebrow mt-12 mb-4">Dernières fiches</h2>
-  <div class="grid gap-x-10 md:grid-cols-2">{latest.map((d) => <Card item={d} variant="row" headingLevel="h3" />)}</div>
+  <h2 class="eyebrow mt-12 mb-3">Dernières fiches</h2>
+  <DocRows items={latest} showCategory />
 
   <p class="mt-10 inline-flex items-center gap-2 font-mono text-xs text-fg-subtle">
     <Icon name="rss" size={14} /> <a href="/docs/rss.xml" class="link">Flux RSS des docs</a>

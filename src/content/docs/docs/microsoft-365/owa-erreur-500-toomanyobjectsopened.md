@@ -8,6 +8,8 @@ level: intermédiaire
 status: à jour
 featured: false
 tested_on: ["Exchange Online"]
+sidebar:
+  label: "Exchange Online"
 ---
 
 Un matin, un collègue passe la tête dans le bureau : « ma messagerie ne s'ouvre plus ». Outlook Web App affiche une

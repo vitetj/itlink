@@ -8,6 +8,8 @@ level: avancé
 status: à jour
 featured: true
 tested_on: [Windows 10, Windows 11, Entra ID B2B, client Cato Networks]
+sidebar:
+  label: "Compte invité Entra ID et erreur 53003"
 ---
 
 Septembre 2026. Un client industriel nous demande d'intervenir sur un logiciel installé sur l'un de ses serveurs.

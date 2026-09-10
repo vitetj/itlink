@@ -8,6 +8,8 @@ level: intermédiaire
 status: à jour
 featured: false
 tested_on: [Windows 11, Microsoft Intune, Windows Autopatch, jonction hybride Entra]
+sidebar:
+  label: "BitLocker : ne jamais perdre une clé de…"
 ---
 
 Septembre 2025. Un poste refuse de s'enrôler correctement dans Intune et Windows Autopatch. Le réflexe

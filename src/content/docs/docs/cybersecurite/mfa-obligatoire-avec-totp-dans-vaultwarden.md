@@ -8,6 +8,8 @@ level: intermédiaire
 status: à jour
 featured: false
 tested_on: [Microsoft 365 Business, Vaultwarden, Cloudron]
+sidebar:
+  label: "Rendre la double authentification Microsoft…"
 ---
 
 Janvier 2025, le tenant Microsoft 365 vient d'être créé et les boîtes aux lettres n'ont pas encore quitté le

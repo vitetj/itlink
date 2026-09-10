@@ -8,6 +8,8 @@ level: intermédiaire
 status: à jour
 featured: false
 tested_on: [Windows 10, Windows 11]
+sidebar:
+  label: "Boucle de redémarrage causée par un agent de…"
 ---
 
 Mai 2026. Plusieurs postes du parc se mettent à redémarrer en boucle. Pas un plantage, pas un écran bleu : un redémarrage propre, annoncé, répété toutes les quelques minutes. L'utilisateur a le temps d'ouvrir sa session, parfois de lancer une application, et la machine repart.

@@ -8,6 +8,8 @@ level: expert
 status: à jour
 featured: false
 tested_on: [Cato Client Windows, Orange BVPN]
+sidebar:
+  label: "L'agent SASE ne s'authentifie pas depuis le LAN"
 ---
 
 Le symptôme est déroutant parce qu'il est à l'envers de ce qu'on attend. Sur le réseau interne de l'entreprise,

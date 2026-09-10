@@ -8,6 +8,8 @@ level: intermédiaire
 status: à jour
 featured: false
 tested_on: ["Exchange Online"]
+sidebar:
+  label: "Listes de diffusion dynamiques"
 ---
 
 Début avril, j'ai remplacé trois habitudes par trois listes. Jusque-là, quand quelqu'un devait écrire « à toute la France », il ouvrait un vieux mail, recopiait les destinataires, en ajoutait deux et en oubliait trois. Même chose pour l'Espagne, même chose pour les États-Unis. J'ai donc créé une liste de diffusion dynamique par pays : un filtre sur l'annuaire, et plus rien à maintenir à la main.

@@ -9,6 +9,8 @@ level: intermédiaire
 status: à jour
 featured: false
 tested_on: [Windows embarqué, Fastems MMS5]
+sidebar:
+  label: "Un PC de cellule qui démarre en boucle"
 ---
 
 Un PC de cellule n'est pas un poste de bureau. Il ressemble à un poste de bureau, il exécute un Windows qui ressemble à un Windows, mais il a été installé une fois, en 2016, par le constructeur de la machine, avec une pile logicielle que personne chez vous ne sait réinstaller. Il tourne en continu, subit les arrêts d'urgence de l'atelier, et son disque encaisse des écritures permanentes. Il n'est ni dans votre inventaire de sauvegarde, ni dans votre cycle de renouvellement, parce qu'il est arrivé avec la machine — c'est-à-dire, dans l'esprit de tout le monde, avec la production.

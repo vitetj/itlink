@@ -8,6 +8,8 @@ level: intermédiaire
 status: à jour
 featured: false
 tested_on: [RustDesk Pro, Windows]
+sidebar:
+  label: "RustDesk auto-hébergé"
 ---
 
 Ma boîte fabrique des machines. Elles partent chez des clients aux quatre coins du monde et, tôt ou tard, un

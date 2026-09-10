@@ -8,6 +8,8 @@ level: débutant
 status: à jour
 featured: false
 tested_on: [Windows, PC industriel (IPC)]
+sidebar:
+  label: "Identifier le processus derrière une connexion…"
 ---
 
 Fin février 2026, le SOC m'a remonté une suspicion de compromission sur un PC industriel : un flux sortant

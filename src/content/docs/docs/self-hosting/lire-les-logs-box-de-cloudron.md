@@ -8,6 +8,8 @@ level: débutant
 status: à jour
 featured: false
 tested_on: [Cloudron, Ubuntu Server LTS]
+sidebar:
+  label: "Lire les logs « box » de Cloudron"
 ---
 
 Un samedi matin, mon tableau de bord Cloudron met dix secondes à s'afficher et me sort une erreur d'API, puis

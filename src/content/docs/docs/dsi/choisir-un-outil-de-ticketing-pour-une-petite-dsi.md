@@ -8,6 +8,8 @@ level: intermédiaire
 status: à jour
 featured: false
 tested_on: [Zammad, Cloudron]
+sidebar:
+  label: "Choisir un outil de ticketing pour une petite DSI"
 ---
 
 En août 2025, la direction arrive avec une idée raisonnable : formaliser les demandes informatiques.

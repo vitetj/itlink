@@ -8,6 +8,8 @@ level: avancé
 status: à jour
 featured: false
 tested_on: [Distribution RHEL-like (dnf), Samba winbind, Active Directory domaine unique]
+sidebar:
+  label: "Serveur de fichiers Samba"
 ---
 
 Mai 2026. Le serveur de fichiers de ma boîte tournait en Samba autonome : comptes locaux, mots de passe sans rapport avec ceux du domaine, mappage d'identifiants laissé par défaut. Ça marchait très bien, à condition de ne jamais monter un deuxième serveur de fichiers et d'accepter qu'un départ de salarié se traite à deux endroits.

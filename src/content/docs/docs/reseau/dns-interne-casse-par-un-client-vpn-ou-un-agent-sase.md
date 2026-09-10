@@ -8,6 +8,8 @@ level: intermédiaire
 status: à jour
 featured: false
 tested_on: [Windows 11, Cato Client]
+sidebar:
+  label: "Diagnostiquer une résolution DNS interne cassée…"
 ---
 
 Deux tickets, à quelques semaines d'écart, même symptôme : « je n'arrive plus à joindre les ressources internes ».

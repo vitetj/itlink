@@ -7,6 +7,8 @@ tags: [mobilite, deplacement, zone-a-risque, chiffrement, mfa]
 level: intermédiaire
 status: à jour
 featured: false
+sidebar:
+  label: "Sécuriser un déplacement professionnel en zone à risque"
 ---
 
 La demande arrive toujours de la même façon, et rarement à l'avance : un collaborateur part en mission dans un

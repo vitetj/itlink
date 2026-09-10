@@ -9,6 +9,8 @@ level: avancé
 status: à jour
 featured: false
 tested_on: [GitLab CE auto-hébergé en Docker, PowerShell]
+sidebar:
+  label: "Versionner des programmes machine"
 ---
 
 Dans un atelier d'usinage, les programmes des machines à commande numérique vivent sur un partage réseau. Les régleurs les modifient depuis les PC d'atelier, l'outil qui gère les dossiers de programmes ne gère ni les droits ni l'historique, et le jour où une pièce sort fausse, personne ne sait qui a modifié le fichier, quand, ni à quoi ressemblait la version d'avant. Le partage n'a qu'une mémoire : la version actuelle.

@@ -8,6 +8,8 @@ level: avancé
 status: à jour
 featured: true
 tested_on: [Wireshark, Android 14, iOS 26.0.1]
+sidebar:
+  label: "Prouver à un éditeur que le problème vient de chez lui"
 ---
 
 Un matin d'octobre, tout un plateau de bureaux est resté allumé. Pas une panne électrique : une mise à jour.

@@ -8,6 +8,8 @@ level: expert
 status: à jour
 featured: true
 tested_on: [VxRail E560F, VxRail Manager 8.0.370, vCenter 8.0.3]
+sidebar:
+  label: "Débloquer une mise à niveau VxRail LCM qui…"
 ---
 
 Février 2026. Mon cluster VxRail, six nœuds E560F en configuration étendue sur deux salles, doit passer

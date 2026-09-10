@@ -7,6 +7,8 @@ tags: [cablage, rj45, baie-de-brassage, brassage, chantier]
 level: intermédiaire
 status: à jour
 featured: false
+sidebar:
+  label: "Recâbler une baie de brassage héritée"
 ---
 
 La réimplantation d'un bureau d'études commence rarement par le réseau. On parle mobilier, îlots de six bureaux

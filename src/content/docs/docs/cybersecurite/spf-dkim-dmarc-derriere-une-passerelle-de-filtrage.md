@@ -9,6 +9,8 @@ level: intermédiaire
 status: à jour
 featured: false
 tested_on: [Microsoft 365 hybride, Hornetsecurity]
+sidebar:
+  label: "SPF, DKIM, DMARC"
 ---
 
 À l'automne 2025, j'ai placé une passerelle de filtrage (Hornetsecurity) devant Exchange Online. Le tenant est

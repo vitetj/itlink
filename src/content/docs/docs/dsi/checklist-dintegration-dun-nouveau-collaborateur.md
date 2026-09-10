@@ -7,6 +7,8 @@ tags: [onboarding, gouvernance, ticketing, mfa, poste-de-travail, it-solo]
 level: débutant
 status: à jour
 featured: false
+sidebar:
+  label: "La check-list IT d'arrivée d'un nouveau…"
 ---
 
 Un nouveau commercial arrive lundi. L'information me parvient le jeudi, dans un mail qui dit à peu près : « Bonjour,

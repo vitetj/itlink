@@ -7,6 +7,8 @@ tags: [poste-de-travail, achats, obsolescence, rse, industrie, materiel]
 level: intermédiaire
 status: à jour
 featured: false
+sidebar:
+  label: "Un PC modulaire et réparable en entreprise"
 ---
 
 Fin juin, une collègue m'écrit une phrase que j'entends deux fois par an : « c'est fou, cette obsolescence si rapide ». Ce jour-là, elle tombait mal : je venais de conclure qu'il fallait racheter une infrastructure serveur parce que le matériel en place, parfaitement fonctionnel, sortait du périmètre de support de son constructeur. Alors j'ai fait ce que je fais quand une remarque m'agace : j'ai regardé si on pouvait y répondre autrement, et j'ai monté un dossier sur les postes de travail modulaires et réparables.

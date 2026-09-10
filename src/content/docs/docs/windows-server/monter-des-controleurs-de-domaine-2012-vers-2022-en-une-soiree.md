@@ -8,6 +8,8 @@ level: avancé
 status: à jour
 featured: true
 tested_on: [Windows Server 2012, Windows Server 2022, Exchange 2013]
+sidebar:
+  label: "Mettre à niveau des contrôleurs de domaine…"
 ---
 
 Les licences Microsoft 365 venaient d'arriver et la prochaine étape s'appelait Entra Connect. Or Entra Connect,

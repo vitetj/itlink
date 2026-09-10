@@ -8,6 +8,8 @@ level: débutant
 status: à jour
 featured: false
 tested_on: [DNS Windows Server]
+sidebar:
+  label: "Mettre un alias DNS interne (CNAME) devant un…"
 ---
 
 Fin mai 2026, l'éditeur d'un SaaS utilisé dans l'atelier annonce un changement d'URL. Ce SaaS est

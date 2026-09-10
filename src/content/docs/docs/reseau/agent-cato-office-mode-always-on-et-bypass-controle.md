@@ -8,6 +8,8 @@ level: intermédiaire
 status: à jour
 featured: false
 tested_on: [Cato Client Windows, Stormshield SN720]
+sidebar:
+  label: "Agent Cato : Office Mode qui ne s'active pas…"
 ---
 
 Quand on déploie un agent SASE en mode Always-On sur tout le parc, on signe pour une promesse simple : chaque poste passe par le cloud de sécurité, tout le temps, sans que l'utilisateur ait quoi que ce soit à faire. La réalité, dans une PME industrielle avec des automaticiens qui branchent leur PC sur des machines sans Internet, est un peu plus nuancée. Voici les trois sujets qui m'ont occupé pendant les semaines qui ont suivi la bascule vers Cato Networks : un Office Mode qui refusait de s'activer sur le réseau interne, un Always-On qu'il a fallu rendre vivable pour les techniciens terrain, et un accès prestataire chez un client lui-même sous Cato.

@@ -9,6 +9,8 @@ level: expert
 status: à jour
 featured: true
 tested_on: [Windows Server 2022, Windows Server 2025, VMware VxRail 8.0.380]
+sidebar:
+  label: "Remettre les contrôleurs de domaine en Tier 0…"
 ---
 
 Un contrôleur de domaine, c'est comme le tiroir fourre-tout de la cuisine. Au départ il ne contient que les

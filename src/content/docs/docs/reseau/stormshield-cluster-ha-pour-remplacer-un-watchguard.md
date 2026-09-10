@@ -9,6 +9,8 @@ level: avancé
 status: à jour
 featured: true
 tested_on: ["Stormshield SN720 x2 (SNS v4)", "Alcatel-Lucent OmniSwitch OS6900 en VFL", "WatchGuard WSM 12.11.2", "Routeurs Orange LBB350 (fibre) et LBB154 (4G)"]
+sidebar:
+  label: "Remplacer un pare-feu WatchGuard par un cluster…"
 ---
 
 Le WatchGuard qui gardait la porte de ma boîte arrivait en bout de course. Le renouvellement s'est joué en deux

@@ -9,6 +9,8 @@ level: avancé
 status: à jour
 featured: true
 tested_on: [Veeam Backup & Replication 12 Essentials Enterprise, Veeam Backup & Replication 13, Windows Server, Dell PowerEdge R740XD, Dell PowerVault TL1000 LTO8 SAS]
+sidebar:
+  label: "Veeam et Dell PowerVault TL1000"
 ---
 
 En août 2025, Veeam m'a remonté un « Critical tape drive alert ». Rien de dramatique sur le papier : un lecteur qui râle. Sauf que le lecteur LTO8 SAS de ma librairie Dell PowerVault TL1000 passait en erreur après une vingtaine de minutes d'inactivité, que la librairie basculait alors en Offline dans Veeam, puis disparaissait purement et simplement de Windows. Plus de robot, plus de lecteur, plus de sauvegarde sur bande.

@@ -8,6 +8,8 @@ level: débutant
 status: à jour
 featured: false
 tested_on: [Ubuntu Server 22.04 LTS, Ubuntu Server 24.04 LTS]
+sidebar:
+  label: "Activer Ubuntu Pro sur ses serveurs"
 ---
 
 Nos serveurs Linux tournent sur Ubuntu Server LTS : la plateforme d'auto-hébergement qui porte une

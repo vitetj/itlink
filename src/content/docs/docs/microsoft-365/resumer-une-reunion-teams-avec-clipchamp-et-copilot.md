@@ -8,6 +8,8 @@ level: débutant
 status: à jour
 featured: false
 tested_on: ["Microsoft Teams", "Clipchamp (application Windows)", "Microsoft 365"]
+sidebar:
+  label: "Résumer une réunion Teams"
 ---
 
 « Tu peux me sortir un résumé de la réunion de mardi ? Je n'étais pas dedans. » La demande est légitime, la réponse

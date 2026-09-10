@@ -7,6 +7,8 @@ tags: [adressage-ip, rfc-1918, automates, reseau-local, bonnes-pratiques]
 level: débutant
 status: à jour
 featured: true
+sidebar:
+  label: "Les trois seules plages d'adresses IP privées…"
 ---
 
 En juillet 2026, j'ai découvert que des machines parties en clientèle étaient configurées avec des adresses

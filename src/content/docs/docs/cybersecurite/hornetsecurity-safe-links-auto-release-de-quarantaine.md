@@ -8,6 +8,8 @@ level: intermédiaire
 status: à jour
 featured: true
 tested_on: [Microsoft 365, Defender for Office 365 Plan 1, Hornetsecurity Email Protection]
+sidebar:
+  label: "Hornetsecurity et Microsoft 365"
 ---
 
 Début mars 2026, quelques mois après la migration de l'antispam vers Hornetsecurity, plusieurs utilisateurs

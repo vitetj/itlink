@@ -8,6 +8,8 @@ level: avancé
 status: à jour
 featured: false
 tested_on: [Universe DBMS 11.3.1.0, Metabase]
+sidebar:
+  label: "Exposer les données d'une GPAO ancienne sans y toucher"
 ---
 
 La demande métier est toujours formulée de la même manière : « on voudrait un tableau de bord en direct, pas un

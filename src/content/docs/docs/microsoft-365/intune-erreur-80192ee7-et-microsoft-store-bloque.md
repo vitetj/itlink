@@ -8,6 +8,8 @@ level: intermédiaire
 status: à jour
 featured: false
 tested_on: [Windows 11 Business 24H2, Microsoft 365 Business Premium, Entra Connect]
+sidebar:
+  label: "Intune : erreur d'enrôlement 80192EE7 et…"
 ---
 
 Printemps 2025. Les licences viennent de passer de Business Standard à Business Premium, Intune est enfin

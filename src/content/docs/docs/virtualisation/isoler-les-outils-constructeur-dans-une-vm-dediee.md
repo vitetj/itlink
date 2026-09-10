@@ -8,6 +8,8 @@ level: intermédiaire
 status: à jour
 featured: false
 tested_on: [Windows 11 Pro, Yaskawa MPE720 v7.A3, Yaskawa MPE720 v7.A5, Hyper-V]
+sidebar:
+  label: "Outils constructeur d'automates"
 ---
 
 Le poste d'un automaticien, c'est une brocante. Il y a l'atelier logiciel du fabricant de robots — chez moi Yaskawa Engineering Tool MPE720 —, celui des automates Omron Sysmac, celui de Rockwell, plus une ou deux consoles héritées d'une machine livrée il y a huit ans. Chacun installe ses pilotes, son service de licence, sa pile de communication, parfois sa propre couche réseau. Chacun considère qu'il est seul sur la machine.

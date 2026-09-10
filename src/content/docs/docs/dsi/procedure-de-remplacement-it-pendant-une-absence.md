@@ -8,6 +8,8 @@ level: intermédiaire
 status: à jour
 featured: false
 tested_on: [VMware vCenter 8.0.3, Dell VxRail]
+sidebar:
+  label: "Quand l'informaticien est absent"
 ---
 
 Fin juillet 2026, à quelques jours de mes congés, j'ai envoyé un mail au responsable automatisme et à la RH. Titre : « Procédure de base – remplacement IT pendant mon absence ». Quelques pages, pas plus, destinées à des gens compétents dans leur métier mais qui n'avaient jamais ouvert vCenter. Un mois plus tôt, une série de micro-coupures électriques avait laissé trois serveurs à relancer et deux VM qui refusaient de redémarrer seules. Je ne voulais pas que ça se reproduise avec moi injoignable.

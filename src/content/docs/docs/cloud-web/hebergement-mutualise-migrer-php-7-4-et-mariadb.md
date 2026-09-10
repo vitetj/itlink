@@ -8,6 +8,8 @@ level: débutant
 status: à jour
 featured: false
 tested_on: [Apache 2.4, PHP 7.4, PHP 8, MariaDB 10.6, MariaDB 10.11]
+sidebar:
+  label: "Hébergement mutualisé"
 ---
 
 Fin juillet 2026, l'hébergeur mutualisé qui héberge nos sites vitrines envoie une de ces notifications

@@ -7,6 +7,8 @@ tags: [audit, rapport, vmware, stormshield, nmap, rvtools]
 level: intermédiaire
 status: à jour
 featured: false
+sidebar:
+  label: "Modèle de rapport d'audit d'infrastructure pour…"
 ---
 
 Fin février 2026, j'ai rédigé une trame de rapport d'audit d'infrastructure. Pas pour ma boîte : pour

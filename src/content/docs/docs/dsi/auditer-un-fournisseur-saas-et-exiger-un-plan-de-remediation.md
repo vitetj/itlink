@@ -7,6 +7,8 @@ tags: [saas, fournisseurs, nis2, rgpd, audit, remediation]
 level: intermédiaire
 status: à jour
 featured: false
+sidebar:
+  label: "Auditer un fournisseur SaaS et obtenir un plan…"
 ---
 
 En janvier 2026, un client industriel m'a envoyé son questionnaire de sécurité fournisseur, estampillé

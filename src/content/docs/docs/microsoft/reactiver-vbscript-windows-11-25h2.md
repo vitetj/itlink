@@ -8,6 +8,8 @@ level: débutant
 status: à jour
 featured: false
 tested_on: [Windows 11 25H2]
+sidebar:
+  label: "Réactiver VBScript sur Windows 11 25H2 pour un…"
 ---
 
 Août 2026, un ticket au support interne : l'installateur de Studio 5000, l'environnement de programmation

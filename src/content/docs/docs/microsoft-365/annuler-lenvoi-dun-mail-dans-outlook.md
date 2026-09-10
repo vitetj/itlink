@@ -9,6 +9,8 @@ level: débutant
 status: à jour
 featured: false
 tested_on: ["Outlook (nouveau) pour Windows"]
+sidebar:
+  label: "Annuler l'envoi d'un mail dans Outlook"
 ---
 
 La demande arrive toujours dans la minute qui suit la bêtise : « je viens d'envoyer le mail à toute la boîte au lieu

@@ -8,6 +8,8 @@ level: expert
 status: à jour
 featured: true
 tested_on: ["Exchange Server 2019 CU15 (15.2.1748.10)", "Windows Server 2025", "Exchange Online"]
+sidebar:
+  label: "Exchange hybride"
 ---
 
 Le décor : une PME industrielle, deux serveurs Exchange (l'ancien 2013 en fin de vie et un 2019 tout neuf sur

@@ -8,6 +8,8 @@ level: intermédiaire
 status: à jour
 featured: true
 tested_on: [Cloudron, rclone, OVH Object Storage, OVH Cold Archive]
+sidebar:
+  label: "Migrer ses sauvegardes de Backblaze B2 vers OVH…"
 ---
 
 En mai 2025, j'écris une note de cadrage sur l'externalisation des sauvegardes : règle 3-2-1, Veeam pour

@@ -7,6 +7,8 @@ tags: [facturation-electronique, ubl, factur-x, peppol, dematerialisation, edi]
 level: intermédiaire
 status: à jour
 featured: false
+sidebar:
+  label: "Facturation électronique"
 ---
 
 Le service comptable prépare le passage à la facturation électronique. L'éditeur pressenti pose sa question dès la

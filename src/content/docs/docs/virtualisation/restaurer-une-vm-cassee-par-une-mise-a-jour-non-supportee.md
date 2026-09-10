@@ -8,6 +8,8 @@ level: avancé
 status: à jour
 featured: true
 tested_on: [VMware vSphere, Dell VxRail, Veeam, Mitel MBG, Mitel MiCollab]
+sidebar:
+  label: "Restaurer une VM cassée par une mise à jour non supportée"
 ---
 
 Un jeudi de septembre, le prestataire qui gère notre téléphonie Mitel se connecte pour une opération de routine sur

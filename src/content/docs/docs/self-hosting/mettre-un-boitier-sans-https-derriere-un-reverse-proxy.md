@@ -9,6 +9,8 @@ level: intermédiaire
 status: à jour
 featured: false
 tested_on: [Cloudron, nginx, Let's Encrypt]
+sidebar:
+  label: "Mettre un boîtier sans HTTPS (NVR, imprimante…"
 ---
 
 L'enregistreur de vidéosurveillance qu'on m'a livré sait faire du HTTPS. En théorie. En pratique, il attend un

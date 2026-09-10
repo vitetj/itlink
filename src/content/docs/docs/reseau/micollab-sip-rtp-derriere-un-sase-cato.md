@@ -8,6 +8,8 @@ level: expert
 status: à jour
 featured: false
 tested_on: ["Mitel MiVoice 5000", "MiCollab 9.8.1", "MiVoice Border Gateway 11.6.0", "Cato Networks", "Stormshield SN720", "iOS 18 et Android (MiCollab Mobile)"]
+sidebar:
+  label: "Faire fonctionner Mitel MiCollab / MBG (SIP et…"
 ---
 
 Le 16 juin, nous avons basculé la sortie Internet de ma boîte d'un accès direct vers un lien MPLS raccordé à un SASE

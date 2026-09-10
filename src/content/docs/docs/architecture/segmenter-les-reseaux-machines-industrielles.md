@@ -7,6 +7,8 @@ tags: [ot, automates, adressage-ip, ewon, segmentation, telemaintenance]
 level: avancé
 status: à jour
 featured: false
+sidebar:
+  label: "Réseaux machines industrielles"
 ---
 
 Dans une PME qui conçoit des machines, le réseau ne s'arrête pas à la porte du bureau d'études. Chaque machine embarque son propre réseau : un automate, des variateurs, une IHM, et un routeur de télémaintenance pour que le SAV puisse intervenir chez le client. Ce réseau est conçu par les automaticiens, pas par le service informatique, et pendant longtemps personne n'a vraiment tranché la question de son architecture. En mai 2026, mon collègue responsable informatique a formalisé trois options pour le service automatisme. Deux mois plus tard, j'ai dû envoyer un rappel à tout le monde parce que des machines partaient chez des clients avec des adresses IP publiques. Ces deux épisodes tiennent en un principe : le réseau machine, la télémaintenance et le LAN bureautique sont trois mondes, et ils ne se mélangent pas.
