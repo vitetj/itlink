@@ -30,7 +30,7 @@
   /* Texte */
   --c-fg: light-dark(#191a1c, #e7e5df);
   --c-fg-muted: light-dark(#4b4e55, #a9acb3);
-  --c-fg-subtle: light-dark(#717580, #7d828c);
+  --c-fg-subtle: light-dark(#5d616a, #8b9099);
 
   /* Traits */
   --c-line: light-dark(#dbd7cb, #262d38);

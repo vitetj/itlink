@@ -1,8 +1,8 @@
 import { defineCollection } from 'astro:content';
 import { z } from 'astro/zod';
 import { glob } from 'astro/loaders';
-import { docsLoader } from '@astrojs/starlight/loaders';
-import { docsSchema } from '@astrojs/starlight/schema';
+import { docsLoader, i18nLoader } from '@astrojs/starlight/loaders';
+import { docsSchema, i18nSchema } from '@astrojs/starlight/schema';
 import {
   BLOG_CATEGORIES,
   DOC_CATEGORIES,
@@ -140,4 +140,7 @@ const projects = defineCollection({
   }),
 });
 
-export const collections = { docs, posts, lab, travel, projects };
+/** Surcharges des libellés d'interface Starlight (src/content/i18n/fr.json). */
+const i18n = defineCollection({ loader: i18nLoader(), schema: i18nSchema() });
+
+export const collections = { docs, i18n, posts, lab, travel, projects };

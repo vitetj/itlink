@@ -103,6 +103,7 @@
 }
 .sl-markdown-content a:not(.sl-anchor-link, .tag, .btn, :where(.not-content *)) {
   color: var(--c-accent);
+  text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 0.2em;
   text-decoration-color: color-mix(in oklab, var(--c-accent) 45%, transparent);

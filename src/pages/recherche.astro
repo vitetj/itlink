@@ -60,6 +60,7 @@ import { SITE } from '@/data/site';
         searching: 'Recherche de [SEARCH_TERM]…',
       },
     });
+    document.querySelector('.pagefind-ui__search-input')?.setAttribute('aria-label', 'Rechercher sur le site');
     const q = new URLSearchParams(location.search).get('q');
     if (q) ui.triggerSearch(q);
   });

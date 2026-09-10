@@ -104,6 +104,22 @@ const hueOf: Record<string, string> = {
   </div>
 </div>
 
+
+<script>
+  // Ferme le menu mobile (details) au clic extérieur ou avec Échap — amélioration progressive.
+  for (const menu of document.querySelectorAll<HTMLDetailsElement>('details.mobile-menu')) {
+    document.addEventListener('click', (e) => {
+      if (menu.open && !menu.contains(e.target as Node)) menu.open = false;
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menu.open) {
+        menu.open = false;
+        menu.querySelector('summary')?.focus();
+      }
+    });
+  }
+</script>
+
 <style>
   .wordmark {
     display: inline-flex;

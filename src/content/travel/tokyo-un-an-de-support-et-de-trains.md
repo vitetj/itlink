@@ -9,6 +9,8 @@ trip:
   to: 2016-03-31
 tags: [japon, tokyo, transports, support, culture]
 featured: true
+cover: ../../assets/covers/tokyo-station-sign.svg
+coverAlt: Un panneau de gare à la japonaise — parce que les trains sont la première chose qu'on retient de Tokyo.
 ---
 
 Avant de diriger un service informatique, j'ai passé un an à Tokyo à faire du support de proximité pour des écoles et
