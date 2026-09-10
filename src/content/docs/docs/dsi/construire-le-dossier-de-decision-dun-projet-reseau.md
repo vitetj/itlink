@@ -4,7 +4,7 @@ description: "La structure qui a fait passer un projet SASE en PME : situation a
 published: 2026-04-02
 updated: 2026-04-29
 category: dsi
-tags: [dsi, budget, direction, sase, opex, capex]
+tags: [dsi, budget, gouvernance, sase]
 level: intermédiaire
 status: à jour
 featured: false

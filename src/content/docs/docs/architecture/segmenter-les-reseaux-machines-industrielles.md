@@ -3,7 +3,7 @@ title: "Réseaux machines industrielles : ne jamais mélanger réseau machine, t
 description: "Trois architectures possibles pour le réseau d'une machine industrielle, pourquoi une seule tient la route, et le rappel à faire au SAV : les adresses publiques n'ont rien à faire dans un automate."
 published: 2026-07-22
 category: architecture
-tags: [ot, automates, rfc1918, ewon, segmentation, telemaintenance]
+tags: [ot, automates, adressage-ip, ewon, segmentation, telemaintenance]
 level: avancé
 status: à jour
 featured: false

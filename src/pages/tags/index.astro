@@ -5,16 +5,38 @@ import { getTagIndex } from '@/lib/content';
 
 const tags = await getTagIndex();
 const max = Math.max(1, ...tags.map((t) => t.count));
+/** Au-delà de deux occurrences, un tag est un vrai sujet ; en dessous, c'est de la longue traîne. */
+const main = tags.filter((t) => t.count >= 3);
+const tail = tags.filter((t) => t.count < 3);
 ---
 
 <BaseLayout seo={{ title: 'Tags', description: 'Tous les sujets abordés sur le site, docs, blog, lab et voyages confondus.', image: '/og/tags.png' }}>
   <div class="container-x py-10 md:py-14">
     <SectionHeading level="h1" eyebrow="// index" title={`${tags.length} tags`} />
-    <ul class="flex flex-wrap gap-2" role="list">
+    <p class="max-w-(--measure) text-fg-muted">
+      Les sujets qui reviennent en premier, les plus pointus ensuite. Pour chercher dans le texte des articles,
+      passez plutôt par <a href="/recherche" class="link">la recherche</a>.
+    </p>
+
+    <h2 class="eyebrow mt-8">// sujets principaux</h2>
+    <ul class="mt-3 flex flex-wrap gap-2" role="list">
       {
-        tags.map((t) => (
+        main.map((t) => (
           <li>
-            <a href={`/tags/${t.slug}/`} class="tag" style={`font-size:${(0.75 + (t.count / max) * 0.35).toFixed(2)}rem`}>
+            <a href={`/tags/${t.slug}/`} class="tag" style={`font-size:${(0.8 + (t.count / max) * 0.4).toFixed(2)}rem`}>
+              #{t.tag} <span class="text-fg-subtle">{t.count}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <h2 class="eyebrow mt-10">// et {tail.length} sujets plus pointus</h2>
+    <ul class="mt-3 flex flex-wrap gap-2" role="list">
+      {
+        tail.map((t) => (
+          <li>
+            <a href={`/tags/${t.slug}/`} class="tag text-xs">
               #{t.tag} <span class="text-fg-subtle">{t.count}</span>
             </a>
           </li>

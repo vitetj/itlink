@@ -5,7 +5,7 @@ published: 2026-03-14
 category: reseau
 status: en production
 stack: [Active Directory DNS, AdGuard Home, Cloudflare Gateway, DNS over TLS, DNS over HTTPS, SEKOIA]
-tags: [dns, adguard-home, cloudflare, doh, dot, securite]
+tags: [dns, adguard-home, cloudflare, securite]
 featured: false
 ---
 

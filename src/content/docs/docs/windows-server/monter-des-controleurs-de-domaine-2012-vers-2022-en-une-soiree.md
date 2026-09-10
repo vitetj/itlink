@@ -3,7 +3,7 @@ title: "Mettre à niveau des contrôleurs de domaine Windows Server 2012 vers 20
 description: "Dix ans de retard en trois heures : contrôles en journée, promotion des DC 2022 le soir, transfert des rôles FSMO, rétrogradation des 2012, montée du niveau fonctionnel. Dix minutes de coupure et un café."
 published: 2025-01-14
 category: windows-server
-tags: [active-directory, windows-server-2022, migration, fsmo, entra-connect, dfsr]
+tags: [active-directory, windows-server, migration, fsmo, entra-connect, dfsr]
 level: avancé
 status: à jour
 featured: true

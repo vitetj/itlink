@@ -3,7 +3,7 @@ title: "Lire un rapport Live Optics et un export RVTools pour préparer un renou
 description: "Une semaine de collecte Live Optics, un export RVTools et quatre chiffres à lire avant d'écouter un commercial : cœurs, RAM, capacité provisionnée contre utilisée, IOPS. Pour préparer un renouvellement de cluster."
 published: 2026-07-10
 category: architecture
-tags: [live-optics, rvtools, vsphere, dimensionnement, renouvellement, vxrail]
+tags: [live-optics, rvtools, vmware, dimensionnement, renouvellement, vxrail]
 level: avancé
 status: à jour
 featured: false

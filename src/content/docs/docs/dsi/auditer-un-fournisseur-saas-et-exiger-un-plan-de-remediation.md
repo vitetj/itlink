@@ -3,7 +3,7 @@ title: "Auditer un fournisseur SaaS et obtenir un plan de remédiation"
 description: "Ce que vous pouvez vérifier sans intrusion sur la plateforme d'un éditeur, les questions à poser avec les preuves attendues, le rapport de constats et la demande de plan de remédiation daté. Méthode de juin 2026."
 published: 2026-06-05
 category: dsi
-tags: [saas, fournisseur, nis2, rgpd, audit, remediation]
+tags: [saas, fournisseurs, nis2, rgpd, audit, remediation]
 level: intermédiaire
 status: à jour
 featured: false

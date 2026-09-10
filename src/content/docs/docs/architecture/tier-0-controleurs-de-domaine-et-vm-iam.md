@@ -4,7 +4,7 @@ description: "Un DC ne fait que AD DS et DNS. Inventorier ce qui s'est accumulé
 published: 2026-05-30
 updated: 2026-06-02
 category: architecture
-tags: [tier-0, active-directory, gmsa, windows-server-2025, durcissement, posture]
+tags: [tier-0, active-directory, gmsa, windows-server, durcissement, posture]
 level: expert
 status: à jour
 featured: true

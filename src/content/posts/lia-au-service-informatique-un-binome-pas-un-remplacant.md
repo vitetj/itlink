@@ -3,7 +3,7 @@ title: "L'IA au service informatique : un binôme de debug, pas un remplaçant"
 description: "Deux ans d'assistants IA dans un service informatique de deux personnes : un bug de voix sur IP résolu à deux, un rapport qui me prenait pour une équipe, une refonte avortée et une charte pour encadrer tout ça."
 published: 2026-08-28
 category: humeur
-tags: [ia, chatgpt, claude, copilot, debug, it-solo, charte-ia]
+tags: [ia, debug, it-solo, charte-ia]
 featured: false
 ---
 

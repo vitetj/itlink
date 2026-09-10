@@ -3,7 +3,7 @@ title: "Deux adresses IP sur une même carte réseau : comprendre l'APIPA 169.25
 description: "Une adresse en 169.254 qui apparaît à côté de votre IP habituelle n'est pas un virus ni un bug : c'est Windows qui s'auto-attribue une adresse faute de DHCP. D'où ça vient, quand c'est normal, et quoi faire."
 published: 2024-09-10
 category: reseau
-tags: [apipa, dhcp, ipv4, windows, automates]
+tags: [apipa, dhcp, adressage-ip, windows, automates]
 level: débutant
 status: à jour
 featured: false

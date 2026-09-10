@@ -3,7 +3,7 @@ title: "Cadrer une migration MySQL 5.5 sur Windows Server 2008 vers MySQL 8.0 su
 description: "Migrer l'entrepôt de données d'une GPAO alimenté par un ETL en fichiers plats : objectifs à fixer, dump et rechargement, dates zéro et collations mélangées, contrôle table par table et retour arrière."
 published: 2025-01-30
 category: architecture
-tags: [mysql, migration, gpao, etl, windows-server-2025, bi]
+tags: [mysql, migration, gpao, etl, windows-server, bi]
 level: avancé
 status: à jour
 featured: false

@@ -3,7 +3,7 @@ title: "Rendre la double authentification Microsoft obligatoire avec les codes T
 description: "Imposer le MFA Microsoft 365 à deux cents utilisateurs sans smartphone professionnel : le secret TOTP dans le coffre Vaultwarden, la remise à zéro côté admin, le portail de secours et Vaultwarden Send."
 published: 2025-01-24
 category: cybersecurite
-tags: [mfa, totp, vaultwarden, bitwarden, microsoft-365, entra]
+tags: [mfa, totp, vaultwarden, bitwarden, microsoft-365, entra-id]
 level: intermédiaire
 status: à jour
 featured: false

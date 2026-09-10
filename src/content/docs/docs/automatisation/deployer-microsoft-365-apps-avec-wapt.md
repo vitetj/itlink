@@ -3,7 +3,7 @@ title: "Déployer Microsoft 365 Apps sur un parc avec WAPT (Office Deployment To
 description: "Remplacer en masse un Office non conforme par Microsoft 365 Apps for Business : un paquet WAPT qui embarque l'Office Deployment Tool, désinstalle l'ancien Office, et la case à ne pas cocher à la première activation."
 published: 2025-01-31
 category: automatisation
-tags: [wapt, microsoft-365, office, odt, deploiement, entra]
+tags: [wapt, microsoft-365, office, odt, deploiement, entra-id]
 level: intermédiaire
 status: à jour
 featured: false
