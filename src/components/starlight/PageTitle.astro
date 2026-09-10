@@ -17,7 +17,7 @@ const isArticle = !isDocIndex(entry) && !!data.published;
 const rt = readingTime(entry.body);
 ---
 
-<header class="hue-docs max-w-(--measure)">
+<header class="hue-docs">
   {
     categoryMeta && !isDocIndex(entry) && (
       <p class="eyebrow text-docs">
@@ -27,7 +27,7 @@ const rt = readingTime(entry.body);
       </p>
     )
   }
-  <h1 id="_top" class="mt-2 text-3xl font-semibold leading-[1.12] tracking-[-0.025em] text-balance md:text-[2.5rem]">
+  <h1 id="_top" class="mt-2 font-display text-3xl font-bold leading-tight tracking-tight text-balance md:text-[2.5rem]">
     {data.title}
   </h1>
   {data.description && <p class="mt-4 max-w-(--measure) text-lg text-fg-muted text-pretty">{data.description}</p>}
