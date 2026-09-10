@@ -1,6 +1,6 @@
 ---
 title: "Recâbler une baie de brassage héritée : du RJ11 téléphonique au RJ45"
-description: "48 liens qui arrivent en RJ11 dans la baie, un plateau de bureaux à réimplanter, un service électricité à piloter : le déroulé réel d'un recâblage, les calculs qu'on oublie et le piège du câble téléphonique."
+description: "48 liens qui arrivent en RJ11 dans la baie et un plateau à réimplanter : le déroulé réel d'un recâblage, les deux calculs qu'on oublie toujours et le piège du câble téléphonique repris tel quel."
 published: 2025-10-31
 category: reseau
 tags: [cablage, rj45, baie-de-brassage, brassage, chantier]
@@ -74,8 +74,15 @@ sera retiré à la main dans deux ans par quelqu'un qui n'était pas là.
    Par exemple `BE-P3-02`. Elle doit être identique sur la prise murale, sur le bandeau et dans votre tableau.
 3. Étiquetez **les deux extrémités** avant de toucher au premier noyau. Un repérage fait après coup se fait à
    deux personnes avec un bipeur, et ça prend une demi-journée.
-4. Tenez un **tableau de correspondance** (prise, bandeau, port, VLAN prévu, port de switch). Ce fichier vaut
-   plus cher que le matériel.
+4. Tenez un **tableau de correspondance**. Ce fichier vaut plus cher que le matériel : c'est lui qu'on rouvrira
+   dans trois ans.
+
+```text title="Tableau de correspondance — une ligne par lien"
+Prise murale | Bandeau/Port | VLAN prévu | Switch/Port | Testé le | Résultat
+BE-P3-01     | B1 / 01      | 20         | SW1 / 01    | 30/10    | OK
+BE-P3-02     | B1 / 02      | 20         | SW1 / 02    | 30/10    | OK
+BE-P3-03     | B1 / 03      | 30         | SW1 / 03    | 30/10    | à reprendre (paire divisée)
+```
 
 ## Reprendre les noyaux
 

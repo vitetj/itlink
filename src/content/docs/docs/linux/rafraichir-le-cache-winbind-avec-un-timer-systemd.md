@@ -1,6 +1,6 @@
 ---
 title: "Rafraîchir le cache winbind automatiquement avec un service et un timer systemd"
-description: "Les changements faits dans Active Directory mettent des heures à apparaître sur un serveur Linux joint par winbind. La purge automatisée par un service oneshot et un timer systemd, ses limites, et pourquoi c'est un contournement."
+description: "Les changements Active Directory mettent des heures à apparaître sur un serveur Linux joint par winbind. La purge automatisée par un service et un timer systemd, ses limites, et pourquoi c'est un contournement."
 published: 2026-03-18
 category: linux
 tags: [linux, winbind, systemd, timer, active-directory, samba]

@@ -1,6 +1,6 @@
 ---
 title: "Fiabiliser les indicateurs d'un helpdesk : quand le rapport annonce 198 réouvertures et qu'il y en a 9"
-description: "Un indicateur de réouverture qui comptait les « merci » : comment un rapport automatique transforme 9 vrais échecs en 198, comment recalculer la mesure sur les exports bruts, et pourquoi un KPI faux coûte plus cher que pas de KPI."
+description: "Un indicateur de réouverture qui comptait les « merci » : comment un rapport transforme 9 vrais échecs en 198, comment recalculer la mesure sur l'export brut, et pourquoi un KPI faux coûte plus cher qu'aucun KPI."
 published: 2026-03-27
 category: dsi
 tags: [kpi, zammad, helpdesk, itsm, pilotage, reporting]

@@ -14,18 +14,18 @@ Mai 2026. Le serveur de fichiers de ma boîte tournait en Samba autonome : compt
 
 Le passage à `security = ads` règle tout cela. Mais évitons tout de suite un malentendu : **ce n'est pas la même opération que joindre un poste Linux au domaine**. Sur un poste, l'enjeu est l'ouverture de session. Sur un serveur de fichiers, l'enjeu est le mappage d'identités. Chaque fichier posé sur le disque porte un UID et un GID numériques ; si ces numéros changent sous vos pieds, vous n'avez pas migré une authentification, vous avez tiré vos droits au sort.
 
-La bascule est décrite ici dans l'ordre où je l'ai faite, piège central d'abord. Le domaine d'exemple est `ad.example.com`, le nom NetBIOS `AD`, les partages sont sous `/srv/partages`.
+Le domaine d'exemple est `ad.example.com`, le nom NetBIOS `AD`, les partages sont sous `/srv/partages`.
 
 ## Prérequis
 
 - Un serveur de la famille Red Hat (paquets avec `dnf`), un accès root, et une fenêtre d'intervention : les partages seront indisponibles.
 - Un compte de l'annuaire autorisé à joindre des machines au domaine.
-- Une horloge synchronisée sur la même source que les contrôleurs de domaine, et un DNS qui trouve les enregistrements de service.
+- Une horloge synchronisée sur la même source que les contrôleurs, et un DNS qui trouve les enregistrements de service.
 - Une sauvegarde du serveur, pas seulement de `smb.conf` : on va toucher aux identifiants numériques de tous les fichiers.
 
 ## Comprendre ce qui change vraiment : autorid contre rid
 
-Un backend `idmap`, c'est la table de conversion entre le SID d'un objet de l'annuaire et l'UID POSIX que Linux sait manipuler. Les deux backends en présence ne travaillent pas du tout de la même façon.
+Un backend `idmap`, c'est la table de conversion entre le SID d'un objet de l'annuaire et l'UID POSIX que Linux sait manipuler. Les deux en présence ne travaillent pas de la même façon.
 
 `autorid` alloue les plages tout seul, dans l'ordre d'arrivée des domaines, et stocke le résultat dans une base locale. Pratique sur une machine isolée, ingérable à plusieurs : deux serveurs configurés à l'identique n'attribuent pas les mêmes numéros, parce que l'ordre d'arrivée n'est pas le même.
 
@@ -58,17 +58,16 @@ Kerberos ne pardonne pas la dérive d'horloge, et ne trouve les contrôleurs que
 
 ```bash title="Contrôles préalables"
 chronyc tracking
-timedatectl
 dig +short -t SRV _ldap._tcp.ad.example.com
 ```
 
 :::caution
-Cinq minutes d'écart suffisent à faire échouer Kerberos, avec un message qui ne parle jamais d'horloge. Si le serveur se synchronise sur une source publique pendant que les contrôleurs se synchronisent entre eux, alignez-les d'abord.
+Cinq minutes d'écart suffisent à faire échouer Kerberos, avec un message qui ne parle jamais d'horloge. Si le serveur se synchronise sur une source publique et les contrôleurs entre eux, alignez-les d'abord.
 :::
 
 ## Écrire la configuration cible
 
-Voici ce dont on part — une configuration autonome très proche des valeurs par défaut :
+On part d'une configuration autonome, très proche des valeurs par défaut :
 
 ```ini title="Avant : Samba autonome"
 security = user
@@ -108,7 +107,7 @@ La section `[global]` complète ressemble à ceci. Les deux plages ne doivent ja
     store dos attributes = yes
 ```
 
-`kerberos method = secrets and keytab` mérite un mot : c'est lui qui alimente un vrai keytab, réutilisable par les autres services de la machine — sauvegarde, montages, supervision. Sans lui, tout ce petit monde retombe sur du NTLM, et vous vous en apercevrez le jour où vous voudrez le couper. `template shell = /sbin/nologin` est volontaire : ici, les comptes du domaine servent à accéder à des partages, pas à ouvrir un shell.
+`kerberos method = secrets and keytab` mérite un mot : c'est lui qui alimente un vrai keytab, réutilisable par les autres services de la machine — sauvegarde, montages, supervision. Sans lui, tout ce petit monde retombe sur du NTLM, et vous vous en apercevrez le jour où vous voudrez le couper.
 
 ```bash title="Valider la syntaxe avant tout redémarrage"
 testparm -s
@@ -129,7 +128,7 @@ getent passwd utilisateur.test
 id utilisateur.test
 ```
 
-Faites-les dans cet ordre, du plus bas niveau au plus haut : la première qui échoue désigne la couche fautive. `net ads info` valide la jonction, `wbinfo --dc-info` la découverte du contrôleur, `wbinfo -a` l'authentification, `getent` la résolution par `nsswitch`, `id` les groupes.
+Dans cet ordre, du plus bas niveau au plus haut : la première commande qui échoue désigne la couche fautive. `net ads info` valide la jonction, `wbinfo -a` l'authentification, `getent` la résolution par `nsswitch`, `id` les groupes.
 
 ## Sortir de NT_STATUS_NO_LOGON_SERVERS
 
@@ -142,7 +141,7 @@ No logon servers are currently available
 
 Alors que le serveur voyait parfaitement le contrôleur de domaine. La cause : **deux fournisseurs d'identité installés en même temps**, sssd et winbind. Sur une distribution RHEL-like, `authselect` génère `/etc/nsswitch.conf` et les fichiers PAM à partir d'un profil ; tant que le profil actif est `sssd`, le fichier « revient » sur `sss` et winbind n'est plus consulté. Vous corrigez le fichier, ça marche, et ça recasse au redémarrage suivant.
 
-Le choix se fait vite : sur un serveur qui sert des partages SMB, **c'est winbind**. Samba a besoin de son propre mappage d'identités, et deux visions des utilisateurs sur la même machine ne produisent que des tickets. Sur un poste sans partage, sssd reste un très bon choix — mais alors on ne met pas winbind à côté.
+Le choix se fait vite : sur un serveur qui sert des partages SMB, **c'est winbind**. Samba a besoin de son propre mappage d'identités, et deux visions des utilisateurs sur la même machine ne produisent que des tickets. Sur un poste sans partage, sssd reste un très bon choix — mais on ne met pas les deux.
 
 ```bash title="Remise à plat, dans cet ordre"
 # 1. Retirer le fournisseur concurrent
@@ -183,7 +182,6 @@ Trois détails qui font gagner du temps :
 Une fois l'authentification saine, comparez l'avant et l'après : les fichiers portent encore les anciens numéros.
 
 ```bash title="Mesurer l'écart"
-find /srv/partages -printf '%U %G %u %g %p\n' > /root/inventaire-apres.txt
 find /srv/partages -nouser -o -nogroup | head -n 50
 ```
 
@@ -191,18 +189,15 @@ Pour chaque ancien identifiant, retrouvez le compte dans `/root/inventaire-avant
 
 ```bash title="Réattribuer un ancien identifiant"
 find /srv/partages -uid 3001 -exec chown 100521 {} +
-find /srv/partages -gid 3001 -exec chgrp 100513 {} +
 ```
 
 | Symptôme après bascule | Cause probable | Vérification |
 | --- | --- | --- |
 | Fichiers appartenant à un numéro sans nom | Ancien mappage `autorid` | `find -nouser`, `/root/inventaire-avant.txt` |
 | `getent passwd` vide pour le domaine | Profil `authselect` non appliqué | `authselect current`, `grep winbind /etc/nsswitch.conf` |
-| `NT_STATUS_NO_LOGON_SERVERS` | sssd et winbind en concurrence | `rpm -q sssd`, `authselect current` |
 | Accès refusé alors que l'UID est bon | ACL étendues non reprises | `getfacl` sur le partage, `/root/acl-avant.txt` |
-| Authentification NTLM là où on attend Kerberos | `kerberos method` absent | `testparm -s`, `klist -k` |
 
-Dernier conseil, appris en le faisant mal : commencez par un partage secondaire, pas par celui de la comptabilité. La bascule est réversible sur le papier, beaucoup moins dans le planning d'une journée de production.
+Dernier conseil, appris en le faisant mal : commencez par un partage secondaire, jamais par celui de la comptabilité. La bascule est réversible sur le papier, beaucoup moins dans une journée de production.
 
 ## Pour aller plus loin
 
