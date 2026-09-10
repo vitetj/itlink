@@ -16,7 +16,7 @@ const description =
 
 <BaseLayout seo={{ title: 'Lab', description, image: '/og/lab.png' }} hue="lab">
   <div class="container-x py-10 md:py-14">
-    <SectionHeading level="h1" eyebrow="// lab" title="Homelab & expérimentations" />
+    <SectionHeading level="h1" eyebrow="lab" title="Homelab & expérimentations" />
     <p class="max-w-2xl text-lg text-fg-muted text-pretty">{description}</p>
 
     <nav aria-label="Catégories du lab" class="mt-6">
@@ -40,7 +40,7 @@ const description =
     {
       projects.length > 0 && (
         <section aria-labelledby="projects" class="mt-20">
-          <SectionHeading id="projects" eyebrow="// dépôts & outils" title="Projets et dépôts" />
+          <SectionHeading id="projects" eyebrow="dépôts & outils" title="Projets et dépôts" />
           <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" role="list">
             {projects.map((p) => (
               <li class="card">

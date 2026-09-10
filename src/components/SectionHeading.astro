@@ -14,10 +14,10 @@ interface Props {
 const { eyebrow, title, href, linkLabel = 'Tout voir', level: Tag = 'h2', id } = Astro.props;
 ---
 
-<div class="mb-6 flex flex-wrap items-end justify-between gap-x-6 gap-y-2 border-b border-line pb-3">
+<div class="mb-7 flex flex-wrap items-end justify-between gap-x-6 gap-y-2">
   <div>
     {eyebrow && <p class="eyebrow text-hue">{eyebrow}</p>}
-    <Tag id={id} class="mt-1 font-display text-2xl font-bold tracking-tight md:text-[1.75rem]">{title}</Tag>
+    <Tag id={id} class="mt-1.5 text-[1.75rem] font-semibold tracking-[-0.02em] md:text-[2rem]">{title}</Tag>
   </div>
   {
     href && (

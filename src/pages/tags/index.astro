@@ -16,13 +16,13 @@ const tail = tags.filter((t) => t.count < 3).sort((a, b) => a.tag.localeCompare(
 
 <BaseLayout seo={{ title: 'Tags', description: 'Tous les sujets abordés sur le site, docs, blog, lab et voyages confondus.', image: '/og/tags.png' }}>
   <div class="container-x py-10 md:py-14">
-    <SectionHeading level="h1" eyebrow="// index" title={`${tags.length} tags`} />
+    <SectionHeading level="h1" eyebrow="index" title={`${tags.length} tags`} />
     <p class="max-w-(--measure) text-fg-muted">
       Les sujets qui reviennent en premier, les plus pointus ensuite. Pour chercher dans le texte des articles,
       passez plutôt par <a href="/recherche" class="link">la recherche</a>.
     </p>
 
-    <h2 class="eyebrow mt-8">// sujets principaux</h2>
+    <h2 class="eyebrow mt-8">Sujets principaux</h2>
     <ul class="mt-3 flex flex-wrap gap-2" role="list">
       {
         main.map((t) => (

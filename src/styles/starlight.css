@@ -4,7 +4,7 @@
  */
 
 :root {
-  --sl-font: var(--font-plex), ui-sans-serif, system-ui, sans-serif;
+  --sl-font: var(--font-inter), ui-sans-serif, system-ui, -apple-system, sans-serif;
   --sl-font-mono: var(--font-plex-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
 
   --sl-nav-height: var(--header-h);

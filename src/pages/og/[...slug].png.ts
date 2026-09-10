@@ -1,6 +1,6 @@
 /**
  * Images OpenGraph générées au build (1200×630) pour chaque page :
- * titre en Bricolage Grotesque, fil d'Ariane et signature en IBM Plex Mono.
+ * titre en Inter, fil d'Ariane et signature en IBM Plex Mono.
  * Satori rend un arbre d'éléments en SVG, resvg le rastérise en PNG.
  */
 import type { APIRoute, GetStaticPaths } from 'astro';
@@ -19,7 +19,7 @@ interface OgProps {
   color: string;
 }
 
-const COLORS = { docs: '#7fb0ff', blog: '#f5a524', lab: '#4ade80', voyages: '#f472b6', site: '#f5a524' } as const;
+const COLORS = { docs: '#2997ff', blog: '#ff9f0a', lab: '#30d158', voyages: '#ff375f', site: '#2997ff' } as const;
 
 export const getStaticPaths = (async () => {
   const cards = await getAllCards();
@@ -52,10 +52,10 @@ export const getStaticPaths = (async () => {
 const fontsDir = path.join(process.cwd(), 'node_modules');
 const fontCache: { display?: Buffer; mono?: Buffer } = {};
 async function fonts() {
-  fontCache.display ??= await readFile(path.join(fontsDir, '@fontsource/bricolage-grotesque/files/bricolage-grotesque-latin-700-normal.woff'));
+  fontCache.display ??= await readFile(path.join(fontsDir, '@fontsource/inter/files/inter-latin-700-normal.woff'));
   fontCache.mono ??= await readFile(path.join(fontsDir, '@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-400-normal.woff'));
   return [
-    { name: 'Bricolage', data: fontCache.display, weight: 700 as const, style: 'normal' as const },
+    { name: 'Inter', data: fontCache.display, weight: 700 as const, style: 'normal' as const },
     { name: 'Plex Mono', data: fontCache.mono, weight: 400 as const, style: 'normal' as const },
   ];
 }
@@ -73,9 +73,8 @@ function template({ title, crumbs, subtitle, color }: OgProps) {
       flexDirection: 'column',
       justifyContent: 'space-between',
       padding: '56px 64px',
-      background: '#0e1116',
-      backgroundImage: 'linear-gradient(#1a2029 1px, transparent 1px), linear-gradient(90deg, #1a2029 1px, transparent 1px)',
-      backgroundSize: '40px 40px',
+      background: '#000000',
+      backgroundImage: `radial-gradient(900px 480px at 8% -12%, ${color}33, transparent 70%)`,
       color: '#e7e5df',
       fontFamily: 'Plex Mono',
     },
@@ -86,13 +85,13 @@ function template({ title, crumbs, subtitle, color }: OgProps) {
       ]),
       el('div', { display: 'flex', flexDirection: 'column', gap: 24 }, [
         el('div', { display: 'flex', width: 96, height: 8, background: color, borderRadius: 4 }),
-        el('div', { fontFamily: 'Bricolage', fontSize: titleSize, lineHeight: 1.08, letterSpacing: -1, color: '#f4f2ec', display: 'flex' }, title),
+        el('div', { fontFamily: 'Inter', fontSize: titleSize, lineHeight: 1.08, letterSpacing: -1, color: '#f5f5f7', display: 'flex' }, title),
         subtitle
           ? el('div', { fontSize: 26, lineHeight: 1.35, color: '#a9acb3', display: 'flex' }, subtitle.length > 150 ? `${subtitle.slice(0, 147)}…` : subtitle)
           : null,
       ]),
       el('div', { display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: 24, color: '#a9acb3' }, [
-        el('div', { display: 'flex', gap: 14 }, [el('span', { color: '#f4f2ec', fontFamily: 'Bricolage', fontSize: 28 }, SITE.name), el('span', {}, '·'), el('span', {}, SITE.author.role)]),
+        el('div', { display: 'flex', gap: 14 }, [el('span', { color: '#f5f5f7', fontFamily: 'Inter', fontSize: 28 }, SITE.name), el('span', {}, '·'), el('span', {}, SITE.author.role)]),
         el('span', { color }, new URL(SITE.url).host),
       ]),
     ],

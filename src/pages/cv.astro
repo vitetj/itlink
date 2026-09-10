@@ -34,7 +34,7 @@ const currentYear = new Date().getFullYear();
       <div class="flex flex-col gap-16">
         {/* ---------------------------------------------------- Timeline */}
         <section aria-labelledby="xp">
-          <SectionHeading id="xp" eyebrow="// timeline" title="Expérience professionnelle" />
+          <SectionHeading id="xp" eyebrow="timeline" title="Expérience professionnelle" />
           <ol class="timeline" role="list">
             {
               CV.experiences.map((xp) => (
@@ -67,7 +67,7 @@ const currentYear = new Date().getFullYear();
 
         {/* ---------------------------------------------------- Expertise */}
         <section aria-labelledby="expertise">
-          <SectionHeading id="expertise" eyebrow="// ce que je sais faire" title="Domaines d'expertise" />
+          <SectionHeading id="expertise" eyebrow="ce que je sais faire" title="Domaines d'expertise" />
           <ul class="grid gap-4 sm:grid-cols-2" role="list">
             {
               CV.expertise.map((e) => (
@@ -84,7 +84,7 @@ const currentYear = new Date().getFullYear();
       <aside class="flex flex-col gap-16">
         {/* ---------------------------------------------------- Skills */}
         <section aria-labelledby="skills">
-          <SectionHeading id="skills" eyebrow="// stack" title="Compétences" />
+          <SectionHeading id="skills" eyebrow="stack" title="Compétences" />
           <ul class="flex flex-col gap-5" role="list">
             {
               CV.skills.map((group) => (
@@ -105,7 +105,7 @@ const currentYear = new Date().getFullYear();
 
         {/* ---------------------------------------------------- Certifications */}
         <section aria-labelledby="certs">
-          <SectionHeading id="certs" eyebrow="// formation" title="Certifications" />
+          <SectionHeading id="certs" eyebrow="formation" title="Certifications" />
           {
             CV.certifications.length > 0 ? (
               <ul class="flex flex-col gap-2" role="list">
@@ -130,7 +130,7 @@ const currentYear = new Date().getFullYear();
 
         {/* ---------------------------------------------------- Technologies */}
         <section aria-labelledby="tech">
-          <SectionHeading id="tech" eyebrow="// index" title="Technologies utilisées" />
+          <SectionHeading id="tech" eyebrow="index" title="Technologies utilisées" />
           <ul class="flex flex-wrap gap-1.5" role="list">
             {CV.technologies.map((t) => <li class="tag">{t}</li>)}
           </ul>

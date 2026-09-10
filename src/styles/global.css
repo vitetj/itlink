@@ -21,36 +21,36 @@
 :root {
   color-scheme: light dark;
 
-  /* Surfaces */
-  --c-bg: light-dark(#f6f4ee, #0e1116);
-  --c-bg-elev: light-dark(#fffdf9, #151a21);
-  --c-bg-muted: light-dark(#ece9e0, #1a2029);
-  --c-bg-inset: light-dark(#e4e0d5, #202834);
+  /* Surfaces : neutres très clairs / noir profond, sans teinte parasite. */
+  --c-bg: light-dark(#fbfbfd, #000000);
+  --c-bg-elev: light-dark(#ffffff, #1c1c1e);
+  --c-bg-muted: light-dark(#f2f2f5, #161618);
+  --c-bg-inset: light-dark(#e9e9ee, #2c2c2e);
 
   /* Texte */
-  --c-fg: light-dark(#191a1c, #e7e5df);
-  --c-fg-muted: light-dark(#4b4e55, #a9acb3);
-  --c-fg-subtle: light-dark(#5d616a, #8b9099);
+  --c-fg: light-dark(#1d1d1f, #f5f5f7);
+  --c-fg-muted: light-dark(#4d4d51, #a8a8ad);
+  --c-fg-subtle: light-dark(#6a6a70, #8a8a90);
 
-  /* Traits */
-  --c-line: light-dark(#dbd7cb, #262d38);
-  --c-line-strong: light-dark(#b5b0a2, #3b4452);
+  /* Traits : quasi invisibles, la séparation se fait par l'espace. */
+  --c-line: light-dark(#e4e4e9, #2a2a2d);
+  --c-line-strong: light-dark(#c9c9d0, #3d3d42);
 
-  /* Accent du site (ambre "phosphore") */
-  --c-accent: light-dark(#a8420a, #f5a524);
-  --c-accent-hover: light-dark(#7f3107, #ffc35a);
-  --c-accent-soft: light-dark(#f7e3cf, #3a2a10);
-  --c-accent-fg: light-dark(#ffffff, #14100a);
+  /* Accent du site */
+  --c-accent: light-dark(#0058c8, #2997ff);
+  --c-accent-hover: light-dark(#0043a0, #63b4ff);
+  --c-accent-soft: light-dark(#e8f0fd, #10243c);
+  --c-accent-fg: light-dark(#ffffff, #00203f);
 
-  /* Teintes par section */
-  --c-docs: light-dark(#1d4fd1, #7fb0ff);
-  --c-docs-soft: light-dark(#dfe7fb, #16243d);
-  --c-blog: light-dark(#a8420a, #f5a524);
-  --c-blog-soft: light-dark(#f7e3cf, #3a2a10);
-  --c-lab: light-dark(#14763a, #4ade80);
-  --c-lab-soft: light-dark(#d9f0df, #10301c);
-  --c-travel: light-dark(#b81e64, #f472b6);
-  --c-travel-soft: light-dark(#f9dce9, #3b1226);
+  /* Teintes par section : vives, utilisées par petites touches. */
+  --c-docs: light-dark(#0058c8, #2997ff);
+  --c-docs-soft: light-dark(#e8f0fd, #10243c);
+  --c-blog: light-dark(#b34700, #ff9f0a);
+  --c-blog-soft: light-dark(#fdeee1, #2e1f06);
+  --c-lab: light-dark(#00754a, #30d158);
+  --c-lab-soft: light-dark(#e2f5ec, #0c2a1a);
+  --c-travel: light-dark(#c4005e, #ff375f);
+  --c-travel-soft: light-dark(#fce7f0, #300a19);
 
   /* Encadrés */
   --c-note: var(--c-docs);
@@ -59,15 +59,27 @@
   --c-tip-soft: var(--c-lab-soft);
   --c-caution: var(--c-blog);
   --c-caution-soft: var(--c-blog-soft);
-  --c-danger: light-dark(#b9232b, #f87171);
-  --c-danger-soft: light-dark(#f9dada, #3d1416);
+  --c-danger: light-dark(#c8102e, #ff6961);
+  --c-danger-soft: light-dark(#fce8ea, #300f12);
 
   /* Code */
-  --c-code-bg: light-dark(#e9e5da, #1a2029);
-  --c-code-fg: light-dark(#7a2e05, #ffd28a);
+  --c-code-bg: light-dark(#f2f2f5, #161618);
+  --c-code-fg: light-dark(#8a3600, #ffb35c);
 
-  --c-selection: light-dark(#f3d5ad, #4a3410);
+  --c-selection: light-dark(#cfe3ff, #123a63);
   --c-focus: var(--c-accent);
+
+  /* Rayons : coins généreux, façon interface moderne. */
+  --r-sm: 0.5rem;
+  --r-md: 0.875rem;
+  --r-lg: 1.25rem;
+  --r-xl: 1.75rem;
+  --r-pill: 999px;
+
+  /* Ombres : douces et basses, jamais de contour dur. */
+  --shadow-sm: light-dark(0 1px 2px rgb(0 0 0 / 0.04), 0 0 0 1px rgb(255 255 255 / 0.06));
+  --shadow-md: light-dark(0 2px 6px rgb(0 0 0 / 0.05), 0 0 0 1px rgb(255 255 255 / 0.07));
+  --shadow-lg: light-dark(0 12px 32px -8px rgb(0 0 0 / 0.14), 0 0 0 1px rgb(255 255 255 / 0.09));
 
   /* Mise en page */
   --measure: 44rem; /* largeur de lecture confortable (~78 caractères à 17px) */
@@ -83,8 +95,8 @@
 }
 
 @theme inline {
-  --font-sans: var(--font-plex), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-brico), var(--font-plex), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-plex-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
 
   --color-bg: var(--c-bg);
@@ -194,22 +206,20 @@
   }
 }
 
-/* Étiquette monospace (catégories, métadonnées, petites indications d'interface). */
+/* Étiquette de section : capitales espacées, teintée par la section. */
 @utility eyebrow {
-  font-family: var(--font-mono);
   font-size: 0.75rem;
-  letter-spacing: 0.06em;
+  font-weight: 600;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--c-fg-muted);
+  color: var(--hue, var(--c-fg-subtle));
 }
 
-/* Fond quadrillé discret, façon papier millimétré / terminal. */
+/* Halo coloré très diffus, posé derrière les en-têtes de page. */
 @utility grid-bg {
   background-image:
-    linear-gradient(to right, color-mix(in oklab, var(--c-line) 70%, transparent) 1px, transparent 1px),
-    linear-gradient(to bottom, color-mix(in oklab, var(--c-line) 70%, transparent) 1px, transparent 1px);
-  background-size: 2rem 2rem;
-  mask-image: linear-gradient(to bottom, rgb(0 0 0 / 0.9), transparent 90%);
+    radial-gradient(60rem 32rem at 12% -10%, color-mix(in oklab, var(--c-docs) 16%, transparent), transparent 70%),
+    radial-gradient(48rem 28rem at 88% -20%, color-mix(in oklab, var(--c-travel) 12%, transparent), transparent 70%);
 }
 
 @utility hue-docs {
@@ -252,28 +262,28 @@
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.625rem 1rem;
-    border: 1px solid var(--c-line-strong);
-    border-radius: 0.375rem;
+    padding: 0.6875rem 1.25rem;
+    border: 0;
+    border-radius: var(--r-pill);
     font-weight: 500;
     font-size: 0.9375rem;
     line-height: 1.25;
     text-decoration: none;
     color: var(--c-fg);
-    background: var(--c-bg-elev);
-    transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease;
+    background: var(--c-bg-muted);
+    transition: background-color 160ms ease, color 160ms ease, transform 160ms ease;
   }
   .btn:hover {
-    border-color: var(--c-fg-muted);
-    background: var(--c-bg-muted);
+    background: var(--c-bg-inset);
+  }
+  .btn:active {
+    transform: scale(0.98);
   }
   .btn-primary {
-    border-color: var(--c-accent);
     background: var(--c-accent);
     color: var(--c-accent-fg);
   }
   .btn-primary:hover {
-    border-color: var(--c-accent-hover);
     background: var(--c-accent-hover);
     color: var(--c-accent-fg);
   }
@@ -282,14 +292,16 @@
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    padding: 1.125rem 1.25rem;
-    border: 1px solid var(--c-line);
-    border-radius: 0.5rem;
+    padding: 1.25rem 1.375rem;
+    border: 0;
+    border-radius: var(--r-lg);
     background: var(--c-bg-elev);
-    transition: border-color 120ms ease, transform 120ms ease;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 200ms ease, transform 200ms ease;
   }
   .card:hover {
-    border-color: var(--hue, var(--c-line-strong));
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
   }
   .card:has(a:focus-visible) {
     outline: 2px solid var(--c-focus);
@@ -301,20 +313,28 @@
     display: inline-flex;
     align-items: center;
     gap: 0.25rem;
-    padding: 0.125rem 0.5rem;
-    border: 1px solid var(--c-line);
-    border-radius: 0.25rem;
+    padding: 0.1875rem 0.625rem;
+    border: 0;
+    border-radius: var(--r-pill);
     background: var(--c-bg-muted);
-    font-family: var(--font-mono);
     font-size: 0.75rem;
-    line-height: 1.4;
+    line-height: 1.5;
     color: var(--c-fg-muted);
     text-decoration: none;
     white-space: nowrap;
+    transition: background-color 160ms ease, color 160ms ease;
   }
   a.tag:hover {
     color: var(--c-fg);
-    border-color: var(--c-line-strong);
+    background: var(--c-bg-inset);
+  }
+
+  /* Titre de la page d'accueil : grande échelle, chasse resserrée. */
+  .hero-title {
+    font-size: clamp(2.75rem, 7vw, 4.75rem);
+    font-weight: 700;
+    line-height: 1.02;
+    letter-spacing: -0.035em;
   }
 
   /* Curseur clignotant de terminal. */

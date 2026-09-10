@@ -18,7 +18,7 @@ const { entry } = Astro.props;
   seo={{ title: `#${entry.tag}`, description: `${entry.count} contenu${entry.count > 1 ? 's' : ''} tagué${entry.count > 1 ? 's' : ''} « ${entry.tag} » : docs, billets, projets et voyages.`, image: '/og/tags.png' }}
 >
   <div class="container-x py-10 md:py-14">
-    <SectionHeading level="h1" eyebrow="// tag" title={`#${entry.tag}`} href="/tags/" linkLabel="Tous les tags" />
+    <SectionHeading level="h1" eyebrow="tag" title={`#${entry.tag}`} href="/tags/" linkLabel="Tous les tags" />
     <CardGrid items={entry.items} showSection headingLevel="h2" />
   </div>
 </BaseLayout>

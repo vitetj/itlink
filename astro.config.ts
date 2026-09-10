@@ -108,35 +108,20 @@ export default defineConfig({
   fonts: [
     {
       provider: fontProviders.local(),
-      name: 'IBM Plex Sans',
-      cssVariable: '--font-plex',
-      fallbacks: ['ui-sans-serif', 'system-ui', 'sans-serif'],
+      name: 'Inter',
+      cssVariable: '--font-inter',
+      fallbacks: ['ui-sans-serif', 'system-ui', '-apple-system', 'sans-serif'],
       options: {
         variants: [
           {
-            src: ['./node_modules/@fontsource-variable/ibm-plex-sans/files/ibm-plex-sans-latin-wght-normal.woff2'],
-            weight: '100 700',
+            src: ['./node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2'],
+            weight: '100 900',
             style: 'normal',
           },
           {
-            src: ['./node_modules/@fontsource-variable/ibm-plex-sans/files/ibm-plex-sans-latin-wght-italic.woff2'],
-            weight: '100 700',
+            src: ['./node_modules/@fontsource-variable/inter/files/inter-latin-wght-italic.woff2'],
+            weight: '100 900',
             style: 'italic',
-          },
-        ],
-      },
-    },
-    {
-      provider: fontProviders.local(),
-      name: 'Bricolage Grotesque',
-      cssVariable: '--font-brico',
-      fallbacks: ['ui-sans-serif', 'system-ui', 'sans-serif'],
-      options: {
-        variants: [
-          {
-            src: ['./node_modules/@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-latin-wght-normal.woff2'],
-            weight: '200 800',
-            style: 'normal',
           },
         ],
       },

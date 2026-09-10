@@ -20,7 +20,7 @@ const { category, items } = Astro.props;
 
 <BaseLayout seo={{ title: `${category.label} — Lab`, description: `Projets et expérimentations « ${category.label} ».`, image: '/og/lab.png' }} hue="lab">
   <div class="container-x py-10 md:py-14">
-    <SectionHeading level="h1" eyebrow="// lab · catégorie" title={category.label} href="/lab/" linkLabel="Tout le lab" />
+    <SectionHeading level="h1" eyebrow="lab · catégorie" title={category.label} href="/lab/" linkLabel="Tout le lab" />
     {items.length > 0 ? <CardGrid items={items} headingLevel="h2" /> : <p class="text-fg-muted">Rien encore ici. Le matériel est commandé, promis.</p>}
   </div>
 </BaseLayout>
