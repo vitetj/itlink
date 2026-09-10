@@ -15,89 +15,77 @@ L'application mobile qui pilote l'éclairage DALI du bâtiment était passée d'
 la veille au soir, et depuis, elle ne détectait plus aucun contrôleur. Sans ordre, les luminaires restent
 allumés en permanence. La version précédente, elle, fonctionnait parfaitement.
 
-Le support de l'éditeur a répondu ce que répondent tous les supports : réinstallez, redémarrez, vérifiez votre
-réseau, mettez à jour le firmware. Six semaines plus tard, le dossier a enfin bougé. Pas parce que j'ai insisté,
-mais parce que je leur ai envoyé deux fichiers de capture réseau : un pris avec la version qui marche, un avec
-la version qui ne marche pas. Détail savoureux : la première réaction du support a été de me demander pourquoi
-je lui envoyais des photos. Il a fallu préciser qu'on ouvre ça avec Wireshark.
+Le support a répondu ce que répondent tous les supports : réinstallez, redémarrez, vérifiez votre réseau. Six
+semaines plus tard, le dossier a bougé — parce que je leur ai envoyé deux captures réseau : une prise avec la
+version qui marche, une avec celle qui ne marche pas. Détail savoureux : leur première réaction a été de me
+demander pourquoi je leur envoyais des photos.
 
 Cette fiche décrit la méthode, pas l'outil. Wireshark s'apprend en une soirée ; construire un dossier qu'un
 éditeur ne peut pas renvoyer, c'est autre chose.
 
 ## Ce qu'une capture prouve, et ce qu'elle ne prouve pas
 
-Une capture réseau prouve **ce qui est parti et ce qui est revenu**. C'est tout, et c'est déjà énorme dans une
-discussion avec un éditeur, parce que ça déplace le débat du terrain de l'opinion (« ça doit être votre réseau »)
-vers celui du fait vérifiable (« votre application n'a émis aucune requête de découverte, la voici absente de la
-trame »).
+Une capture prouve **ce qui est parti et ce qui est revenu**. Rien d'autre, et c'est déjà énorme : ça déplace
+le débat de l'opinion (« ça doit être votre réseau ») vers le fait vérifiable. Elle ne dit rien de ce qui se
+passe **dans** l'application — un plantage interne ne laisse aucune trace réseau — mais une capture vide côté
+client est déjà un résultat : le logiciel n'a même pas essayé.
 
-Elle ne prouve pas ce qui se passe **dans** l'application : un plantage interne, une exception avalée, une
-option de configuration mal lue ne laissent aucune trace réseau. Si votre capture est vide côté client, ce
-n'est pas un échec de la méthode, c'est déjà un résultat : le logiciel n'a même pas essayé.
-
-La force du dossier ne vient donc jamais d'une capture seule. Elle vient de **deux captures comparables** : même
-poste, même réseau, même manipulation, seule la version du logiciel change. C'est cette paire qui transforme une
-plainte en régression documentée.
+La force du dossier ne vient donc jamais d'une capture seule, mais de **deux captures comparables** : même
+poste, même réseau, même manipulation, seule la version change. C'est cette paire qui transforme une plainte en
+régression documentée.
 
 ## Prérequis
 
 - Wireshark installé sur un poste d'administration, avec les droits de capture.
-- Un moyen de placer ce poste sur le même segment que le client et l'équipement (port miroir sur le switch,
-  hub, ou partage de connexion — voir plus bas).
-- Les deux versions du logiciel disponibles : celle qui marche et celle qui ne marche pas. Sans la version
-  qui marche, vous n'avez pas de témoin.
-- Un scénario de test court, écrit, reproductible : « ouvrir l'application, aller dans tel écran, lancer la
-  recherche d'équipements, attendre 30 secondes ». Toujours le même, pour les deux versions.
+- Un moyen de placer ce poste sur le même segment que le client et l'équipement (port miroir, partage de
+  connexion — voir plus bas).
+- Les deux versions du logiciel : celle qui marche et celle qui ne marche pas. Sans la première, pas de témoin.
+- Un scénario de test court et reproductible : « ouvrir l'application, lancer la recherche d'équipements,
+  attendre 30 secondes ». Le même pour les deux versions.
 
 ## Éliminer tout le reste avant de sortir Wireshark
 
 Une capture envoyée trop tôt se fait renvoyer. Avant de capturer, fermez les portes une par une :
 
 1. **Isoler la régression.** L'ancienne version fonctionne, la nouvelle non, sur le même terminal et le même
-   réseau. Conclusion : le problème n'est ni l'installation, ni l'environnement.
-2. **Éliminer le matériel.** Refaites le test sur plusieurs terminaux, de générations et de systèmes
-   différents. Dans le cas de l'éclairage, la manipulation a été rejouée sur une tablette Android 14 et sur un
-   téléphone sous iOS 26 : même comportement, donc le terminal est hors de cause.
-3. **Éliminer le réseau.** Vérifiez que le client et les équipements sont bien sur le même sous-réseau, sans
-   routeur ni pare-feu entre les deux. Beaucoup de protocoles de découverte reposent sur du broadcast ou du
-   multicast, qui ne franchissent pas un routeur. Si vous voulez couper court, refaites le test sur une
-   connexion totalement indépendante de votre infrastructure : un partage de connexion 4G rend le diagnostic
-   agnostique à votre réseau, et l'argument est imparable.
-4. **Documenter le matériel testé, précisément.** Modèle exact, version d'OS, version de noyau. Un support qui
-   reçoit « Samsung Galaxy Tab A9 (SM-X110), Android 14, noyau `5.10.205-android12-9-28698995` » comprend
-   immédiatement qu'il n'a pas affaire à un utilisateur qui a « un problème avec l'appli ».
+   réseau : le problème n'est ni l'installation, ni l'environnement.
+2. **Éliminer le matériel.** Rejouez le test sur plusieurs terminaux, de systèmes différents. Ici, la
+   manipulation a été refaite sur une tablette Android 14 et un téléphone sous iOS 26 : même comportement, le
+   terminal est hors de cause.
+3. **Éliminer le réseau.** Vérifiez que le client et les équipements sont sur le même sous-réseau, sans routeur
+   ni pare-feu entre les deux : beaucoup de protocoles de découverte reposent sur du broadcast ou du multicast,
+   qui ne franchissent pas un routeur. Pour couper court, rejouez le test sur un partage de connexion 4G : le
+   diagnostic devient agnostique à votre réseau, et l'argument est imparable.
+4. **Documenter le matériel, précisément.** Modèle exact, version d'OS, version de noyau. Un support qui reçoit
+   « Samsung Galaxy Tab A9 (SM-X110), Android 14, noyau `5.10.205-android12-9-28698995` » comprend qu'il n'a pas
+   affaire à quelqu'un qui a « un problème avec l'appli ».
 
 ## Choisir le point de capture
 
-Le point de capture décide de ce que vous verrez. C'est la décision la plus importante de la procédure.
+Le point de capture décide de ce que vous verrez. C'est la décision la plus importante.
 
 | Où capturer | Ce qu'on voit | Quand l'utiliser |
 | --- | --- | --- |
 | Sur le poste client (Windows, Linux, macOS) | Tout ce que le logiciel émet et reçoit | Cas le plus simple, client sur PC |
 | Sur un port miroir du switch | Le trafic réel entre client et équipement, sans influer sur le client | Client mobile, ou doute sur une couche intermédiaire |
 | Sur un poste servant de point d'accès Wi-Fi | Tout le trafic du mobile, sans rien installer dessus | Client mobile, pas d'accès au switch |
-| Sur l'équipement lui-même | Ce qui lui arrive vraiment | Rare : équipements industriels rarement ouverts |
 
-Quand le client est un smartphone ou une tablette, la capture directe sur le terminal demande en général un
-accès privilégié que vous n'avez pas et que vous ne voulez pas donner. Les deux options réalistes sont donc le
-**port miroir** (SPAN) sur le switch qui porte le point d'accès, ou un **poste intermédiaire partageant sa
-connexion** : le mobile s'y associe, et vous capturez sur l'interface de partage. Dans les deux cas, capturez
-au plus près du client, pas au plus près de l'équipement : vous voulez savoir si la requête est partie, pas
-seulement si elle est arrivée.
+Quand le client est un mobile, la capture directe sur le terminal demande un accès privilégié que vous n'avez
+pas. Restent le **port miroir** (SPAN) sur le switch qui porte le point d'accès, ou un **poste qui partage sa
+connexion** au mobile. Dans les deux cas, capturez au plus près du client : vous voulez savoir si la requête
+est partie, pas seulement si elle est arrivée.
 
 :::caution
 Une capture contient tout : en-têtes d'authentification, cookies, requêtes en clair, noms de machines, plan
 d'adressage. Avant d'envoyer un fichier à un tiers, ouvrez-le et regardez ce qu'il y a dedans. Réduisez le
-périmètre, coupez la durée, et si nécessaire refaites la capture sur un réseau de test dédié plutôt que
-d'anonymiser après coup.
+périmètre et la durée plutôt que d'anonymiser après coup.
 :::
 
 ## Filtre de capture, filtre d'affichage : ne pas confondre
 
-Ce sont deux mécanismes différents, et confondre les deux est l'erreur classique.
-
-Le **filtre de capture** (syntaxe BPF) décide de ce qui est écrit sur le disque. Il est irréversible : ce qui
-n'est pas capturé est perdu. On l'utilise pour tenir la taille du fichier, jamais pour cibler finement.
+Deux mécanismes différents, et les confondre est l'erreur classique. Le **filtre de capture** (syntaxe BPF)
+décide de ce qui est écrit sur le disque : irréversible, ce qui n'est pas capturé est perdu. On s'en sert pour
+tenir la taille du fichier, jamais pour cibler finement.
 
 ```text title="Filtres de capture (BPF) — à poser avant de lancer"
 host 192.0.2.50
@@ -105,8 +93,7 @@ host 192.0.2.50 or host 192.0.2.51
 not port 22
 ```
 
-Le **filtre d'affichage** décide de ce que vous voyez, sans rien perdre. C'est là qu'on travaille. On capture
-large, on filtre après.
+Le **filtre d'affichage**, lui, ne perd rien : c'est là qu'on travaille. On capture large, on filtre après.
 
 ```text title="Filtres d'affichage Wireshark"
 ip.addr == 192.0.2.50
@@ -118,15 +105,14 @@ tcp.analysis.retransmission                   # pertes, équipement injoignable
 frame contains "identifiant-de-votre-appareil"
 ```
 
-Pour un cas « l'application ne détecte plus les équipements », l'enchaînement est presque toujours le même :
-regarder d'abord le broadcast et le multicast, puis les réponses, puis l'établissement de session. Les trois
-questions dans l'ordre : **la découverte part-elle ? l'équipement répond-il ? le client exploite-t-il la
-réponse ?** Chacune a une réponse binaire dans la capture, et chacune désigne un coupable différent.
+Pour un cas « l'application ne détecte plus les équipements », l'ordre est toujours le même : **la découverte
+part-elle ? l'équipement répond-il ? le client exploite-t-il la réponse ?** Chaque question a une réponse
+binaire dans la capture, et désigne un coupable différent.
 
 ## Ce qu'il faut montrer, concrètement
 
-L'éditeur ne lira pas votre capture ligne à ligne, du moins pas au premier niveau de support. Il faut donc que
-la démonstration tienne dans le message, et que la capture serve de pièce justificative.
+Le premier niveau de support ne lira pas votre capture ligne à ligne. La démonstration doit tenir dans le
+message ; la capture n'est que la pièce justificative.
 
 Réduisez votre propos à trois éléments :
 
@@ -138,7 +124,7 @@ Réduisez votre propos à trois éléments :
    développeur : vous documentez, ils diagnostiquent.
 
 Nommez les fichiers pour qu'ils parlent tout seuls : `ok-2.3.pcapng` et `ko-3.0.pcapng`. Un support qui reçoit
-`capture1.pcapng` et `capture2.pcapng` ouvrira le mauvais.
+`capture1` et `capture2` ouvrira le mauvais.
 
 Deux outils livrés avec Wireshark rendent le colis présentable :
 
@@ -148,37 +134,32 @@ editcap -A "2025-11-06 09:12:00" -B "2025-11-06 09:13:00" brut.pcapng ok-2.3.pca
 
 # Produire un résumé lisible à coller dans le mail
 tshark -r ko-3.0.pcapng -q -z io,phs
-tshark -r ko-3.0.pcapng -Y "udp.port == 5353" -T fields -e frame.number -e ip.src -e ip.dst
 ```
 
 ## Présenter le dossier au support
 
-Le fond compte, la forme fait la différence. Quelques règles qui ont fonctionné :
+Quelques règles qui ont fait leurs preuves :
 
-- **Dire ce que c'est.** « Ci-joint deux captures réseau, à ouvrir avec Wireshark (gratuit, wireshark.org). »
-  Ça paraît condescendant ; ça ne l'est pas. Un technicien de premier niveau n'a pas forcément croisé le format.
-- **Passer à l'anglais** dès que l'échange remonte au niveau éditeur ou développeur. Une traduction approximative
-  transforme un rapport de bug en malentendu. Annoncez-le simplement : « Let's switch to English to avoid wrong
-  translation. »
+- **Dire ce que c'est.** « Ci-joint deux captures réseau, à ouvrir avec Wireshark. » Ça paraît condescendant ;
+  ça ne l'est pas. Un technicien de premier niveau n'a pas forcément croisé le format.
+- **Passer à l'anglais** dès que l'échange remonte au développement : « Let's switch to English to avoid wrong
+  translation. » Une traduction approximative transforme un rapport de bug en malentendu.
 - **Dater vos relances.** « Je n'ai pas eu de retour à mon message du 14/10. Sans les traces de mon réseau, le
-  développement ne pourra pas reproduire le problème. » Une date dans une relance vaut trois points
-  d'exclamation.
-- **Rester factuel même quand le ton durcit.** On a le droit d'écrire qu'on se demande si la mise à jour a été
-  testée avant publication. On n'a rien à gagner à viser une personne : c'est le processus de l'éditeur qui est
-  en cause, jamais l'interlocuteur au bout du fil.
-- **Ne jamais lâcher le témoin.** Gardez une machine avec l'ancienne version installée jusqu'à la résolution.
-  Le jour où l'éditeur demande « pouvez-vous reproduire ? », vous pouvez.
+  développement ne pourra pas reproduire le problème. » Une date vaut trois points d'exclamation.
+- **Rester factuel quand le ton durcit.** On a le droit d'écrire qu'on se demande si la mise à jour a été testée
+  avant publication ; on n'a rien à gagner à viser une personne.
+- **Ne jamais lâcher le témoin.** Gardez une machine avec l'ancienne version jusqu'à la résolution.
 
 ## Quand la preuve ne suffit pas
 
-Il faut accepter que la preuve technique soit une monnaie d'échange, pas une garantie. Un éditeur peut très
-bien reconnaître le bug et ne rien livrer avant six mois. À partir de là, le travail change de nature : il ne
-s'agit plus de convaincre, mais de chiffrer un contournement.
+La preuve est une monnaie d'échange, pas une garantie : un éditeur peut reconnaître le bug et ne rien livrer
+avant six mois. Le travail change alors de nature : il ne s'agit plus de convaincre, mais de chiffrer un
+contournement.
 
 Dans le cas de l'éclairage, la question posée au métier a fini par tenir en une phrase : un interrupteur de
-contournement câblé sur le circuit, ce ne serait pas plus simple ? Un plan B matériel coûte souvent moins cher
-qu'un mois d'attente, et il a un mérite énorme : il rend l'entreprise indépendante de la roadmap d'un
-fournisseur. Instruisez les deux pistes en parallèle dès que le dossier dépasse deux semaines.
+contournement câblé sur le circuit, ce ne serait pas plus simple ? Un plan B matériel rend l'entreprise
+indépendante de la roadmap d'un fournisseur. Instruisez les deux pistes en parallèle dès que le dossier dépasse
+deux semaines.
 
 ## Pour aller plus loin
 
@@ -188,7 +169,6 @@ fournisseur. Instruisez les deux pistes en parallèle dès que le dossier dépas
   parce qu'un protocole de découverte qui ne traverse pas un routeur est la première hypothèse à éliminer.
 - [Auditer un fournisseur SaaS et exiger un plan de remédiation](/docs/dsi/auditer-un-fournisseur-saas-et-exiger-un-plan-de-remediation/),
   pour la suite de l'histoire quand l'éditeur ne bouge toujours pas.
-- La documentation officielle de Wireshark détaille la syntaxe complète des filtres d'affichage et des filtres
-  de capture.
+- La documentation officielle de Wireshark détaille la syntaxe complète des deux familles de filtres.
 
 <!-- source : mails « Débogage éditeur par capture réseau (Wireshark) », dossier application de pilotage d'éclairage, 2025-10-01 → 2025-11-12 -->
