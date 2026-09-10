@@ -17,13 +17,13 @@ Ce n'est pas de la culpabilité, c'est de la statistique. La majorité des panne
 
 Deuxième suspect classique : un service extérieur en panne. Un hébergeur, une plateforme, un fournisseur. Sauf que là, tout tombait : les applications externes, la navigation, la résolution de noms, et jusqu'au simple ping vers une adresse publique. Quand plus rien ne sort, y compris ce qui n'a aucune raison de dépendre du même prestataire, ce n'est plus un service en panne. C'est le tuyau.
 
-Le test qui tranche en trente secondes, et que je recommande à tout le monde : sortir du réseau. On prend un smartphone en 4G, hors Wi-Fi, et on ouvre la même application. Si elle répond, le problème est chez nous, entre le poste et la sortie. Si elle répond partout sauf depuis les postes, on vient de diviser le champ d'enquête par dix.
+Le test qui tranche en trente secondes : sortir du réseau. On prend un smartphone en 4G, hors Wi-Fi, et on ouvre la même application. Si elle répond, le champ d'enquête vient d'être divisé par dix.
 
 ## Ce que disent les indicateurs, et ce qu'ils ne disent pas
 
 Côté réseau interne, tout était normal. Les commutateurs, l'infrastructure virtualisée, les serveurs de fichiers, l'annuaire : rien à signaler. La panne s'arrêtait proprement à la frontière.
 
-Côté sortie, en revanche, le lien n'était pas dégradé, il était mort. Pas de latence, pas de perte de paquets, pas de lenteur : rien du tout. C'est une distinction que je trouve utile à expliquer aux collègues, parce qu'elle change tout. Un lien lent, on le diagnostique, on cherche une saturation, un flux qui déborde. Un lien absent, il n'y a rien à diagnostiquer. Une fibre qui ne reçoit plus de lumière ne se répare pas avec une ligne de configuration.
+Côté sortie, en revanche, le lien n'était pas dégradé, il était mort. Pas de latence, pas de perte de paquets : rien du tout. La distinction change tout. Un lien lent, on le diagnostique, on cherche une saturation, un flux qui déborde. Un lien absent, il n'y a rien à diagnostiquer. Une fibre qui ne reçoit plus de lumière ne se répare pas avec une ligne de configuration.
 
 À ce stade, l'enquête bute sur une limite qu'aucun outil ne franchit : mes indicateurs s'arrêtent au boîtier de terminaison optique. Au-delà, je n'ai plus de capteur. Mon seul instrument de mesure, c'est un interlocuteur au téléphone chez l'opérateur. C'est la vraie leçon de ce genre d'incident : le point où votre supervision s'arrête est un point d'architecture, pas un détail technique. Vous savez tout de ce que vous possédez et rien de ce dont vous dépendez.
 

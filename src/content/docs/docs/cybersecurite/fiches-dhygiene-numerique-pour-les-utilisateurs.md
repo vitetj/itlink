@@ -100,7 +100,7 @@ CE QU'ON FAIT
 1. Regardez l'adresse complète de l'expéditeur, pas le nom affiché.
 2. Lisez le domaine à droite du « @ », en partant de la fin :
    « paiement.example.com » appartient à example.com ;
-   « example.com.paiement-securise.net » n'y appartient pas.
+   « example.com.paiement.example.net » n’y appartient pas.
 3. Dans le doute, n'utilisez pas le lien du mail : tapez vous-même l'adresse
    du site que vous connaissez.
 

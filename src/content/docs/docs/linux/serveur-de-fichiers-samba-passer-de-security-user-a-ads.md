@@ -10,7 +10,7 @@ featured: false
 tested_on: [Distribution RHEL-like (dnf), Samba winbind, Active Directory domaine unique]
 ---
 
-Mai 2026. Le serveur de fichiers de ma boîte tournait en Samba autonome : des comptes locaux, des mots de passe qui n'avaient rien à voir avec ceux du domaine, et un mappage d'identifiants laissé à la valeur par défaut. Ça marchait. Ça marchait même très bien, à condition de ne jamais monter un deuxième serveur de fichiers, et d'accepter qu'un départ de salarié se traite à deux endroits — l'annuaire, puis le serveur, et dans cet ordre si on ne veut pas d'oubli.
+Mai 2026. Le serveur de fichiers de ma boîte tournait en Samba autonome : comptes locaux, mots de passe sans rapport avec ceux du domaine, mappage d'identifiants laissé par défaut. Ça marchait très bien, à condition de ne jamais monter un deuxième serveur de fichiers et d'accepter qu'un départ de salarié se traite à deux endroits.
 
 Le passage à `security = ads` règle tout cela. Mais évitons tout de suite un malentendu : **ce n'est pas la même opération que joindre un poste Linux au domaine**. Sur un poste, l'enjeu est l'ouverture de session. Sur un serveur de fichiers, l'enjeu est le mappage d'identités. Chaque fichier posé sur le disque porte un UID et un GID numériques ; si ces numéros changent sous vos pieds, vous n'avez pas migré une authentification, vous avez tiré vos droits au sort.
 
@@ -32,18 +32,17 @@ Un backend `idmap`, c'est la table de conversion entre le SID d'un objet de l'an
 `rid` calcule l'UID : base de la plage plus le RID de l'objet dans l'annuaire. Rien n'est stocké, rien n'est alloué, le calcul est déterministe. Deux serveurs avec la même plage donnent les mêmes UID, aujourd'hui et dans trois ans.
 
 :::danger
-Passer de `autorid` à `rid` **change les UID et les GID de tout le monde**. Les fichiers déjà sur le disque, eux, gardent leurs anciens numéros. C'est une bascule, pas un réglage : sans inventaire préalable, vous obtenez des répertoires appartenant à des utilisateurs qui n'existent plus, et des ACL qui pointent dans le vide.
+Passer de `autorid` à `rid` **change les UID et les GID de tout le monde**, alors que les fichiers déjà sur le disque gardent leurs anciens numéros. C'est une bascule, pas un réglage : sans inventaire préalable, vous obtenez des répertoires appartenant à des utilisateurs qui n'existent plus.
 :::
 
 ## Faire l'inventaire avant de toucher à smb.conf
 
-Cinq minutes ici vous en économisent une journée plus tard. On photographie l'état des lieux : la configuration, les bases Samba, et surtout la correspondance actuelle entre les fichiers et leurs propriétaires.
+Cinq minutes ici en économisent une journée plus tard : on photographie la configuration, les bases Samba, et la correspondance actuelle entre les fichiers et leurs propriétaires.
 
 ```bash title="Sauvegarder l'existant"
 cp -a /etc/samba/smb.conf /root/smb.conf.avant
 tar czf /root/samba-tdb-avant.tar.gz /var/lib/samba
 getent passwd > /root/passwd-avant.txt
-getent group  > /root/group-avant.txt
 ```
 
 ```bash title="Photographier les propriétaires des fichiers"
@@ -51,11 +50,11 @@ find /srv/partages -printf '%U %G %u %g %p\n' > /root/inventaire-avant.txt
 getfacl -R /srv/partages > /root/acl-avant.txt
 ```
 
-`%U` et `%G` donnent les numéros, `%u` et `%g` les noms résolus. Après la bascule, les numéros n'auront plus de nom : c'est ce fichier qui vous dira à qui rendre quoi.
+`%U` et `%G` donnent les numéros, `%u` et `%g` les noms résolus. Après la bascule, les numéros n'auront plus de nom : c'est ce fichier qui dira à qui rendre quoi.
 
 ## Vérifier l'heure et le DNS
 
-Kerberos ne pardonne pas la dérive d'horloge, et il ne trouve les contrôleurs de domaine que par les enregistrements de service. Ces deux points expliquent la majorité des jonctions qui échouent.
+Kerberos ne pardonne pas la dérive d'horloge, et ne trouve les contrôleurs que par les enregistrements de service. Ces deux points expliquent la majorité des jonctions ratées.
 
 ```bash title="Contrôles préalables"
 chronyc tracking
@@ -85,7 +84,7 @@ kerberos method = secrets and keytab
 idmap config AD : backend = rid
 ```
 
-En pratique, la section `[global]` complète ressemble à ceci. Les deux plages ne doivent jamais se chevaucher, et celle du domaine ne doit jamais changer une fois des fichiers écrits.
+La section `[global]` complète ressemble à ceci. Les deux plages ne doivent jamais se chevaucher, ni changer une fois des fichiers écrits.
 
 ```ini title="/etc/samba/smb.conf (extrait [global])"
 [global]
@@ -100,12 +99,9 @@ En pratique, la section `[global]` complète ressemble à ceci. Les deux plages 
     idmap config AD : range = 100000-999999
 
     winbind use default domain = yes
-    winbind refresh tickets = yes
     winbind enum users = no
     winbind enum groups = no
-
     template shell = /sbin/nologin
-    template homedir = /home/%D/%U
 
     vfs objects = acl_xattr
     map acl inherit = yes
@@ -137,7 +133,7 @@ Faites-les dans cet ordre, du plus bas niveau au plus haut : la première qui é
 
 ## Sortir de NT_STATUS_NO_LOGON_SERVERS
 
-C'est l'incident qui m'a coûté deux jours, et il n'a rien d'exotique. Après la bascule, l'authentification des comptes du domaine échouait par intermittence, puis complètement, avec ce message :
+C'est l'incident qui m'a coûté le plus de temps, et il n'a rien d'exotique. Après la bascule, l'authentification des comptes du domaine échouait par intermittence, puis complètement :
 
 ```text title="Le symptôme"
 NT_STATUS_NO_LOGON_SERVERS (0xc000005e)
@@ -210,9 +206,9 @@ Dernier conseil, appris en le faisant mal : commencez par un partage secondaire,
 
 ## Pour aller plus loin
 
-- [Joindre une machine Linux à Active Directory avec authselect et winbind](/docs/linux/joindre-une-machine-linux-au-domaine-avec-authselect-et-winbind/) : le cas du poste ou du serveur applicatif, sans la problématique des ACL de fichiers.
+- [Joindre une machine Linux à Active Directory avec authselect et winbind](/docs/linux/joindre-une-machine-linux-au-domaine-avec-authselect-et-winbind/) : le cas du poste, sans la problématique des ACL de fichiers.
 - [Réinitialiser winbind sur un serveur Linux joint à Active Directory](/docs/linux/winbind-reinitialiser-la-jonction-active-directory/) : quand la jonction tient mais que les correspondances partent en vrille.
-- [Rafraîchir le cache winbind avec un timer systemd](/docs/linux/rafraichir-le-cache-winbind-avec-un-timer-systemd/) : pour éviter que le cache ne vous serve d'anciennes réponses.
+- [Rafraîchir le cache winbind avec un timer systemd](/docs/linux/rafraichir-le-cache-winbind-avec-un-timer-systemd/) : pour éviter que le cache serve d'anciennes réponses.
 - Documentation Samba : la page « idmap config » du wiki officiel, sur [wiki.samba.org](https://wiki.samba.org/).
 
 <!-- source : mail « migration Samba vers l'annuaire », 2026-05-22 ; échanges « winbind / authselect », 2026-05-26 → 2026-05-27 -->
