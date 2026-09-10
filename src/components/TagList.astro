@@ -1,0 +1,25 @@
+---
+/** Liste de tags cliquables vers /tags/<slug>. */
+import { slugifyTag } from '@/lib/content';
+
+interface Props {
+  tags: string[];
+  class?: string;
+  label?: string | undefined;
+}
+const { tags, class: className, label = 'Tags' } = Astro.props;
+---
+
+{
+  tags.length > 0 && (
+    <ul class:list={['flex flex-wrap gap-1.5', className]} aria-label={label}>
+      {tags.map((tag) => (
+        <li>
+          <a href={`/tags/${slugifyTag(tag)}/`} class="tag">
+            #{tag}
+          </a>
+        </li>
+      ))}
+    </ul>
+  )
+}

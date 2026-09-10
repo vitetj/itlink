@@ -1,0 +1,56 @@
+---
+/**
+ * Bascule clair / sombre. Partage la clé `starlight-theme` et l'attribut `data-theme`
+ * avec Starlight pour que le choix soit cohérent sur tout le site.
+ * Sans JavaScript, le bouton est masqué et le thème suit la préférence système.
+ */
+import Icon from './Icon.astro';
+---
+
+<theme-toggle>
+  <button type="button" class="iconbtn" aria-label="Basculer le thème clair / sombre" title="Thème clair / sombre">
+    <Icon name="sun" class="icon-sun" />
+    <Icon name="moon" class="icon-moon" />
+  </button>
+</theme-toggle>
+
+<style>
+  theme-toggle:not(:defined) {
+    display: none;
+  }
+  .icon-moon {
+    display: none;
+  }
+  :global([data-theme='dark']) .icon-moon {
+    display: inline;
+  }
+  :global([data-theme='dark']) .icon-sun {
+    display: none;
+  }
+</style>
+
+<script>
+  const STORAGE_KEY = 'starlight-theme';
+
+  class ThemeToggle extends HTMLElement {
+    connectedCallback() {
+      this.querySelector('button')?.addEventListener('click', () => {
+        const root = document.documentElement;
+        const current =
+          root.dataset.theme ?? (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        const next = current === 'dark' ? 'light' : 'dark';
+        root.dataset.theme = next;
+        try {
+          localStorage.setItem(STORAGE_KEY, next);
+        } catch {
+          /* stockage indisponible : le choix vaut pour la page courante */
+        }
+        // Synchronise le sélecteur de Starlight s'il est présent sur la page.
+        (window as unknown as { StarlightThemeProvider?: { updatePickers(theme: string): void } })
+          .StarlightThemeProvider?.updatePickers(next);
+      });
+    }
+  }
+
+  customElements.define('theme-toggle', ThemeToggle);
+</script>

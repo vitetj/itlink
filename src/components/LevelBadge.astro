@@ -1,0 +1,50 @@
+---
+/** Niveau de difficulté sous forme de 4 barres + libellé. */
+import { LEVELS, type Level } from '@/data/site';
+
+interface Props {
+  level: Level;
+  class?: string;
+}
+
+const { level, class: className } = Astro.props;
+const n = LEVELS.indexOf(level) + 1;
+---
+
+<span class:list={['level', className]} data-n={n} title={`Niveau : ${level}`}>
+  <span class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+  <span>{level}</span>
+</span>
+
+<style>
+  .level {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    white-space: nowrap;
+  }
+  .bars {
+    display: inline-flex;
+    align-items: flex-end;
+    gap: 2px;
+    height: 12px;
+  }
+  .bars i {
+    display: block;
+    width: 3px;
+    border-radius: 1px;
+    background: var(--c-line-strong);
+  }
+  .bars i:nth-child(1) { height: 5px; }
+  .bars i:nth-child(2) { height: 7px; }
+  .bars i:nth-child(3) { height: 9px; }
+  .bars i:nth-child(4) { height: 12px; }
+  .level[data-n='1'] i:nth-child(-n + 1),
+  .level[data-n='2'] i:nth-child(-n + 2),
+  .level[data-n='3'] i:nth-child(-n + 3),
+  .level[data-n='4'] i:nth-child(-n + 4) {
+    background: var(--hue, var(--c-accent));
+  }
+</style>

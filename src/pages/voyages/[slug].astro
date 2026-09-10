@@ -1,0 +1,63 @@
+---
+import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
+import { render } from 'astro:content';
+import ArticleLayout from '@/layouts/ArticleLayout.astro';
+import Icon from '@/components/Icon.astro';
+import { formatDate, isoDate } from '@/lib/dates';
+import { getAllCards, getTravel, relatedCards, travelToCard } from '@/lib/content';
+import { readingTime } from '@/lib/text';
+
+export const getStaticPaths = (async () => {
+  const items = await getTravel();
+  return items.map((entry, i) => ({
+    params: { slug: entry.id },
+    props: { entry, newer: items[i - 1], older: items[i + 1] },
+  }));
+}) satisfies GetStaticPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+const { entry, newer, older } = Astro.props;
+const { Content, headings } = await render(entry);
+const item = travelToCard(entry);
+const related = relatedCards(item, await getAllCards(), 3);
+const trip = entry.data.trip;
+---
+
+<ArticleLayout
+  item={item}
+  headings={headings}
+  breadcrumbs={[{ name: 'Voyages', href: '/voyages/' }, { name: item.title }]}
+  related={related}
+  prev={older ? travelToCard(older) : undefined}
+  next={newer ? travelToCard(newer) : undefined}
+  jsonLdKind="Article"
+  words={readingTime(entry.body).words}
+  hue="travel"
+  showCover
+>
+  <Fragment slot="meta">
+    <dl class="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-xs text-fg-muted">
+      <div class="inline-flex items-center gap-1.5">
+        <dt><Icon name="map-pin" size={14} /><span class="sr-only">Lieu</span></dt>
+        <dd>{[entry.data.place, entry.data.country].filter(Boolean).join(', ')}</dd>
+      </div>
+      {
+        trip && (
+          <div class="inline-flex items-center gap-1.5">
+            <dt><Icon name="plane" size={14} /><span class="sr-only">Période du voyage</span></dt>
+            <dd>
+              <time datetime={isoDate(trip.from)}>{formatDate(trip.from, 'month')}</time>
+              {trip.to && (
+                <>
+                  {' → '}
+                  <time datetime={isoDate(trip.to)}>{formatDate(trip.to, 'month')}</time>
+                </>
+              )}
+            </dd>
+          </div>
+        )
+      }
+    </dl>
+  </Fragment>
+  <Content />
+</ArticleLayout>

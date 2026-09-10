@@ -1,0 +1,26 @@
+---
+/** Bloc « À lire aussi ». */
+import type { CardItem } from '@/lib/content';
+import Card from './Card.astro';
+
+interface Props {
+  items: CardItem[];
+  title?: string;
+}
+const { items, title = 'À lire aussi' } = Astro.props;
+---
+
+{
+  items.length > 0 && (
+    <section aria-labelledby="related-title" class="mt-12 border-t border-line pt-8">
+      <h2 id="related-title" class="eyebrow mb-4">{title}</h2>
+      <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" role="list">
+        {items.map((item) => (
+          <li class="flex [&>article]:w-full">
+            <Card item={item} showSection headingLevel="h3" />
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}

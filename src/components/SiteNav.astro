@@ -1,0 +1,182 @@
+---
+/**
+ * Barre de navigation commune. Utilisée par le layout de base et par l'en-tête Starlight.
+ * Slots : `search` (bouton de recherche alternatif) et `theme` (sélecteur de thème alternatif).
+ */
+import { NAV, SITE } from '@/data/site';
+import Icon from './Icon.astro';
+import ThemeToggle from './ThemeToggle.astro';
+
+interface Props {
+  currentPath?: string | undefined;
+  /** Masque le menu mobile (les pages /docs utilisent le menu latéral de Starlight). */
+  hideMobileMenu?: boolean;
+}
+
+const currentPath = Astro.props.currentPath ?? Astro.url.pathname;
+const hideMobileMenu = Astro.props.hideMobileMenu ?? false;
+const isActive = (href: string) => currentPath === href || currentPath.startsWith(`${href}/`);
+const hueOf: Record<string, string> = {
+  '/docs': 'hue-docs',
+  '/blog': 'hue-blog',
+  '/lab': 'hue-lab',
+  '/voyages': 'hue-travel',
+  '/a-propos': 'hue-accent',
+};
+---
+
+<div class="flex h-full items-center justify-between gap-4">
+  <a href="/" class="wordmark shrink-0" aria-label={`${SITE.name} — accueil`}>
+    <span class="font-display text-[1.125rem] font-bold tracking-tight">{SITE.name}</span>
+    <span class="cursor" aria-hidden="true"></span>
+  </a>
+
+  <nav aria-label="Navigation principale" class="hidden md:block">
+    <ul class="flex items-center gap-1">
+      {
+        NAV.map((item) => (
+          <li class={hueOf[item.href]}>
+            <a
+              href={item.href}
+              class:list={['navlink', { 'is-active': isActive(item.href) }]}
+              aria-current={isActive(item.href) ? 'page' : undefined}
+            >
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+
+  <div class="flex items-center gap-0.5">
+    {
+      Astro.slots.has('search') ? (
+        <slot name="search" />
+      ) : (
+        <a href="/recherche" class="iconbtn" aria-label="Rechercher sur le site" title="Rechercher">
+          <Icon name="search" />
+        </a>
+      )
+    }
+    <a href={SITE.author.github} class="iconbtn hidden sm:inline-flex" rel="me noopener" aria-label="GitHub" title="GitHub">
+      <Icon name="github" size={18} />
+    </a>
+    <a href="/rss.xml" class="iconbtn hidden sm:inline-flex" aria-label="Flux RSS" title="Flux RSS">
+      <Icon name="rss" size={18} />
+    </a>
+    {Astro.slots.has('theme') ? <slot name="theme" /> : <ThemeToggle />}
+
+    {!hideMobileMenu && (
+    <details class="mobile-menu relative md:hidden">
+      <summary class="iconbtn list-none" aria-label="Ouvrir le menu">
+        <Icon name="menu" />
+      </summary>
+      <nav aria-label="Navigation mobile" class="absolute top-full right-0 z-50 mt-2 w-60 rounded-lg border border-line bg-bg-elev p-2 shadow-lg">
+        <ul class="flex flex-col">
+          {
+            NAV.map((item) => (
+              <li class={hueOf[item.href]}>
+                <a
+                  href={item.href}
+                  class:list={['mobile-link', { 'is-active': isActive(item.href) }]}
+                  aria-current={isActive(item.href) ? 'page' : undefined}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+          <li class="mt-1 border-t border-line pt-1">
+            <a href="/cv" class="mobile-link">CV</a>
+          </li>
+          <li>
+            <a href="/recherche" class="mobile-link">Recherche</a>
+          </li>
+          <li class="flex gap-1 px-2 py-1">
+            <a href={SITE.author.github} class="iconbtn" rel="me noopener" aria-label="GitHub"><Icon name="github" size={18} /></a>
+            <a href="/rss.xml" class="iconbtn" aria-label="Flux RSS"><Icon name="rss" size={18} /></a>
+          </li>
+        </ul>
+      </nav>
+    </details>
+    )}
+  </div>
+</div>
+
+<style>
+  .wordmark {
+    display: inline-flex;
+    align-items: center;
+    color: var(--c-fg);
+    text-decoration: none;
+  }
+  .navlink {
+    display: inline-block;
+    padding: 0.375rem 0.625rem;
+    border-radius: 0.375rem;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--c-fg-muted);
+    text-decoration: none;
+    position: relative;
+  }
+  .navlink:hover {
+    color: var(--c-fg);
+    background: var(--c-bg-muted);
+  }
+  .navlink.is-active {
+    color: var(--c-fg);
+  }
+  .navlink.is-active::after {
+    content: '';
+    position: absolute;
+    left: 0.625rem;
+    right: 0.625rem;
+    bottom: 0.125rem;
+    height: 2px;
+    border-radius: 1px;
+    background: var(--hue, var(--c-accent));
+  }
+  .mobile-link {
+    display: block;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.375rem;
+    font-weight: 500;
+    color: var(--c-fg);
+    text-decoration: none;
+  }
+  .mobile-link:hover {
+    background: var(--c-bg-muted);
+  }
+  .mobile-link.is-active {
+    color: var(--hue, var(--c-accent));
+  }
+  .mobile-menu[open] > summary {
+    background: var(--c-bg-muted);
+  }
+  .mobile-menu > summary::-webkit-details-marker {
+    display: none;
+  }
+</style>
+
+<style is:global>
+  /* Bouton icône partagé (en-tête, menus). */
+  .iconbtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 0.375rem;
+    color: var(--c-fg-muted);
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    transition: background-color 120ms ease, color 120ms ease;
+  }
+  .iconbtn:hover {
+    color: var(--c-fg);
+    background: var(--c-bg-muted);
+  }
+</style>

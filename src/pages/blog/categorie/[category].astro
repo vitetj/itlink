@@ -1,0 +1,35 @@
+---
+import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Card from '@/components/Card.astro';
+import SectionHeading from '@/components/SectionHeading.astro';
+import { BLOG_CATEGORIES } from '@/data/site';
+import { getPosts, postToCard } from '@/lib/content';
+
+export const getStaticPaths = (async () => {
+  const posts = await getPosts();
+  return BLOG_CATEGORIES.map((category) => ({
+    params: { category: category.slug },
+    props: { category, items: posts.filter((p) => p.data.category === category.slug).map(postToCard) },
+  }));
+}) satisfies GetStaticPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+const { category, items } = Astro.props;
+---
+
+<BaseLayout
+  seo={{ title: `${category.label} — Blog`, description: `Tous les billets de la catégorie « ${category.label} ».`, image: '/og/blog.png' }}
+  hue="blog"
+>
+  <div class="container-x py-10 md:py-14">
+    <SectionHeading level="h1" eyebrow="// blog · catégorie" title={category.label} href="/blog/" linkLabel="Tout le blog" />
+    {
+      items.length > 0 ? (
+        <div class="grid gap-x-10 md:grid-cols-2">{items.map((item) => <Card item={item} variant="row" headingLevel="h2" />)}</div>
+      ) : (
+        <p class="text-fg-muted">Rien encore dans cette catégorie. Ça viendra, le brouillon existe probablement déjà.</p>
+      )
+    }
+  </div>
+</BaseLayout>

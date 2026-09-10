@@ -1,0 +1,75 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import CardGrid from '@/components/CardGrid.astro';
+import SectionHeading from '@/components/SectionHeading.astro';
+import StatusBadge from '@/components/StatusBadge.astro';
+import { LAB_CATEGORIES } from '@/data/site';
+import { getLab, getProjects, labToCard } from '@/lib/content';
+import Icon from '@/components/Icon.astro';
+
+const lab = await getLab();
+const projects = await getProjects();
+const items = lab.map(labToCard);
+const description =
+  'Homelab, Proxmox, Docker, réseau, stockage, auto-hébergement et bricolages électroniques. Ce qui tourne à la maison avant de tourner au boulot.';
+---
+
+<BaseLayout seo={{ title: 'Lab', description, image: '/og/lab.png' }} hue="lab">
+  <div class="container-x py-10 md:py-14">
+    <SectionHeading level="h1" eyebrow="// lab" title="Homelab & expérimentations" />
+    <p class="max-w-2xl text-lg text-fg-muted text-pretty">{description}</p>
+
+    <nav aria-label="Catégories du lab" class="mt-6">
+      <ul class="flex flex-wrap gap-2">
+        {
+          LAB_CATEGORIES.map((c) => (
+            <li>
+              <a href={`/lab/categorie/${c.slug}/`} class="tag">
+                {c.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="mt-10">
+      <CardGrid items={items} headingLevel="h2" />
+    </div>
+
+    {
+      projects.length > 0 && (
+        <section aria-labelledby="projects" class="mt-20">
+          <SectionHeading id="projects" eyebrow="// dépôts & outils" title="Projets et dépôts" />
+          <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" role="list">
+            {projects.map((p) => (
+              <li class="card">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="eyebrow">{p.data.kind}</span>
+                  <StatusBadge status={p.data.status} />
+                </div>
+                <h3 class="font-display text-[1.0625rem] font-semibold">
+                  {p.data.repo ? (
+                    <a href={p.data.repo} class="inline-flex items-center gap-1 hover:text-lab" rel="noopener">
+                      {p.data.title} <Icon name="arrow-up-right" size={14} />
+                    </a>
+                  ) : (
+                    p.data.title
+                  )}
+                </h3>
+                <p class="text-sm text-fg-muted">{p.data.description}</p>
+                {p.data.stack.length > 0 && (
+                  <ul class="mt-auto flex flex-wrap gap-1 pt-2" aria-label="Technologies">
+                    {p.data.stack.map((s) => (
+                      <li class="tag">{s}</li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
+          </ul>
+        </section>
+      )
+    }
+  </div>
+</BaseLayout>

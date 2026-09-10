@@ -1,0 +1,22 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Icon from '@/components/Icon.astro';
+---
+
+<BaseLayout seo={{ title: 'Page introuvable', description: 'Erreur 404 : cette page n’existe pas ou plus.', noindex: true, image: '/og/accueil.png' }}>
+  <div class="container-x py-20 md:py-28">
+    <div class="mx-auto max-w-xl rounded-lg border border-line bg-bg-elev p-6 font-mono text-sm">
+      <p><span class="text-lab">$</span> curl -I {`https://vitet.info`}<span class="text-fg-subtle">{Astro.url.pathname}</span></p>
+      <p class="mt-2 text-danger">HTTP/2 404 Not Found</p>
+      <p class="mt-4 text-fg-muted">
+        # Soit la page a bougé, soit elle n'a jamais existé, soit j'ai cassé un lien en réorganisant les docs.
+        Dans les trois cas, la recherche est votre amie.
+      </p>
+    </div>
+    <div class="mt-8 flex flex-wrap justify-center gap-3">
+      <a href="/" class="btn btn-primary"><Icon name="home" size={16} /> Retour à l'accueil</a>
+      <a href="/recherche" class="btn"><Icon name="search" size={16} /> Rechercher</a>
+      <a href="/docs" class="btn"><Icon name="book" size={16} /> Parcourir les docs</a>
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,36 @@
+---
+import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
+import { render } from 'astro:content';
+import ArticleLayout from '@/layouts/ArticleLayout.astro';
+import { getAllCards, getPosts, postToCard, relatedCards } from '@/lib/content';
+import { readingTime } from '@/lib/text';
+
+export const getStaticPaths = (async () => {
+  const posts = await getPosts();
+  return posts.map((post, i) => ({
+    params: { slug: post.id },
+    props: { post, newer: posts[i - 1], older: posts[i + 1] },
+  }));
+}) satisfies GetStaticPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+const { post, newer, older } = Astro.props;
+const { Content, headings } = await render(post);
+const item = postToCard(post);
+const related = relatedCards(item, await getAllCards(), 3);
+---
+
+<ArticleLayout
+  item={item}
+  headings={headings}
+  breadcrumbs={[{ name: 'Blog', href: '/blog/' }, { name: item.categoryLabel ?? '', href: item.categoryHref }, { name: item.title }]}
+  related={related}
+  prev={older ? postToCard(older) : undefined}
+  next={newer ? postToCard(newer) : undefined}
+  jsonLdKind="BlogPosting"
+  words={readingTime(post.body).words}
+  hue="blog"
+  showCover
+>
+  <Content />
+</ArticleLayout>

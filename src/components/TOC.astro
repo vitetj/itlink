@@ -1,0 +1,111 @@
+---
+/**
+ * Sommaire construit à partir des titres Markdown (h2/h3).
+ * Rendu en `<details>` sur mobile, en colonne collante sur grand écran.
+ * Le surlignage de la section active est une amélioration progressive (JS).
+ */
+import type { MarkdownHeading } from 'astro';
+
+interface Props {
+  headings: MarkdownHeading[];
+  minDepth?: number;
+  maxDepth?: number;
+  title?: string;
+}
+
+const { headings, minDepth = 2, maxDepth = 3, title = 'Sommaire' } = Astro.props;
+const items = headings.filter((h) => h.depth >= minDepth && h.depth <= maxDepth);
+---
+
+{
+  items.length > 1 && (
+    <nav aria-label={title} class="toc">
+      <details class="toc-mobile lg:hidden" open>
+        <summary class="eyebrow cursor-pointer select-none">{title}</summary>
+        <ol class="toc-list mt-2">
+          {items.map((h) => (
+            <li class:list={[`depth-${h.depth}`]}>
+              <a href={`#${h.slug}`}>{h.text}</a>
+            </li>
+          ))}
+        </ol>
+      </details>
+      <div class="toc-desktop hidden lg:block">
+        <p class="eyebrow">{title}</p>
+        <ol class="toc-list mt-2">
+          {items.map((h) => (
+            <li class:list={[`depth-${h.depth}`]}>
+              <a href={`#${h.slug}`}>{h.text}</a>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </nav>
+  )
+}
+
+<style>
+  .toc-mobile {
+    border: 1px solid var(--c-line);
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: var(--c-bg-elev);
+  }
+  .toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.875rem;
+    border-left: 1px solid var(--c-line);
+  }
+  .toc-list li {
+    margin: 0;
+  }
+  .toc-list a {
+    display: block;
+    padding: 0.25rem 0 0.25rem 0.875rem;
+    margin-left: -1px;
+    border-left: 2px solid transparent;
+    color: var(--c-fg-muted);
+    text-decoration: none;
+    line-height: 1.4;
+  }
+  .toc-list .depth-3 a {
+    padding-left: 1.75rem;
+    font-size: 0.8125rem;
+  }
+  .toc-list a:hover {
+    color: var(--c-fg);
+  }
+  .toc-list a[aria-current='true'] {
+    color: var(--hue, var(--c-accent));
+    border-left-color: var(--hue, var(--c-accent));
+  }
+</style>
+
+<script>
+  // Surligne l'entrée du sommaire correspondant au titre visible.
+  const tocs = document.querySelectorAll<HTMLElement>('.toc-desktop');
+  for (const toc of tocs) {
+    const links = [...toc.querySelectorAll<HTMLAnchorElement>('a[href^="#"]')];
+    const targets = links
+      .map((a) => document.getElementById(decodeURIComponent(a.hash.slice(1))))
+      .filter((el): el is HTMLElement => !!el);
+    if (targets.length === 0) continue;
+    const setCurrent = (id: string) => {
+      for (const a of links) {
+        if (a.hash.slice(1) === id) a.setAttribute('aria-current', 'true');
+        else a.removeAttribute('aria-current');
+      }
+    };
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.filter((e) => e.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        const first = visible[0];
+        if (first) setCurrent(first.target.id);
+      },
+      { rootMargin: '-72px 0px -70% 0px', threshold: [0, 1] },
+    );
+    targets.forEach((t) => observer.observe(t));
+  }
+</script>

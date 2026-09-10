@@ -1,0 +1,53 @@
+---
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Card from '@/components/Card.astro';
+import Pagination from '@/components/Pagination.astro';
+import SectionHeading from '@/components/SectionHeading.astro';
+import { BLOG_CATEGORIES } from '@/data/site';
+import { getPosts, postToCard, type CardItem } from '@/lib/content';
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const posts = (await getPosts()).map(postToCard);
+  return paginate(posts, { pageSize: 12 });
+}) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
+const items: CardItem[] = page.data;
+const description =
+  "Billets d'humeur, veille, retours d'expérience et réflexions sur le métier de DSI. Le côté moins procédural du site.";
+---
+
+<BaseLayout
+  seo={{
+    title: page.currentPage > 1 ? `Blog — page ${page.currentPage}` : 'Blog',
+    description,
+    image: '/og/blog.png',
+    canonical: page.currentPage > 1 ? undefined : '/blog/',
+  }}
+  hue="blog"
+>
+  <div class="container-x py-10 md:py-14">
+    <SectionHeading level="h1" eyebrow="// blog" title="Billets, veille et retours d'expérience" />
+    <p class="max-w-2xl text-lg text-fg-muted text-pretty">{description}</p>
+
+    <nav aria-label="Catégories du blog" class="mt-6">
+      <ul class="flex flex-wrap gap-2">
+        {
+          BLOG_CATEGORIES.map((c) => (
+            <li>
+              <a href={`/blog/categorie/${c.slug}/`} class="tag">
+                {c.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="mt-10 grid gap-x-10 md:grid-cols-2">
+      {items.map((item) => <Card item={item} variant="row" headingLevel="h2" />)}
+    </div>
+    <Pagination page={page} />
+  </div>
+</BaseLayout>

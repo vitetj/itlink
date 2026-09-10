@@ -1,0 +1,91 @@
+---
+/**
+ * Recherche plein texte locale (Pagefind). L'index est construit après `astro build`
+ * par Starlight et couvre toutes les pages marquées `data-pagefind-body`.
+ */
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import SectionHeading from '@/components/SectionHeading.astro';
+import { SITE } from '@/data/site';
+---
+
+<BaseLayout seo={{ title: 'Recherche', description: 'Recherche plein texte dans les docs, le blog, le lab et les voyages.', image: '/og/recherche.png', noindex: true }}>
+  <div class="container-x py-10 md:py-14">
+    <SectionHeading level="h1" eyebrow="// pagefind" title="Rechercher sur le site" />
+
+    {
+      import.meta.env.DEV && (
+        <p class="mb-6 rounded-md border border-line bg-bg-elev p-4 font-mono text-sm text-fg-muted">
+          En développement, l'index Pagefind n'existe pas encore : lancez <code>npm run build</code> puis <code>npm run preview</code>.
+        </p>
+      )
+    }
+
+    <div id="search" class="pagefind"></div>
+
+    <noscript>
+      <form action="https://duckduckgo.com/" method="get" class="flex max-w-xl gap-2" role="search">
+        <input type="hidden" name="sites" value={new URL(SITE.url).host} />
+        <label class="sr-only" for="q">Recherche</label>
+        <input id="q" name="q" type="search" placeholder="La recherche locale nécessite JavaScript ; ceci utilise DuckDuckGo" class="flex-1 rounded-md border border-line bg-bg-elev px-3 py-2" />
+        <button type="submit" class="btn">Chercher</button>
+      </form>
+    </noscript>
+  </div>
+
+  <Fragment slot="head">
+    <link rel="stylesheet" href="/pagefind/pagefind-ui.css" />
+  </Fragment>
+</BaseLayout>
+
+<script is:inline src="/pagefind/pagefind-ui.js" defer></script>
+<script is:inline>
+  window.addEventListener('DOMContentLoaded', () => {
+    if (typeof PagefindUI === 'undefined') return;
+    const ui = new PagefindUI({
+      element: '#search',
+      showSubResults: true,
+      showImages: false,
+      excerptLength: 30,
+      translations: {
+        placeholder: 'Rechercher…',
+        clear_search: 'Effacer',
+        load_more: 'Plus de résultats',
+        search_label: 'Rechercher sur le site',
+        filters_label: 'Filtres',
+        zero_results: 'Aucun résultat pour [SEARCH_TERM]',
+        many_results: '[COUNT] résultats pour [SEARCH_TERM]',
+        one_result: '[COUNT] résultat pour [SEARCH_TERM]',
+        alt_search: 'Aucun résultat pour [SEARCH_TERM]. Résultats pour [DIFFERENT_TERM] :',
+        search_suggestion: 'Aucun résultat pour [SEARCH_TERM]. Essayez :',
+        searching: 'Recherche de [SEARCH_TERM]…',
+      },
+    });
+    const q = new URLSearchParams(location.search).get('q');
+    if (q) ui.triggerSearch(q);
+  });
+</script>
+
+<style is:global>
+  .pagefind {
+    --pagefind-ui-scale: 0.95;
+    --pagefind-ui-primary: var(--c-accent);
+    --pagefind-ui-text: var(--c-fg);
+    --pagefind-ui-background: var(--c-bg-elev);
+    --pagefind-ui-border: var(--c-line);
+    --pagefind-ui-tag: var(--c-bg-muted);
+    --pagefind-ui-border-width: 1px;
+    --pagefind-ui-border-radius: 0.5rem;
+    --pagefind-ui-font: var(--font-sans);
+  }
+  .pagefind .pagefind-ui__result-title {
+    font-family: var(--font-display);
+  }
+  .pagefind .pagefind-ui__result-excerpt,
+  .pagefind .pagefind-ui__message {
+    color: var(--c-fg-muted);
+  }
+  .pagefind mark {
+    background: var(--c-selection);
+    color: inherit;
+  }
+</style>

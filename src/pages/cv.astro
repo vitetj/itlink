@@ -1,0 +1,168 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Icon from '@/components/Icon.astro';
+import SectionHeading from '@/components/SectionHeading.astro';
+import { CV } from '@/data/cv';
+import { SITE } from '@/data/site';
+import { personJsonLd } from '@/lib/seo';
+
+const description = `Parcours, compétences, domaines d'expertise et technologies de ${SITE.name}, ${CV.headline.toLowerCase()}.`;
+const firstYear = Math.min(...CV.experiences.map((e) => e.start));
+const currentYear = new Date().getFullYear();
+---
+
+<BaseLayout seo={{ title: 'CV', description, type: 'profile', image: '/og/cv.png' }} jsonLd={[{ '@context': 'https://schema.org', ...personJsonLd() }]}>
+  <div class="container-x py-10 md:py-14">
+    <header class="max-w-3xl">
+      <p class="eyebrow">// cv</p>
+      <h1 class="mt-2 font-display text-3xl font-bold tracking-tight md:text-[2.5rem]">{SITE.name}</h1>
+      <p class="mt-2 font-mono text-sm text-fg-muted">{CV.headline}</p>
+      <p class="mt-5 text-lg text-fg-muted text-pretty">{CV.intro}</p>
+      <dl class="mt-6 grid gap-x-8 gap-y-2 font-mono text-xs text-fg-muted sm:grid-cols-3">
+        <div><dt class="text-fg-subtle">expérience</dt><dd>{CV.yearsInIT} ans dans l'IT ({firstYear} → {currentYear})</dd></div>
+        <div><dt class="text-fg-subtle">localisation</dt><dd>{CV.location}</dd></div>
+        <div><dt class="text-fg-subtle">langues</dt><dd>{CV.languages.join(' · ')}</dd></div>
+      </dl>
+      <div class="mt-6 flex flex-wrap gap-3 no-print">
+        <a href={`mailto:${SITE.author.email}`} class="btn"><Icon name="mail" size={16} /> Me contacter</a>
+        <a href={SITE.author.linkedin} class="btn" rel="me noopener"><Icon name="linkedin" size={16} /> LinkedIn</a>
+        <a href="/a-propos" class="btn">La version longue</a>
+      </div>
+    </header>
+
+    <div class="mt-16 grid gap-16 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">
+      <div class="flex flex-col gap-16">
+        {/* ---------------------------------------------------- Timeline */}
+        <section aria-labelledby="xp">
+          <SectionHeading id="xp" eyebrow="// timeline" title="Expérience professionnelle" />
+          <ol class="timeline" role="list">
+            {
+              CV.experiences.map((xp) => (
+                <li class="timeline-item">
+                  <div class="timeline-dot" aria-hidden="true"></div>
+                  <p class="font-mono text-xs text-fg-subtle">{xp.period}</p>
+                  <h3 class="mt-1 font-display text-lg font-semibold leading-snug">{xp.role}</h3>
+                  <p class="text-sm text-fg-muted">
+                    {xp.company}
+                    {xp.location && <span class="text-fg-subtle"> · {xp.location}</span>}
+                  </p>
+                  <p class="mt-3 text-[0.9375rem] text-pretty">{xp.summary}</p>
+                  {xp.highlights.length > 0 && (
+                    <ul class="mt-3 list-disc space-y-1 pl-5 text-[0.9375rem] text-fg-muted marker:text-fg-subtle">
+                      {xp.highlights.map((h) => (
+                        <li>{h}</li>
+                      ))}
+                    </ul>
+                  )}
+                  <ul class="mt-3 flex flex-wrap gap-1.5" aria-label="Technologies">
+                    {xp.stack.map((s) => (
+                      <li class="tag">{s}</li>
+                    ))}
+                  </ul>
+                </li>
+              ))
+            }
+          </ol>
+        </section>
+
+        {/* ---------------------------------------------------- Expertise */}
+        <section aria-labelledby="expertise">
+          <SectionHeading id="expertise" eyebrow="// ce que je sais faire" title="Domaines d'expertise" />
+          <ul class="grid gap-4 sm:grid-cols-2" role="list">
+            {
+              CV.expertise.map((e) => (
+                <li class="card">
+                  <h3 class="font-display font-semibold">{e.title}</h3>
+                  <p class="text-sm text-fg-muted">{e.text}</p>
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+      </div>
+
+      <aside class="flex flex-col gap-16">
+        {/* ---------------------------------------------------- Skills */}
+        <section aria-labelledby="skills">
+          <SectionHeading id="skills" eyebrow="// stack" title="Compétences" />
+          <ul class="flex flex-col gap-5" role="list">
+            {
+              CV.skills.map((group) => (
+                <li>
+                  <h3 class="flex items-center gap-2 font-display font-semibold">
+                    <Icon name={group.icon} size={16} class="text-accent" /> {group.name}
+                  </h3>
+                  <ul class="mt-2 flex flex-wrap gap-1.5">
+                    {group.items.map((s) => (
+                      <li class="tag">{s}</li>
+                    ))}
+                  </ul>
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+
+        {/* ---------------------------------------------------- Certifications */}
+        <section aria-labelledby="certs">
+          <SectionHeading id="certs" eyebrow="// formation" title="Certifications" />
+          {
+            CV.certifications.length > 0 ? (
+              <ul class="flex flex-col gap-2" role="list">
+                {CV.certifications.map((c) => (
+                  <li class="flex items-start gap-2 text-sm">
+                    <Icon name="award" size={16} class="mt-0.5 shrink-0 text-accent" />
+                    <span>
+                      <span class="font-semibold">{c.name}</span> — {c.issuer}
+                      {c.year && <span class="font-mono text-xs text-fg-subtle"> · {c.year}</span>}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p class="text-sm text-fg-muted">
+                Pas de collection de badges à afficher : je me forme surtout sur le terrain, en cassant des choses dans le
+                <a href="/lab" class="link">lab</a> avant de les déployer pour de vrai.
+              </p>
+            )
+          }
+        </section>
+
+        {/* ---------------------------------------------------- Technologies */}
+        <section aria-labelledby="tech">
+          <SectionHeading id="tech" eyebrow="// index" title="Technologies utilisées" />
+          <ul class="flex flex-wrap gap-1.5" role="list">
+            {CV.technologies.map((t) => <li class="tag">{t}</li>)}
+          </ul>
+        </section>
+      </aside>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .timeline {
+    position: relative;
+    padding-left: 1.5rem;
+    border-left: 1px solid var(--c-line);
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+  .timeline-item {
+    position: relative;
+  }
+  .timeline-dot {
+    position: absolute;
+    left: calc(-1.5rem - 5px);
+    top: 0.35rem;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--c-bg);
+    border: 2px solid var(--c-accent);
+  }
+  .timeline-item:first-child .timeline-dot {
+    background: var(--c-accent);
+  }
+</style>

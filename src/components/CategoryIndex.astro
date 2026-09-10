@@ -1,0 +1,29 @@
+---
+/** Liste des fiches d'une catégorie de documentation (utilisé dans les pages index de catégorie). */
+import Card from './Card.astro';
+import { docCategorySlug, docToCard, getDocs } from '@/lib/content';
+
+interface Props {
+  category: string;
+}
+const { category } = Astro.props;
+const docs = (await getDocs()).filter((d) => docCategorySlug(d) === category).map(docToCard);
+const byLevel = ['débutant', 'intermédiaire', 'avancé', 'expert'] as const;
+---
+
+<div class="not-content hue-docs">
+  {
+    docs.length > 0 ? (
+      <div class="flex flex-col">{docs.map((d) => <Card item={d} variant="row" headingLevel="h2" />)}</div>
+    ) : (
+      <p class="text-fg-muted">Aucune fiche publiée pour l'instant dans cette catégorie. Les brouillons s'accumulent, promis.</p>
+    )
+  }
+  {
+    docs.length > 3 && (
+      <p class="mt-6 font-mono text-xs text-fg-subtle">
+        Répartition : {byLevel.map((l) => `${docs.filter((d) => d.level === l).length} ${l}`).join(' · ')}
+      </p>
+    )
+  }
+</div>

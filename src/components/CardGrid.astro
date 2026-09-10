@@ -1,0 +1,30 @@
+---
+/** Grille responsive de cartes. */
+import type { CardItem } from '@/lib/content';
+import Card from './Card.astro';
+
+interface Props {
+  items: CardItem[];
+  variant?: 'default' | 'cover';
+  showSection?: boolean;
+  columns?: 2 | 3;
+  headingLevel?: 'h2' | 'h3';
+}
+const { items, variant = 'default', showSection = false, columns = 3, headingLevel = 'h3' } = Astro.props;
+---
+
+<ul class:list={['grid gap-4', columns === 3 ? 'sm:grid-cols-2 lg:grid-cols-3' : 'sm:grid-cols-2']} role="list">
+  {
+    items.map((item) => (
+      <li class="flex">
+        <Card item={item} variant={variant} showSection={showSection} headingLevel={headingLevel} />
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  li > :global(article) {
+    width: 100%;
+  }
+</style>

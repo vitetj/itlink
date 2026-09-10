@@ -1,0 +1,47 @@
+---
+/** Accueil de la documentation : catégories avec compteurs et fiches mises en avant. */
+import Card from './Card.astro';
+import Icon from './Icon.astro';
+import { docToCard, getDocCategoriesWithCounts, getDocs } from '@/lib/content';
+
+const categories = await getDocCategoriesWithCounts();
+const docs = await getDocs();
+const featured = docs.filter((d) => d.data.featured).slice(0, 6).map(docToCard);
+const latest = docs.slice(0, 6).map(docToCard);
+---
+
+<div class="not-content hue-docs">
+  <h2 class="eyebrow mb-4">Par domaine</h2>
+  <ul class="grid gap-3 sm:grid-cols-2 xl:grid-cols-3" role="list">
+    {
+      categories.map((c) => (
+        <li>
+          <a href={c.href} class="card group h-full no-underline">
+            <span class="flex items-center justify-between">
+              <span class="font-mono text-xs text-docs">{c.short}</span>
+              <span class="font-mono text-xs text-fg-subtle">{c.count} fiche{c.count > 1 ? 's' : ''}</span>
+            </span>
+            <span class="font-display font-semibold text-fg group-hover:text-docs">{c.label}</span>
+            <span class="text-sm text-fg-muted">{c.description}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+
+  {
+    featured.length > 0 && (
+      <>
+        <h2 class="eyebrow mt-12 mb-4">Fiches mises en avant</h2>
+        <div class="grid gap-x-10 md:grid-cols-2">{featured.map((d) => <Card item={d} variant="row" headingLevel="h3" />)}</div>
+      </>
+    )
+  }
+
+  <h2 class="eyebrow mt-12 mb-4">Dernières fiches</h2>
+  <div class="grid gap-x-10 md:grid-cols-2">{latest.map((d) => <Card item={d} variant="row" headingLevel="h3" />)}</div>
+
+  <p class="mt-10 inline-flex items-center gap-2 font-mono text-xs text-fg-subtle">
+    <Icon name="rss" size={14} /> <a href="/docs/rss.xml" class="link">Flux RSS des docs</a>
+  </p>
+</div>

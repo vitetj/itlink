@@ -1,0 +1,32 @@
+---
+/** Fil d'Ariane (mono, discret). */
+import Icon from './Icon.astro';
+
+interface Props {
+  items: { name: string; href?: string | undefined }[];
+  class?: string;
+}
+const { items, class: className } = Astro.props;
+---
+
+<nav aria-label="Fil d'Ariane" class:list={['font-mono text-xs text-fg-subtle', className]}>
+  <ol class="flex flex-wrap items-center gap-1">
+    <li><a href="/" class="hover:text-fg"><Icon name="home" size={13} title="Accueil" /></a></li>
+    {
+      items.map((item, i) => (
+        <li class="flex items-center gap-1">
+          <Icon name="chevron-right" size={12} />
+          {item.href && i < items.length - 1 ? (
+            <a href={item.href} class="hover:text-fg">
+              {item.name}
+            </a>
+          ) : (
+            <span aria-current="page" class="text-fg-muted">
+              {item.name}
+            </span>
+          )}
+        </li>
+      ))
+    }
+  </ol>
+</nav>

@@ -1,0 +1,25 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import SectionHeading from '@/components/SectionHeading.astro';
+import { getTagIndex } from '@/lib/content';
+
+const tags = await getTagIndex();
+const max = Math.max(1, ...tags.map((t) => t.count));
+---
+
+<BaseLayout seo={{ title: 'Tags', description: 'Tous les sujets abordés sur le site, docs, blog, lab et voyages confondus.', image: '/og/tags.png' }}>
+  <div class="container-x py-10 md:py-14">
+    <SectionHeading level="h1" eyebrow="// index" title={`${tags.length} tags`} />
+    <ul class="flex flex-wrap gap-2" role="list">
+      {
+        tags.map((t) => (
+          <li>
+            <a href={`/tags/${t.slug}/`} class="tag" style={`font-size:${(0.75 + (t.count / max) * 0.35).toFixed(2)}rem`}>
+              #{t.tag} <span class="text-fg-subtle">{t.count}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</BaseLayout>

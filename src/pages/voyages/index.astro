@@ -1,0 +1,60 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import CardGrid from '@/components/CardGrid.astro';
+import Icon from '@/components/Icon.astro';
+import SectionHeading from '@/components/SectionHeading.astro';
+import { formatDate, isoDate } from '@/lib/dates';
+import { getTravel, travelToCard } from '@/lib/content';
+
+const travel = await getTravel();
+const items = travel.map(travelToCard);
+const [featured, ...rest] = items;
+const description =
+  'Carnet de voyages avec un regard de geek : Japon, transports, lieux improbables, gadgets, culture. Un peu plus de photos, un peu moins de lignes de commande.';
+---
+
+<BaseLayout seo={{ title: 'Voyages', description, image: '/og/voyages.png' }} hue="travel">
+  <div class="container-x py-10 md:py-14">
+    <SectionHeading level="h1" eyebrow="// carnet de voyages" title="Voyages, transports et lieux geeks" />
+    <p class="max-w-2xl text-lg text-fg-muted text-pretty">{description}</p>
+
+    {
+      featured && (
+        <article class="relative mt-10 grid overflow-hidden rounded-lg border border-line bg-bg-elev md:grid-cols-2">
+          <div class="aspect-[16/10] bg-bg-muted md:aspect-auto md:min-h-[22rem]">
+            {featured.cover ? (
+              <Image src={featured.cover} alt={featured.coverAlt ?? ''} width={1000} height={625} loading="eager" class="h-full w-full object-cover" />
+            ) : (
+              <div class="grid h-full w-full place-items-center text-travel/60">
+                <Icon name="camera" size={48} />
+              </div>
+            )}
+          </div>
+          <div class="flex flex-col justify-center gap-3 p-6 md:p-10">
+            <p class="eyebrow text-travel inline-flex items-center gap-1.5">
+              <Icon name="map-pin" size={13} /> {featured.categoryLabel}
+            </p>
+            <h2 class="font-display text-2xl font-bold leading-tight tracking-tight md:text-3xl">
+              <a href={featured.href} class="after:absolute after:inset-0 hover:text-travel">
+                {featured.title}
+              </a>
+            </h2>
+            <p class="text-fg-muted">{featured.description}</p>
+            <p class="font-mono text-xs text-fg-subtle">
+              <time datetime={isoDate(featured.published)}>{formatDate(featured.published)}</time> · {featured.readingMinutes} min
+            </p>
+          </div>
+        </article>
+      )
+    }
+
+    {
+      rest.length > 0 && (
+        <div class="mt-10">
+          <CardGrid items={rest} variant="cover" headingLevel="h2" />
+        </div>
+      )
+    }
+  </div>
+</BaseLayout>

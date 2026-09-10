@@ -1,0 +1,95 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Icon from '@/components/Icon.astro';
+import { SITE } from '@/data/site';
+import { personJsonLd } from '@/lib/seo';
+
+const description =
+  "Qui je suis, ce que je fais, pourquoi ce site existe et comment je travaille : la version longue, sans langue de bois.";
+---
+
+<BaseLayout seo={{ title: 'À propos', description, type: 'profile', image: '/og/a-propos.png' }} jsonLd={[{ '@context': 'https://schema.org', ...personJsonLd() }]}>
+  <div class="container-x py-10 md:py-14">
+    <div class="lg:grid lg:grid-cols-[minmax(0,1fr)_16rem] lg:gap-14">
+      <article class="prose" data-pagefind-body>
+        <p class="eyebrow text-accent not-prose">// à propos</p>
+        <h1 class="!mt-2 font-display text-3xl font-bold tracking-tight md:text-[2.5rem]">Un DSI qui garde les mains dans la console</h1>
+        <p class="lead">
+          Je m'appelle Jérémie Vitet. Je fais de l'informatique depuis une quinzaine d'années et je dirige aujourd'hui le
+          système d'information d'une PME industrielle des Deux-Sèvres, avec un site aux États-Unis, une équipe volontairement
+          réduite et un parc qui va des serveurs de virtualisation aux automates de production.
+        </p>
+
+        <h2 id="pourquoi">Pourquoi ce site</h2>
+        <p>
+          Parce que la moitié de ce que je sais, je l'ai appris à 22 h devant une console, en cherchant une phrase précise
+          que personne n'avait écrite. L'autre moitié vient d'échanges avec des prestataires, des éditeurs et des collègues
+          qui ont accepté de m'expliquer pourquoi ça ne marchait pas. Ce site est ma façon de rendre la pareille : des
+          procédures testées, des retours d'expérience honnêtes et, de temps en temps, un billet d'humeur quand un éditeur
+          change ses tarifs du jour au lendemain.
+        </p>
+        <p>
+          Trois règles : je ne publie que ce que j'ai fait tourner pour de vrai (la mention « testé sur » est là pour ça),
+          je dis quand quelque chose est un contournement plutôt qu'une solution, et je date tout parce qu'en IT une vérité
+          a une durée de vie.
+        </p>
+
+        <h2 id="parcours">Le parcours en accéléré</h2>
+        <p>
+          Développeur d'abord (outils de gestion pour une école d'ingénieurs, hébergement web pour des PME locales), puis un an
+          au Japon à faire du support et de la formation dans des structures internationales à Tokyo, puis support et réseaux
+          dans un datacenter, un détour par l'électronique et le reconditionnement, et enfin la direction informatique d'une
+          entreprise industrielle depuis 2019. Le détail est sur la <a href="/cv">page CV</a>.
+        </p>
+        <p>
+          Ce mélange explique le site : je regarde une infrastructure avec un œil de développeur, un réseau avec un œil de
+          technicien terrain, et un devis avec un œil de DSI qui devra le défendre.
+        </p>
+
+        <h2 id="philosophie">Ma philosophie IT</h2>
+        <ul>
+          <li><strong>Sobre avant d'être moderne.</strong> Une solution qu'une seule personne peut administrer sereinement vaut mieux qu'un cluster impressionnant que personne ne sait réparer un dimanche.</li>
+          <li><strong>Souverain quand c'est possible, pragmatique quand ça ne l'est pas.</strong> J'aime les outils européens et l'open source ; je ne fais pas semblant de pouvoir me passer de Microsoft 365.</li>
+          <li><strong>Tout est documenté ou ça n'existe pas.</strong> Un serveur sans fiche est une dette, pas un actif.</li>
+          <li><strong>Le lab avant la prod.</strong> Rien n'est déployé au travail qui n'ait d'abord survécu dans mon <a href="/lab">homelab</a>.</li>
+          <li><strong>Les utilisateurs ne sont pas le problème.</strong> Si une procédure est contournée, c'est qu'elle est mal conçue.</li>
+        </ul>
+
+        <h2 id="ici">Ce que vous trouverez ici</h2>
+        <ul>
+          <li><a href="/docs">Docs</a> : une base de connaissances organisée par domaine (Microsoft 365, Windows Server, Linux, réseau, sécurité, virtualisation, self-hosting…), pensée comme une documentation et non comme un blog chronologique.</li>
+          <li><a href="/blog">Blog</a> : billets d'humeur, veille, retours d'expérience, réflexions sur le métier de DSI, découvertes logicielles et hardware.</li>
+          <li><a href="/lab">Lab</a> : le homelab, les packages Cloudron que je maintiens, les expérimentations réseau et stockage, les bricolages.</li>
+          <li><a href="/voyages">Voyages</a> : un carnet plus photographique, très orienté Japon, transports et lieux geeks.</li>
+        </ul>
+
+        <h2 id="geek">Le côté geek</h2>
+        <p>
+          Le Japon n'est pas qu'une ligne de CV : j'y ai vécu, j'y retourne dès que possible, et une bonne partie de ma
+          culture technique et de mes obsessions (trains, gadgets, boîtiers de PC introuvables en Europe) vient de là.
+          À la maison, un cluster de virtualisation, un NAS, quelques services auto-hébergés et une console qui tourne
+          plus pour ma femme que pour moi.
+        </p>
+
+        <h2 id="contact">Me contacter</h2>
+        <p>
+          Une question sur une procédure, une erreur dans un article, une envie de discuter infra ou Japon :
+          <a href={`mailto:${SITE.author.email}`}>{SITE.author.email}</a>. Je réponds, parfois avec délai, jamais avec un ticket.
+        </p>
+      </article>
+
+      <aside class="mt-12 lg:mt-0" aria-label="Liens rapides">
+        <div class="sticky top-[calc(var(--header-h)+1.5rem)] flex flex-col gap-3 rounded-lg border border-line bg-bg-elev p-5">
+          <p class="eyebrow">Liens rapides</p>
+          <a href="/cv" class="btn"><Icon name="briefcase" size={16} /> Voir le CV</a>
+          <a href={SITE.author.github} class="btn" rel="me noopener"><Icon name="github" size={16} /> GitHub</a>
+          <a href={SITE.author.linkedin} class="btn" rel="me noopener"><Icon name="linkedin" size={16} /> LinkedIn</a>
+          <a href="/rss.xml" class="btn"><Icon name="rss" size={16} /> S'abonner (RSS)</a>
+          <p class="mt-2 font-mono text-xs text-fg-subtle">
+            <Icon name="map-pin" size={12} class="inline" /> {SITE.author.location}
+          </p>
+        </div>
+      </aside>
+    </div>
+  </div>
+</BaseLayout>

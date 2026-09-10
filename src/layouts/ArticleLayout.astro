@@ -1,0 +1,156 @@
+---
+/**
+ * Page d'article pour le blog, le lab et les voyages.
+ * Le bloc de titre, le sommaire, le contenu (colonne de lecture + blocs larges),
+ * les articles liés et la navigation précédent / suivant sont gérés ici.
+ */
+import type { MarkdownHeading } from 'astro';
+import { Image } from 'astro:assets';
+import ArticleMeta from '@/components/ArticleMeta.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import PrevNext from '@/components/PrevNext.astro';
+import Related from '@/components/Related.astro';
+import TagList from '@/components/TagList.astro';
+import TOC from '@/components/TOC.astro';
+import type { CardItem } from '@/lib/content';
+import { articleJsonLd, breadcrumbJsonLd, absoluteUrl } from '@/lib/seo';
+import type { Level } from '@/data/site';
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  item: CardItem;
+  headings: MarkdownHeading[];
+  breadcrumbs: { name: string; href?: string | undefined }[];
+  related?: CardItem[] | undefined;
+  prev?: CardItem | undefined;
+  next?: CardItem | undefined;
+  jsonLdKind?: 'TechArticle' | 'BlogPosting' | 'Article';
+  level?: Level | undefined;
+  status?: string | undefined;
+  testedOn?: string[] | undefined;
+  words?: number | undefined;
+  /** Contenu additionnel affiché sous le titre (stack, dépôt, pays…). */
+  hue: 'docs' | 'blog' | 'lab' | 'travel';
+  /** Affiche l'image de couverture en tête (voyages). */
+  showCover?: boolean;
+}
+
+const {
+  item,
+  headings,
+  breadcrumbs,
+  related = [],
+  prev,
+  next,
+  jsonLdKind = 'Article',
+  level,
+  status,
+  testedOn,
+  words,
+  hue,
+  showCover = false,
+} = Astro.props;
+
+const url = absoluteUrl(item.href);
+const jsonLd = [
+  articleJsonLd({
+    kind: jsonLdKind,
+    url,
+    title: item.title,
+    description: item.description,
+    published: item.published,
+    updated: item.updated,
+    tags: item.tags,
+    section: item.categoryLabel ?? item.sectionLabel,
+    image: item.cover?.src,
+    wordCount: words,
+    proficiencyLevel: level,
+  }),
+  breadcrumbJsonLd([...breadcrumbs.filter((b) => b.href).map((b) => ({ name: b.name, href: b.href as string }))]),
+];
+---
+
+<BaseLayout
+  seo={{
+    title: item.title,
+    description: item.description,
+    type: 'article',
+    published: item.published,
+    updated: item.updated,
+    tags: item.tags,
+    section: item.categoryLabel ?? item.sectionLabel,
+    image: item.cover?.src,
+    imageAlt: item.coverAlt,
+  }}
+  jsonLd={jsonLd}
+  hue={hue}
+>
+  <div class="container-x pt-6 md:pt-10">
+    <Breadcrumbs items={breadcrumbs} class="mb-6" />
+
+    <article class="lg:grid lg:grid-cols-[minmax(0,1fr)_15rem] lg:gap-14 xl:grid-cols-[minmax(0,1fr)_16rem]" data-pagefind-body>
+      <div class="min-w-0">
+        <header class="max-w-(--wide)">
+          <p class="eyebrow text-hue" data-pagefind-meta={`section:${item.sectionLabel}`}>
+            {item.categoryHref ? <a href={item.categoryHref} class="hover:underline">{item.categoryLabel}</a> : item.categoryLabel}
+          </p>
+          <h1 class="mt-2 max-w-(--measure) font-display text-3xl font-bold leading-tight tracking-tight text-balance md:text-[2.5rem]">
+            {item.title}
+          </h1>
+          <p class="mt-4 max-w-(--measure) text-lg text-fg-muted text-pretty">{item.description}</p>
+          <ArticleMeta
+            class="mt-5"
+            published={item.published}
+            updated={item.updated}
+            readingMinutes={item.readingMinutes}
+            words={words}
+            level={level}
+            status={status}
+            testedOn={testedOn}
+            tested={item.tested}
+            showTested={testedOn !== undefined}
+          />
+          <slot name="meta" />
+          <TagList tags={item.tags} class="mt-4" />
+          {
+            showCover && item.cover && (
+              <figure class="mt-8">
+                <Image
+                  src={item.cover}
+                  alt={item.coverAlt ?? ''}
+                  width={1200}
+                  height={675}
+                  loading="eager"
+                  fetchpriority="high"
+                  class="w-full rounded-lg object-cover"
+                />
+                {item.coverAlt && <figcaption class="mt-2 font-mono text-xs text-fg-subtle">{item.coverAlt}</figcaption>}
+              </figure>
+            )
+          }
+        </header>
+
+        <div class="mt-8 lg:hidden">
+          <TOC headings={headings} />
+        </div>
+
+        <div class="prose mt-8">
+          <slot />
+        </div>
+
+        <footer class="mt-12 max-w-(--wide)">
+          <slot name="after" />
+          <PrevNext prev={prev} next={next} />
+          <Related items={related} />
+        </footer>
+      </div>
+
+      <aside class="hidden lg:block no-print" aria-label="Colonne latérale">
+        <div class="sticky top-[calc(var(--header-h)+1.5rem)] flex flex-col gap-6">
+          <TOC headings={headings} />
+          <slot name="aside" />
+        </div>
+      </aside>
+    </article>
+  </div>
+</BaseLayout>

@@ -1,0 +1,64 @@
+---
+import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
+import { render } from 'astro:content';
+import ArticleLayout from '@/layouts/ArticleLayout.astro';
+import Icon from '@/components/Icon.astro';
+import { getAllCards, getLab, labToCard, relatedCards } from '@/lib/content';
+import { readingTime } from '@/lib/text';
+
+export const getStaticPaths = (async () => {
+  const items = await getLab();
+  return items.map((entry, i) => ({
+    params: { slug: entry.id },
+    props: { entry, newer: items[i - 1], older: items[i + 1] },
+  }));
+}) satisfies GetStaticPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+const { entry, newer, older } = Astro.props;
+const { Content, headings } = await render(entry);
+const item = labToCard(entry);
+const related = relatedCards(item, await getAllCards(), 3);
+---
+
+<ArticleLayout
+  item={item}
+  headings={headings}
+  breadcrumbs={[{ name: 'Lab', href: '/lab/' }, { name: item.categoryLabel ?? '', href: item.categoryHref }, { name: item.title }]}
+  related={related}
+  prev={older ? labToCard(older) : undefined}
+  next={newer ? labToCard(newer) : undefined}
+  jsonLdKind="TechArticle"
+  status={entry.data.status}
+  words={readingTime(entry.body).words}
+  hue="lab"
+  showCover
+>
+  <Fragment slot="meta">
+    {
+      (entry.data.stack.length > 0 || entry.data.repo) && (
+        <dl class="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-xs">
+          {entry.data.stack.length > 0 && (
+            <div class="flex flex-wrap items-center gap-1.5">
+              <dt class="text-fg-subtle">stack</dt>
+              {entry.data.stack.map((s) => (
+                <dd class="tag">{s}</dd>
+              ))}
+            </div>
+          )}
+          {entry.data.repo && (
+            <div class="flex items-center gap-1.5">
+              <dt class="text-fg-subtle">dépôt</dt>
+              <dd>
+                <a href={entry.data.repo} class="inline-flex items-center gap-1 text-lab hover:underline" rel="noopener">
+                  <Icon name="github" size={13} /> {entry.data.repo.replace('https://github.com/', '')}
+                </a>
+              </dd>
+            </div>
+          )}
+        </dl>
+      )
+    }
+  </Fragment>
+  <Content />
+</ArticleLayout>

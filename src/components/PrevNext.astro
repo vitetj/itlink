@@ -1,0 +1,38 @@
+---
+/** Navigation précédent / suivant entre articles d'une même section. */
+import type { CardItem } from '@/lib/content';
+import Icon from './Icon.astro';
+
+interface Props {
+  prev?: CardItem | undefined;
+  next?: CardItem | undefined;
+  prevLabel?: string;
+  nextLabel?: string;
+}
+const { prev, next, prevLabel = 'Plus ancien', nextLabel = 'Plus récent' } = Astro.props;
+---
+
+{
+  (prev || next) && (
+    <nav aria-label="Articles voisins" class="grid gap-3 sm:grid-cols-2">
+      {prev ? (
+        <a href={prev.href} rel="prev" class="card group">
+          <span class="eyebrow inline-flex items-center gap-1">
+            <Icon name="arrow-left" size={14} /> {prevLabel}
+          </span>
+          <span class="font-display font-semibold group-hover:text-hue">{prev.title}</span>
+        </a>
+      ) : (
+        <span />
+      )}
+      {next && (
+        <a href={next.href} rel="next" class="card group text-right">
+          <span class="eyebrow inline-flex items-center justify-end gap-1">
+            {nextLabel} <Icon name="arrow-right" size={14} />
+          </span>
+          <span class="font-display font-semibold group-hover:text-hue">{next.title}</span>
+        </a>
+      )}
+    </nav>
+  )
+}

@@ -1,0 +1,51 @@
+---
+/**
+ * Bloc de titre des pages /docs : catégorie, titre, description, métadonnées
+ * (dates, niveau, temps de lecture, statut, « testé sur ») et tags.
+ */
+import ArticleMeta from '@/components/ArticleMeta.astro';
+import TagList from '@/components/TagList.astro';
+import { docCategory } from '@/data/site';
+import { docCategorySlug, isDocIndex } from '@/lib/content';
+import { readingTime } from '@/lib/text';
+
+const { entry } = Astro.locals.starlightRoute;
+const data = entry.data;
+const category = docCategorySlug(entry);
+const categoryMeta = category ? docCategory(category) : undefined;
+const isArticle = !isDocIndex(entry) && !!data.published;
+const rt = readingTime(entry.body);
+---
+
+<header class="hue-docs">
+  {
+    categoryMeta && !isDocIndex(entry) && (
+      <p class="eyebrow text-docs">
+        <a href={`/docs/${categoryMeta.slug}/`} class="hover:underline">
+          {categoryMeta.label}
+        </a>
+      </p>
+    )
+  }
+  <h1 id="_top" class="mt-2 font-display text-3xl font-bold leading-tight tracking-tight text-balance md:text-[2.5rem]">
+    {data.title}
+  </h1>
+  {data.description && <p class="mt-4 max-w-(--measure) text-lg text-fg-muted text-pretty">{data.description}</p>}
+  {
+    isArticle && data.published && (
+      <ArticleMeta
+        class="mt-5"
+        published={data.published}
+        updated={data.updated}
+        readingMinutes={rt.minutes}
+        words={rt.words}
+        level={data.level}
+        status={data.status}
+        testedOn={data.tested_on}
+        tested={data.tested}
+        showTested
+      />
+    )
+  }
+  {isArticle && <TagList tags={data.tags} class="mt-4" />}
+</header>

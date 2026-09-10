@@ -1,0 +1,34 @@
+---
+/** Pagination des listes (blog). */
+import type { Page } from 'astro';
+import Icon from './Icon.astro';
+
+interface Props {
+  page: Page<unknown>;
+}
+const { page } = Astro.props;
+---
+
+{
+  page.lastPage > 1 && (
+    <nav aria-label="Pagination" class="mt-10 flex items-center justify-between font-mono text-sm">
+      {page.url.prev ? (
+        <a href={page.url.prev} class="btn" rel="prev">
+          <Icon name="arrow-left" size={16} /> Plus récents
+        </a>
+      ) : (
+        <span />
+      )}
+      <span class="text-fg-subtle">
+        page {page.currentPage} / {page.lastPage}
+      </span>
+      {page.url.next ? (
+        <a href={page.url.next} class="btn" rel="next">
+          Plus anciens <Icon name="arrow-right" size={16} />
+        </a>
+      ) : (
+        <span />
+      )}
+    </nav>
+  )
+}

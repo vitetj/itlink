@@ -1,0 +1,51 @@
+---
+/** Pastille de statut (procédure à jour / à vérifier / obsolète, projet en cours…). */
+interface Props {
+  status: string;
+  class?: string;
+}
+const { status, class: className } = Astro.props;
+const tone: Record<string, string> = {
+  'à jour': 'ok',
+  'en production': 'ok',
+  actif: 'ok',
+  'en cours': 'warn',
+  'à vérifier': 'warn',
+  brouillon: 'muted',
+  idée: 'muted',
+  archivé: 'muted',
+  maintenu: 'muted',
+  obsolète: 'bad',
+};
+---
+
+<span class:list={['status', `status-${tone[status] ?? 'muted'}`, className]}>
+  <span class="dot" aria-hidden="true"></span>{status}
+</span>
+
+<style>
+  .status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    white-space: nowrap;
+    color: var(--c-fg-muted);
+  }
+  .dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: var(--c-fg-subtle);
+  }
+  .status-ok .dot {
+    background: var(--c-lab);
+  }
+  .status-warn .dot {
+    background: var(--c-blog);
+  }
+  .status-bad .dot {
+    background: var(--c-danger);
+  }
+</style>

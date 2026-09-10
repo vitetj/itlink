@@ -1,0 +1,13 @@
+---
+/** En-tête des pages /docs : la navigation du site avec la recherche et le thème de Starlight. */
+import Search from '@astrojs/starlight/components/Search.astro';
+import SiteNav from '@/components/SiteNav.astro';
+import ThemeToggle from '@/components/ThemeToggle.astro';
+---
+
+<div class="h-full">
+  <SiteNav hideMobileMenu>
+    <Search slot="search" />
+    <ThemeToggle slot="theme" />
+  </SiteNav>
+</div>

@@ -1,0 +1,99 @@
+---
+/** Ligne de métadonnées d'un article : dates, temps de lecture, niveau, statut, testé sur. */
+import type { Level } from '@/data/site';
+import { formatDate, isUpdated, isoDate } from '@/lib/dates';
+import Icon from './Icon.astro';
+import LevelBadge from './LevelBadge.astro';
+import StatusBadge from './StatusBadge.astro';
+import TestedBadge from './TestedBadge.astro';
+
+interface Props {
+  published: Date;
+  updated?: Date | undefined;
+  readingMinutes?: number | undefined;
+  words?: number | undefined;
+  level?: Level | undefined;
+  status?: string | undefined;
+  testedOn?: string[] | undefined;
+  tested?: boolean | undefined;
+  showTested?: boolean;
+  class?: string;
+}
+
+const { published, updated, readingMinutes, words, level, status, testedOn, tested, showTested = false, class: className } =
+  Astro.props;
+const wasUpdated = isUpdated(published, updated);
+---
+
+<dl class:list={['meta', className]}>
+  <div>
+    <dt><Icon name="calendar" size={14} /><span class="sr-only">Publié le</span></dt>
+    <dd><time datetime={isoDate(published)}>{formatDate(published)}</time></dd>
+  </div>
+  {
+    wasUpdated && (
+      <div>
+        <dt><Icon name="refresh" size={14} /><span class="sr-only">Mis à jour le</span></dt>
+        <dd>
+          maj <time datetime={isoDate(updated)}>{formatDate(updated)}</time>
+        </dd>
+      </div>
+    )
+  }
+  {
+    readingMinutes !== undefined && (
+      <div>
+        <dt><Icon name="clock" size={14} /><span class="sr-only">Temps de lecture</span></dt>
+        <dd title={words ? `${words} mots` : undefined}>{readingMinutes} min de lecture</dd>
+      </div>
+    )
+  }
+  {
+    level && (
+      <div>
+        <dt class="sr-only">Niveau</dt>
+        <dd><LevelBadge level={level} /></dd>
+      </div>
+    )
+  }
+  {
+    status && (
+      <div>
+        <dt class="sr-only">Statut</dt>
+        <dd><StatusBadge status={status} /></dd>
+      </div>
+    )
+  }
+  {
+    showTested && (
+      <div>
+        <dt class="sr-only">Vérification</dt>
+        <dd><TestedBadge testedOn={testedOn} tested={tested} /></dd>
+      </div>
+    )
+  }
+</dl>
+
+<style>
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--c-fg-muted);
+  }
+  .meta > div {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .meta dt {
+    display: inline-flex;
+    color: var(--c-fg-subtle);
+  }
+  .meta dd {
+    margin: 0;
+  }
+</style>

@@ -1,0 +1,113 @@
+---
+/**
+ * Carte de contenu (docs, blog, lab, voyages). Toute la carte est cliquable.
+ * Variantes : `default` (grille), `row` (liste compacte), `cover` (image en tête).
+ */
+import { Image } from 'astro:assets';
+import type { CardItem } from '@/lib/content';
+import { formatDate, isoDate } from '@/lib/dates';
+import Icon from './Icon.astro';
+import LevelBadge from './LevelBadge.astro';
+
+interface Props {
+  item: CardItem;
+  variant?: 'default' | 'row' | 'cover';
+  showSection?: boolean;
+  headingLevel?: 'h2' | 'h3';
+}
+
+const { item, variant = 'default', showSection = false, headingLevel: Heading = 'h3' } = Astro.props;
+const hue = item.section === 'voyages' ? 'hue-travel' : `hue-${item.section}`;
+const eyebrow = showSection
+  ? [item.sectionLabel, item.categoryLabel].filter(Boolean).join(' · ')
+  : (item.categoryLabel ?? item.sectionLabel);
+---
+
+{
+  variant === 'row' ? (
+    <article class:list={['card-row', hue]}>
+      <div class="min-w-0 flex-1">
+        <p class="eyebrow text-hue">{eyebrow}</p>
+        <Heading class="mt-0.5 font-display text-[1.0625rem] font-semibold leading-snug">
+          <a href={item.href} class="stretched">
+            {item.title}
+          </a>
+        </Heading>
+        <p class="mt-1 line-clamp-2 text-[0.9375rem] text-fg-muted">{item.description}</p>
+      </div>
+      <div class="flex shrink-0 flex-col items-end gap-1 font-mono text-xs text-fg-subtle">
+        <time datetime={isoDate(item.published)}>{formatDate(item.published, 'short')}</time>
+        <span>{item.readingMinutes} min</span>
+        {item.level && <LevelBadge level={item.level} />}
+      </div>
+    </article>
+  ) : (
+    <article class:list={['card relative', hue, variant === 'cover' && 'p-0 overflow-hidden']}>
+      {variant === 'cover' && (
+        <div class="aspect-[16/9] bg-bg-muted">
+          {item.cover ? (
+            <Image
+              src={item.cover}
+              alt={item.coverAlt ?? ''}
+              width={720}
+              height={405}
+              loading="lazy"
+              class="h-full w-full object-cover"
+            />
+          ) : (
+            <div class="grid h-full w-full place-items-center text-hue/60">
+              <Icon name="camera" size={36} />
+            </div>
+          )}
+        </div>
+      )}
+      <div class:list={['flex flex-1 flex-col gap-2', variant === 'cover' && 'p-5']}>
+        <p class="eyebrow text-hue">{eyebrow}</p>
+        <Heading class="font-display text-[1.125rem] font-semibold leading-snug">
+          <a href={item.href} class="stretched">
+            {item.title}
+          </a>
+        </Heading>
+        <p class="line-clamp-3 text-[0.9375rem] text-fg-muted">{item.description}</p>
+        <footer class="mt-auto flex flex-wrap items-center gap-x-3 gap-y-1 pt-2 font-mono text-xs text-fg-subtle">
+          <time datetime={isoDate(item.published)}>{formatDate(item.published)}</time>
+          <span aria-label={`${item.readingMinutes} minutes de lecture`}>{item.readingMinutes} min</span>
+          {item.level && <LevelBadge level={item.level} />}
+          {item.tested && (
+            <span class="inline-flex items-center gap-1 text-lab">
+              <Icon name="check-circle" size={13} /> testé
+            </span>
+          )}
+        </footer>
+      </div>
+    </article>
+  )
+}
+
+<style>
+  .stretched {
+    color: inherit;
+    text-decoration: none;
+  }
+  .stretched::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+  .stretched:hover {
+    color: var(--hue, var(--c-accent));
+  }
+  .card-row {
+    position: relative;
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--c-line);
+  }
+  .card-row:first-child {
+    padding-top: 0;
+  }
+  .card-row:last-child {
+    border-bottom: 0;
+  }
+</style>

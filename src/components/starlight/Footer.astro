@@ -1,0 +1,18 @@
+---
+/** Pied de page des pages /docs : articles liés + précédent / suivant. */
+import Pagination from '@astrojs/starlight/components/Pagination.astro';
+import Related from '@/components/Related.astro';
+import { docToCard, getDocs, isDocIndex, relatedCards } from '@/lib/content';
+
+const { entry } = Astro.locals.starlightRoute;
+let related: ReturnType<typeof docToCard>[] = [];
+if (!isDocIndex(entry) && entry.data.published) {
+  const pool = (await getDocs()).map(docToCard);
+  related = relatedCards(docToCard(entry), pool, 3, entry.data.related);
+}
+---
+
+<footer class="mt-12 flex flex-col gap-8 hue-docs">
+  <Pagination />
+  <Related items={related} />
+</footer>

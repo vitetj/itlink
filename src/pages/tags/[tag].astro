@@ -1,0 +1,24 @@
+---
+import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import CardGrid from '@/components/CardGrid.astro';
+import SectionHeading from '@/components/SectionHeading.astro';
+import { getTagIndex } from '@/lib/content';
+
+export const getStaticPaths = (async () => {
+  const tags = await getTagIndex();
+  return tags.map((entry) => ({ params: { tag: entry.slug }, props: { entry } }));
+}) satisfies GetStaticPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+const { entry } = Astro.props;
+---
+
+<BaseLayout
+  seo={{ title: `#${entry.tag}`, description: `${entry.count} contenu${entry.count > 1 ? 's' : ''} tagué${entry.count > 1 ? 's' : ''} « ${entry.tag} » : docs, billets, projets et voyages.`, image: '/og/tags.png' }}
+>
+  <div class="container-x py-10 md:py-14">
+    <SectionHeading level="h1" eyebrow="// tag" title={`#${entry.tag}`} href="/tags/" linkLabel="Tous les tags" />
+    <CardGrid items={entry.items} showSection headingLevel="h2" />
+  </div>
+</BaseLayout>

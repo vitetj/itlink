@@ -1,0 +1,65 @@
+---
+/**
+ * `<head>` des pages /docs : balises Starlight par défaut + polices, image OpenGraph,
+ * flux RSS et JSON-LD TechArticle pour les tutoriels.
+ */
+import Default from '@astrojs/starlight/components/Head.astro';
+import { Font } from 'astro:assets';
+import { SITE } from '@/data/site';
+import { docCategorySlug, docHref, isDocIndex } from '@/lib/content';
+import { readingTime } from '@/lib/text';
+import { absoluteUrl, articleJsonLd, breadcrumbJsonLd, ogImagePath } from '@/lib/seo';
+import { docCategory } from '@/data/site';
+
+const { entry } = Astro.locals.starlightRoute;
+const data = entry.data;
+const ogImage = absoluteUrl(ogImagePath(Astro.url.pathname));
+const isArticle = !isDocIndex(entry) && !!data.published;
+const category = docCategorySlug(entry);
+const categoryMeta = category ? docCategory(category) : undefined;
+
+const jsonLd: Record<string, unknown>[] = [];
+if (isArticle && data.published) {
+  jsonLd.push(
+    articleJsonLd({
+      kind: 'TechArticle',
+      url: absoluteUrl(docHref(entry)),
+      title: data.title,
+      description: data.description ?? '',
+      published: data.published,
+      updated: data.updated,
+      tags: data.tags,
+      section: categoryMeta?.label,
+      wordCount: readingTime(entry.body).words,
+      proficiencyLevel: data.level,
+    }),
+  );
+  jsonLd.push(
+    breadcrumbJsonLd([
+      { name: 'Docs', href: '/docs/' },
+      ...(categoryMeta ? [{ name: categoryMeta.label, href: `/docs/${categoryMeta.slug}/` }] : []),
+      { name: data.title, href: docHref(entry) },
+    ]),
+  );
+}
+---
+
+<Default><slot /></Default>
+{/* Applique le thème mémorisé avant le premier rendu (Starlight fait de même, on reste compatibles). */}
+<Font cssVariable="--font-plex" preload />
+<Font cssVariable="--font-brico" preload />
+<Font cssVariable="--font-plex-mono" />
+<meta property="og:image" content={ogImage} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content={data.title} />
+<meta name="twitter:image" content={ogImage} />
+<meta name="author" content={SITE.author.name} />
+{isArticle && data.published && <meta property="article:published_time" content={data.published.toISOString()} />}
+{isArticle && data.updated && <meta property="article:modified_time" content={data.updated.toISOString()} />}
+{isArticle && categoryMeta && <meta property="article:section" content={categoryMeta.label} />}
+{isArticle && data.tags.map((tag) => <meta property="article:tag" content={tag} />)}
+<link rel="alternate" type="application/rss+xml" title={`${SITE.name} — docs`} href="/docs/rss.xml" />
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f6f4ee" />
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0e1116" />
+{jsonLd.map((schema) => <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />)}
