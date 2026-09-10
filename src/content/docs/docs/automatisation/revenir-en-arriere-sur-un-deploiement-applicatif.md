@@ -10,7 +10,7 @@ status: à jour
 featured: false
 tested_on: [Windows 10, Windows 11, Active Directory, WAPT]
 sidebar:
-  label: "Revenir en arrière sur un déploiement applicatif"
+  label: "Revenir en arrière sur un déploiement…"
 ---
 
 Juin 2026. La version 2 d'un outil métier développé en interne part sur le parc. Deux jours plus tard, la réalité : elle est buguée sur un cas d'usage que personne n'avait vu en recette. Plusieurs dizaines d'utilisateurs, sur plusieurs sites, doivent repasser en version 1. Vite, et sans que je passe sur chaque poste.

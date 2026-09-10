@@ -9,7 +9,7 @@ status: à jour
 featured: false
 tested_on: [WAPT, Windows 10, Windows 11, Microsoft 365 Business]
 sidebar:
-  label: "Déployer Microsoft 365 Apps sur un parc avec…"
+  label: "Déployer Microsoft 365 Apps sur un…"
 ---
 
 Janvier 2025. La « bidouille » qui maintenait Office en vie sur le parc s'est arrêtée de fonctionner : les

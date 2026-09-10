@@ -9,7 +9,7 @@ status: à jour
 featured: false
 tested_on: [Distribution RHEL-like (dnf), Samba winbind, authselect]
 sidebar:
-  label: "Joindre une machine Linux à Active Directory…"
+  label: "Joindre une machine Linux à Active…"
 ---
 
 Fin mai 2026, j'ai joint une machine Linux de la famille Red Hat (gestion des paquets avec dnf) à mon Active Directory, sans sssd. Sur ces distributions, sssd est le choix par défaut, celui que `realm join` installe sans vous demander votre avis, et il fonctionne bien. Mais Samba dispose de son propre composant d'intégration, winbind, et il y a des cas où c'est lui le bon outil : quand la machine sert aussi des partages SMB (winbind est alors nécessaire pour la correspondance des identifiants), ou quand on préfère un seul empilement Samba plutôt que sssd et Samba côte à côte, chacun avec sa vision des utilisateurs.

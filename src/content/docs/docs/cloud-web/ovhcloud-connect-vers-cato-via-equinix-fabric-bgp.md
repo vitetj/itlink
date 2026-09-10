@@ -9,7 +9,7 @@ status: à jour
 featured: false
 tested_on: ["Cato Cloud Interconnect (PoP Paris)", "Equinix Fabric Paris", "OVHcloud Connect avec vRack", "Stormshield EVA"]
 sidebar:
-  label: "Interconnecter OVHcloud Connect et Cato…"
+  label: "Interconnecter OVHcloud Connect et…"
 ---
 
 Ma boîte héberge une partie de ses machines virtuelles chez OVHcloud, dans un vRack. Jusqu'ici, on y accédait par un

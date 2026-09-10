@@ -9,7 +9,7 @@ status: à jour
 featured: true
 tested_on: [Windows Server, Veeam, Fastems MMS5]
 sidebar:
-  label: "Le coffre à programmes de commande numérique"
+  label: "Le coffre à programmes de commande…"
 ---
 
 Un atelier d'usinage, c'est plusieurs machines achetées à plusieurs époques, chez plusieurs constructeurs, avec chacune sa façon d'aller chercher un programme. Chez moi : un centre d'usinage alimenté par clé USB, deux tours qui ne sont même pas raccordés au réseau, une cellule FMS dont le PC de contrôle stocke les programmes en local — sur un disque régulièrement plein — et des programmeurs qui gardent leurs versions de travail dans leurs dossiers personnels.

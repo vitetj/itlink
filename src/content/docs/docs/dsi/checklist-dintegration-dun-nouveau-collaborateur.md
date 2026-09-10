@@ -8,7 +8,7 @@ level: débutant
 status: à jour
 featured: false
 sidebar:
-  label: "La check-list IT d'arrivée d'un nouveau…"
+  label: "La check-list IT d'arrivée d'un…"
 ---
 
 Un nouveau commercial arrive lundi. L'information me parvient le jeudi, dans un mail qui dit à peu près : « Bonjour,

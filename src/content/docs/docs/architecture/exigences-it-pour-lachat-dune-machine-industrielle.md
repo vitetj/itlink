@@ -8,7 +8,7 @@ level: avancé
 status: à jour
 featured: false
 sidebar:
-  label: "Les exigences informatiques à imposer avant…"
+  label: "Les exigences informatiques à imposer…"
 ---
 
 Printemps 2026, une offre arrive sur mon bureau : un système de stockage et de manutention automatisé, un investissement lourd, prévu pour durer bien plus longtemps qu'un poste de travail. Le bureau d'études me demande un avis sur « la partie informatique ». Je lis les vingt pages, et je retrouve les cinq mêmes problèmes que sur toutes les offres de machines depuis dix ans.

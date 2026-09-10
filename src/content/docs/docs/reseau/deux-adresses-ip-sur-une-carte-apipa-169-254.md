@@ -9,7 +9,7 @@ status: à jour
 featured: false
 tested_on: [Windows 10, Windows 11]
 sidebar:
-  label: "Deux adresses IP sur une même carte réseau"
+  label: "Deux adresses IP sur une même carte…"
 ---
 
 Un automaticien m'a envoyé un jour une capture d'écran inquiète : `ipconfig` affichait deux adresses sur sa carte

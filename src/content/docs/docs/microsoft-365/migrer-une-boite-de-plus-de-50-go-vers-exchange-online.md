@@ -9,7 +9,7 @@ status: à jour
 featured: false
 tested_on: ["Exchange Server 2019", "Exchange Online", "Microsoft 365 Business Standard"]
 sidebar:
-  label: "Migrer une boîte aux lettres de plus de 50 Go…"
+  label: "Migrer une boîte aux lettres de plus…"
 ---
 
 Le lot de migration tourne depuis la veille, les collègues ont reçu leur mail « redémarrez Outlook quand la fenêtre

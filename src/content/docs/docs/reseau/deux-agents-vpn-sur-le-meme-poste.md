@@ -9,7 +9,7 @@ status: à jour
 featured: false
 tested_on: [Cato Client Windows, Windows 11]
 sidebar:
-  label: "Deux agents VPN ou SASE sur le même poste"
+  label: "Deux agents VPN ou SASE sur le même…"
 ---
 
 Il y a un cas qu'aucun commercial ne mentionne quand il vous vend une plateforme SASE, et qui vous tombe dessus

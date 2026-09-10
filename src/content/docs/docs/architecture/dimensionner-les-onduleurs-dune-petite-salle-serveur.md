@@ -9,7 +9,7 @@ status: à jour
 featured: false
 tested_on: [Eaton 9PX 6000i RT3U, Eaton 93PX 15 kW RT9U, Dell VxRail E560F, iDRAC 9]
 sidebar:
-  label: "Dimensionner les onduleurs d'une petite salle serveur"
+  label: "Dimensionner les onduleurs d'une…"
 ---
 
 Le 3 septembre 2025, le courant est tombé quatre fois dans la journée. La première coupure, l'onduleur l'a

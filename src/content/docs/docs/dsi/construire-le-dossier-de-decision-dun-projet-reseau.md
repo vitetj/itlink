@@ -9,7 +9,7 @@ level: intermédiaire
 status: à jour
 featured: false
 sidebar:
-  label: "Construire le dossier de décision d'un projet…"
+  label: "Construire le dossier de décision…"
 ---
 
 Un projet réseau et sécurité ne se vend pas à une direction de PME avec un schéma d'architecture. Il se vend avec un dossier qui répond, dans l'ordre, aux questions qu'elle se pose vraiment : où en est-on, combien ça coûte aujourd'hui, qu'est-ce qui nous menace, qu'est-ce que vous proposez, combien ça coûte demain, et qu'est-ce que je dois décider. Entre fin février et début avril 2026, j'ai porté un dossier de ce type pour faire passer une refonte complète de l'accès Internet, de la sécurité périmétrique et des accès distants vers un SASE opéré. La réflexion durait depuis 2022. Le dossier, lui, a tenu en quelques pages, et c'est cette structure que je vous propose.

@@ -8,7 +8,7 @@ level: intermédiaire
 status: à jour
 featured: false
 sidebar:
-  label: "Auditer un fournisseur SaaS et obtenir un plan…"
+  label: "Auditer un fournisseur SaaS et…"
 ---
 
 En janvier 2026, un client industriel m'a envoyé son questionnaire de sécurité fournisseur, estampillé

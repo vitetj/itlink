@@ -9,7 +9,7 @@ status: à jour
 featured: false
 tested_on: ["Stormshield SN720 en haute disponibilité", "Orange Business VPN CORPORATE 200M avec secours 4G", "Cato Networks (PoP Paris)"]
 sidebar:
-  label: "Basculer la passerelle par défaut d'un…"
+  label: "Basculer la passerelle par défaut…"
 ---
 
 Pendant un an, ma boîte a eu deux portes vers le monde. L'historique : un accès Business Internet direct, avec le

@@ -8,7 +8,7 @@ level: débutant
 status: à jour
 featured: false
 sidebar:
-  label: "Copieur : location ou achat ? Faire le calcul…"
+  label: "Copieur : location ou achat ? Faire…"
 ---
 
 Novembre 2024. Le contrat du copieur de ma boîte arrive à échéance et le prestataire propose un renouvellement en location. La direction pose la question qui revient à chaque fois : « et si on l'achetait ? ». Deux devis arrivent, et ils ne se ressemblent pas. D'un côté un loyer trimestriel et un coût à la page. De l'autre un prix d'achat, un contrat de maintenance et un autre coût à la page. Comparer les deux en regardant le loyer, c'est comparer une voiture en location longue durée et une voiture achetée en ne regardant que la mensualité : ce qui compte, c'est le carburant sur six ans.

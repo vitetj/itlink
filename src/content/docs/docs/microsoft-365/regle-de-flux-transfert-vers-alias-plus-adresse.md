@@ -10,7 +10,7 @@ status: à jour
 featured: false
 tested_on: ["Exchange Online"]
 sidebar:
-  label: "Transférer une boîte partagée vers un alias…"
+  label: "Transférer une boîte partagée vers un…"
 ---
 
 Le service comptable passe à la dématérialisation des factures fournisseurs. L'éditeur retenu explique le principe :

@@ -9,7 +9,7 @@ status: à jour
 featured: false
 tested_on: [VxRail E560F, PowerEdge R640, iDRAC 9]
 sidebar:
-  label: "Reset « flea power » d’un nœud VxRail /…"
+  label: "Reset « flea power » d’un nœud VxRail…"
 ---
 
 Août 2025, un mardi ordinaire. L'iDRAC d'un des six nœuds de mon cluster VxRail se met à remonter une

@@ -10,7 +10,7 @@ status: à jour
 featured: true
 tested_on: [Cloudron, Apache 2.4, Ubuntu Server]
 sidebar:
-  label: "Brancher une application maison sur le SSO"
+  label: "Brancher une application maison sur…"
 ---
 
 Dans une PME, les applications maison arrivent toujours par le même chemin : quelqu'un a besoin d'un écran que

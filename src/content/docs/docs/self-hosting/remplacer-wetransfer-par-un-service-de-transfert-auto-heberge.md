@@ -9,7 +9,7 @@ status: à jour
 featured: false
 tested_on: [Cloudron, OVH Object Storage]
 sidebar:
-  label: "Remplacer WeTransfer par un service de…"
+  label: "Remplacer WeTransfer par un service…"
 ---
 
 Interdire WeTransfer est facile : une règle sur la passerelle, une ligne dans la charte, et le tour est

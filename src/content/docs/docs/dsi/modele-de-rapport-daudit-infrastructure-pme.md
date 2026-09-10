@@ -8,7 +8,7 @@ level: intermédiaire
 status: à jour
 featured: false
 sidebar:
-  label: "Modèle de rapport d'audit d'infrastructure pour…"
+  label: "Modèle de rapport d'audit…"
 ---
 
 Fin février 2026, j'ai rédigé une trame de rapport d'audit d'infrastructure. Pas pour ma boîte : pour

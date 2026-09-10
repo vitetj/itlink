@@ -9,7 +9,7 @@ status: à jour
 featured: true
 tested_on: [Linux serveur applicatif d'un éditeur tiers, systemd]
 sidebar:
-  label: "systemd : forcer un service à démarrer après sa…"
+  label: "systemd : forcer un service à…"
 ---
 
 Le serveur de gestion d'un éditeur métier tourne sous Linux. Il embarque une base de données propriétaire et un

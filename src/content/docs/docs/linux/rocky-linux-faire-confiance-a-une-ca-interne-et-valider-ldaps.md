@@ -9,7 +9,7 @@ status: à jour
 featured: false
 tested_on: [Rocky Linux 8, Rocky Linux 9, Windows Server 2022]
 sidebar:
-  label: "Rocky Linux : faire confiance à une CA interne…"
+  label: "Rocky Linux"
 ---
 
 Le contexte : un IPBX Mitel MiCollab tourne sur Rocky Linux et lit ses utilisateurs dans l'Active Directory en

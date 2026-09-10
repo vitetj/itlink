@@ -8,7 +8,7 @@ level: intermédiaire
 status: à jour
 featured: false
 sidebar:
-  label: "Lire un devis de téléphonie d'entreprise"
+  label: "Lire un devis de téléphonie…"
 ---
 
 Vingt personnes de plus dans l'entreprise, donc vingt licences de téléphonie à ajouter à celles déjà en service. La

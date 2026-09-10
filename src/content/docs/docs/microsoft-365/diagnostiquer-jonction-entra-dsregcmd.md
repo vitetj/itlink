@@ -10,7 +10,7 @@ status: à jour
 featured: true
 tested_on: [Windows 11 Business 24H2, Microsoft 365 Business Premium, Entra Connect, ADFS + Web Application Proxy]
 sidebar:
-  label: "Diagnostiquer l'état de jonction Entra d'un poste Windows"
+  label: "Diagnostiquer l'état de jonction…"
 ---
 
 Janvier 2025. Je viens de basculer une partie des licences vers Microsoft 365 Business Premium pour enfin

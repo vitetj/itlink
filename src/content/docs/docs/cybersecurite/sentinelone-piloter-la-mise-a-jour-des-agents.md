@@ -9,7 +9,7 @@ status: à jour
 featured: false
 tested_on: [SentinelOne agent Windows 25.2 SP2, SentinelOne agent Windows 24.3.6 SP3, SentinelOne agent Linux 25.4 GA]
 sidebar:
-  label: "SentinelOne : installer, mettre à jour et…"
+  label: "SentinelOne"
 ---
 
 Un agent EDR n'est pas un logiciel comme les autres. Il tourne au plus près du noyau, il voit tout, il peut

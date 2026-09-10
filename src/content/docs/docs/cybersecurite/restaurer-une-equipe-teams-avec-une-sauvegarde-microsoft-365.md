@@ -9,7 +9,7 @@ status: à jour
 featured: false
 tested_on: [Hornetsecurity 365 Total Backup, Microsoft Teams]
 sidebar:
-  label: "Restaurer une équipe Teams supprimée avec une…"
+  label: "Restaurer une équipe Teams supprimée…"
 ---
 
 Mi-janvier 2026, un utilisateur du site américain m'écrit : son équipe Teams a disparu. Pas un canal, pas un fichier : l'équipe entière, avec ses conversations et sa bibliothèque de documents. Ce n'est pas la panne la plus technique de l'année, mais c'est le genre de demande qui dit tout de ce que vaut votre sauvegarde Microsoft 365. Depuis novembre 2025, la mienne est une sauvegarde tierce (Hornetsecurity 365 Total Backup), avec un portail de restauration granulaire. Voici comment la restauration s'est passée, et surtout les deux choix qui font la différence entre une restauration propre et un joyeux bazar.

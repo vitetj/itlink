@@ -8,7 +8,7 @@ level: intermédiaire
 status: à jour
 featured: false
 sidebar:
-  label: "Sécuriser un déplacement professionnel en zone à risque"
+  label: "Sécuriser un déplacement…"
 ---
 
 La demande arrive toujours de la même façon, et rarement à l'avance : un collaborateur part en mission dans un

@@ -8,7 +8,7 @@ level: débutant
 status: à jour
 featured: false
 sidebar:
-  label: "Des fiches d'hygiène numérique que les…"
+  label: "Des fiches d'hygiène numérique que…"
 ---
 
 En deux mois, j'ai écrit à peu près quinze fois les mêmes réponses. Pourquoi il ne faut plus enregistrer en

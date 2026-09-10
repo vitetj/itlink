@@ -10,7 +10,7 @@ status: à jour
 featured: true
 tested_on: [Windows Server 2019, Windows Server 2022, PowerShell 5.1]
 sidebar:
-  label: "Auditer et verrouiller les imprimantes…"
+  label: "Auditer et verrouiller les…"
 ---
 
 Un serveur d'impression, c'est le service que tout le monde oublie jusqu'au lundi matin où « rien ne sort ».

@@ -9,7 +9,7 @@ status: à jour
 featured: false
 tested_on: [Windows 10, Windows 11]
 sidebar:
-  label: "Sauvegarder et réinjecter tous les pilotes…"
+  label: "Sauvegarder et réinjecter tous les…"
 ---
 
 Un portable Dell qui revient d'un remplacement de carte mère, ou qu'on décide de réinstaller à neuf parce qu'il traîne

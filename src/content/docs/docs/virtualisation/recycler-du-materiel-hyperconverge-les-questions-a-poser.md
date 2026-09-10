@@ -9,7 +9,7 @@ status: à jour
 featured: true
 tested_on: [Cluster hyperconvergé 3 nœuds, hyperviseur 8.0.3, Azure Stack HCI 24H2]
 sidebar:
-  label: "Recycler du matériel hyperconvergé vers une…"
+  label: "Recycler du matériel hyperconvergé…"
 ---
 
 Juin 2026. Trois nœuds hyperconvergés de ma boîte arrivent en fin de vie support. Le matériel, lui, va très bien : sous la couche logicielle du constructeur, c'est un serveur rack 2U tout ce qu'il y a de standard, de la même génération que ceux que le même constructeur vend pour d'autres usages. Processeurs corrects, mémoire suffisante, contrôleur de stockage, carte de démarrage système, disques compatibles avec le catalogue de la plateforme visée.

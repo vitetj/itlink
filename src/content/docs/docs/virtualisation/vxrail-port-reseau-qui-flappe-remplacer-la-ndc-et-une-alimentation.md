@@ -9,7 +9,7 @@ status: à jour
 featured: false
 tested_on: [VxRail E560F, PowerEdge R640, iDRAC 9]
 sidebar:
-  label: "VxRail : diagnostiquer un port réseau qui «…"
+  label: "VxRail : diagnostiquer un port réseau…"
 ---
 
 Un port réseau qui « flappe », c'est un port qui tombe et remonte tout seul, à intervalles irréguliers.

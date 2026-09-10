@@ -9,7 +9,7 @@ status: à jour
 featured: false
 tested_on: [RHEL, Samba winbind, Windows Server 2022]
 sidebar:
-  label: "Réinitialiser winbind sur un serveur Linux…"
+  label: "Réinitialiser winbind sur un serveur…"
 ---
 
 Le serveur de comptabilité de ma boîte tourne sous RHEL. Il est joint à l'Active Directory par winbind, le

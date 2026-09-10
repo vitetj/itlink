@@ -9,7 +9,7 @@ status: à jour
 featured: false
 tested_on: [Bugsink, Cloudron, Java 8, Maven]
 sidebar:
-  label: "Bugsink : suivre les erreurs d'une application…"
+  label: "Bugsink : suivre les erreurs d'une…"
 ---
 
 Le logiciel métier maison de ma boîte est écrit en Java 8. Il tourne sur des centaines de postes, il pilote une

@@ -9,7 +9,7 @@ status: à jour
 featured: true
 tested_on: [Zammad]
 sidebar:
-  label: "Fiabiliser les indicateurs d'un helpdesk"
+  label: "Fiabiliser les indicateurs d'un…"
 ---
 
 En mars 2026, j'ai repris l'analyse des tickets de mon helpdesk pour la présenter à la direction. Le rapport

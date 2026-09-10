@@ -8,7 +8,7 @@ level: intermédiaire
 status: à jour
 featured: true
 sidebar:
-  label: "Mettre à jour sa charte informatique pour NIS2"
+  label: "Mettre à jour sa charte informatique…"
 ---
 
 Octobre 2024, deux mails à une journée d'écart. Le premier vient d'un grand client : une charte de sécurité « NIS2 » à signer, que je ne peux pas signer (j'explique pourquoi dans [ce billet](/blog/nis2-quand-le-service-informatique-cest-vous/)). Le second est le rapport de l'assureur cyber : sauvegardes et sécurité, bien ; RGPD et NIS2, « pas dans les clous ». Entre les deux, la charte informatique de ma boîte ne parlait ni de NIS2, ni de plan de reprise, ni de smartphone personnel.

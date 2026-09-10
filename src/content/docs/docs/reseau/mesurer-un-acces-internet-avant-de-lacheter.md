@@ -8,7 +8,7 @@ level: débutant
 status: à jour
 featured: false
 sidebar:
-  label: "Mesurer un accès Internet avant de l'acheter"
+  label: "Mesurer un accès Internet avant de…"
 ---
 
 Un site de ma boîte devait déménager, et l'opérateur en a profité pour proposer une montée en gamme

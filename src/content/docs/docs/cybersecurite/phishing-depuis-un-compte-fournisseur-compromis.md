@@ -9,7 +9,7 @@ status: à jour
 featured: false
 tested_on: [Microsoft 365, Exchange Online, Entra ID, Hornetsecurity Email Protection]
 sidebar:
-  label: "Phishing venant d’un compte fournisseur compromis"
+  label: "Phishing venant d’un compte…"
 ---
 
 Fin juillet 2026, un mail arrive d'un fournisseur habituel. L'adresse est la bonne, la signature est cohérente

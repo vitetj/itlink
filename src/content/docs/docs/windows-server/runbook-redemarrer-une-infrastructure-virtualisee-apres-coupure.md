@@ -9,7 +9,7 @@ status: à jour
 featured: false
 tested_on: [VMware vCenter, VxRail, Windows Server]
 sidebar:
-  label: "Runbook : redémarrer une infrastructure…"
+  label: "Runbook : redémarrer une…"
 ---
 
 Cette fiche est née d'une procédure d'absence. Quand le seul informaticien de la boîte part en congés, il reste

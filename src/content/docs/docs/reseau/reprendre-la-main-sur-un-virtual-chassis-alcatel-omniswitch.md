@@ -9,7 +9,7 @@ status: à jour
 featured: false
 tested_on: [Alcatel-Lucent OmniSwitch 6560]
 sidebar:
-  label: "Reprendre la main sur un châssis virtuel…"
+  label: "Reprendre la main sur un châssis…"
 ---
 
 Fin février 2026, deux OmniSwitch 6560 empilés en châssis virtuel se sont retrouvés avec la même configuration.

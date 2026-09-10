@@ -9,7 +9,7 @@ status: à jour
 featured: false
 tested_on: [MySQL 5.5, MySQL 8.0, Windows Server 2008, Windows Server 2025]
 sidebar:
-  label: "Cadrer une migration MySQL 5.5 sur Windows…"
+  label: "Cadrer une migration MySQL 5.5 sur…"
 ---
 
 L'entrepôt de données de la GPAO, celui que la BI interroge pour ses tableaux de bord, vivait sur le dernier

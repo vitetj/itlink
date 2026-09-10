@@ -9,7 +9,7 @@ status: à jour
 featured: false
 tested_on: [Samba winbind, systemd]
 sidebar:
-  label: "Rafraîchir le cache winbind automatiquement…"
+  label: "Rafraîchir le cache winbind…"
 ---
 
 Sur un serveur Linux joint au domaine par winbind, vous créez un compte dans Active Directory, vous l'ajoutez à un

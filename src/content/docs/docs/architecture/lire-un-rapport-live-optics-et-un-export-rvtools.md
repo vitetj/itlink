@@ -9,7 +9,7 @@ status: à jour
 featured: false
 tested_on: [VMware vCenter 8.0.3, Dell VxRail E560F, vSAN 8]
 sidebar:
-  label: "Lire un rapport Live Optics et un export…"
+  label: "Lire un rapport Live Optics et un…"
 ---
 
 Quand un constructeur vous propose de renouveler votre infrastructure, la discussion commence toujours par

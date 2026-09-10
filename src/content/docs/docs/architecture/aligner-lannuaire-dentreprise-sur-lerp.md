@@ -10,7 +10,7 @@ status: à jour
 featured: false
 tested_on: [Active Directory, Microsoft Entra ID]
 sidebar:
-  label: "Aligner l'annuaire d'entreprise sur l'ERP"
+  label: "Aligner l'annuaire d'entreprise sur…"
 ---
 
 Un jour, on compare la liste des salariés sortie de l'ERP avec la liste des comptes de l'annuaire, et on découvre

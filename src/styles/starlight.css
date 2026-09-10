@@ -9,7 +9,7 @@
 
   --sl-nav-height: var(--header-h);
   --sl-content-width: 58rem;
-  --sl-sidebar-width: 17rem;
+  --sl-sidebar-width: 14rem;
   --sl-line-height: 1.72;
   --sl-text-body: 1.0625rem;
   --sl-text-code: 0.875rem;
@@ -135,20 +135,46 @@
   border-collapse: collapse;
 }
 
-/* Barre latérale et sommaire en monospace discret. */
+/* ------------------------------------------------------------------------ */
+/* Barre latérale : étroite et légère                                        */
+/* ------------------------------------------------------------------------ */
+
 .sidebar-content {
-  font-size: 0.9375rem;
+  font-size: 0.8125rem;
+  gap: 0.5rem;
 }
+.sidebar-pane {
+  --sl-sidebar-pad-x: 0.75rem;
+}
+/* Titres de domaine : lisibles sans peser. */
 .sidebar-content summary,
 .sidebar-content .large {
-  font-family: var(--font-display);
+  font-size: 0.8125rem;
   font-weight: 600;
   letter-spacing: 0;
+  color: var(--c-fg);
+}
+.sidebar-content summary {
+  padding-block: 0.3rem;
+}
+/* Liens de fiches : compacts, deux lignes maximum. */
+.sidebar-content ul li a {
+  padding-block: 0.25rem;
+  line-height: 1.35;
+  color: var(--c-fg-muted);
+}
+.sidebar-content ul li a:hover {
+  color: var(--c-fg);
 }
 .sidebar-content a[aria-current='page'] {
   background-color: var(--c-docs-soft);
   color: var(--c-docs);
-  font-weight: 600;
+  font-weight: 500;
+  border-radius: var(--r-sm);
+}
+/* Les traits verticaux des sous-listes deviennent discrets. */
+.sidebar-content ul ul {
+  border-inline-start-color: var(--c-line);
 }
 .right-sidebar h2 {
   font-family: var(--font-mono);
