@@ -61,7 +61,7 @@ chronyc tracking
 dig +short -t SRV _ldap._tcp.ad.example.com
 ```
 
-:::caution
+:::caution[Kerberos et l’horloge]
 Cinq minutes d'écart suffisent à faire échouer Kerberos, avec un message qui ne parle jamais d'horloge. Si le serveur se synchronise sur une source publique et les contrôleurs entre eux, alignez-les d'abord.
 :::
 
@@ -167,7 +167,7 @@ wbinfo -a utilisateur.test
 kinit utilisateur.test
 ```
 
-:::caution
+:::caution[Ne touchez pas à nsswitch.conf]
 N'éditez jamais `/etc/nsswitch.conf` à la main sur ces distributions : `authselect` le régénère. Corrigez le profil, pas le fichier, sinon votre correction disparaît au prochain `apply-changes` — et vous croirez à une panne aléatoire.
 :::
 

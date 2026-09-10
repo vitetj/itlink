@@ -86,7 +86,7 @@ Ce qui a été mis en place à la place :
   au help desk avant l'intervention.
 ```
 
-:::caution
+:::caution[Le contournement que vous ne gagnerez pas]
 Les techniciens ont vite compris qu'un partage de connexion 4G permettait de déclencher la déconnexion temporaire puis de rebrancher le câble. C'est un contournement, mais un contournement tracé et limité dans le temps, ce qui vaut mieux qu'un agent désinstallé. Ne le combattez pas, comptez-le.
 :::
 
@@ -112,7 +112,7 @@ Ce que j'ai proposé, et qui vaut pour vos propres prestataires :
 3. Les règles vivent dans Cato, l'accès est tracé, et le compte est désactivé dès la fin de l'intervention.
 4. Le prestataire ouvre le portail du client dans un navigateur et n'installe rien.
 
-:::caution
+:::caution[Piège du portail : le mauvais tenant]
 Piège vécu : si le prestataire a déjà un agent Cato Always-On rattaché à son propre tenant, le SSO du portail le renvoie chez lui. Il faut cibler explicitement le sous-domaine du client, du type `nom-du-client.via.catonetworks.com`, et pas l'URL générique. Demandez-le dès le premier échange, cela évite une journée d'allers-retours.
 :::
 

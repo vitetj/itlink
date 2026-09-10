@@ -46,7 +46,7 @@ Trois sujets dans un même article, parce qu'ils ont la même logique : dire ce 
 - **Vie privée** : un usage personnel raisonnable est toléré ; il n'y a pas de surveillance individuelle sans motif.
 - **Périphériques externes** : clés USB et disques externes sont contrôlés, et pour l'essentiel interdits. L'alternative existe : un outil interne de transfert de fichiers, et c'est ce qu'a reçu le stagiaire arrivé avec sa clé.
 
-:::caution
+:::caution[Ne promettez que ce que vous tenez]
 N'écrivez pas « les journaux sont conservés un an » sans avoir vérifié sur chaque système combien de temps il les garde. Une charte qui promet plus que l'infrastructure se retourne contre vous.
 :::
 
@@ -107,7 +107,7 @@ Un paragraphe, pas une page. Ce qu'est NIS2, pourquoi une PME industrielle est c
 
 Une charte révisée se signe à l'embauche et à chaque révision, par tout le monde, direction comprise. Traduisez-la pour les collègues non francophones : une règle qu'on ne peut pas lire n'engage personne. Ensuite, citez l'article quand vous refusez quelque chose, et relisez-la tous les ans depuis la page de révision.
 
-:::caution
+:::caution[Je ne suis pas juriste]
 Je ne suis pas juriste. Ces ajouts formalisent ce que nous faisons ; la rédaction finale relève de la RH et, si possible, d'un conseil. Une charte qui n'a pas suivi le circuit du règlement intérieur est un beau document sans valeur.
 :::
 

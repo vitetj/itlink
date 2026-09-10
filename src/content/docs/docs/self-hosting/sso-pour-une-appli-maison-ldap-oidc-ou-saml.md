@@ -77,7 +77,7 @@ ldapsearch -H ldaps://annuaire.example.com:636 \
 Si cette commande sort une fiche utilisateur, le problème suivant sera dans votre code, pas dans l'annuaire.
 Si elle échoue, inutile d'aller plus loin : c'est presque toujours le certificat ou le pare-feu.
 
-:::caution
+:::caution[Le compte de bind est un secret d’infrastructure]
 Le mot de passe du compte de bind est un secret de niveau infrastructure : il permet de lire tout l'annuaire.
 Il ne va ni dans le dépôt Git, ni dans un fichier de configuration versionné. Variable d'environnement, ou
 fichier inclus hors du dépôt, avec des permissions restreintes.
@@ -156,7 +156,7 @@ curl -i https://iso.example.com/api/isos                     # doit répondre 40
 curl -u prenom.nom@example.com https://iso.example.com/api/isos   # doit répondre 200
 ```
 
-:::caution
+:::caution[Basic sans HTTPS, jamais]
 `AuthType Basic` envoie le mot de passe en clair dans l'en-tête HTTP. C'est acceptable **uniquement** derrière
 HTTPS. Et si votre annuaire présente un certificat signé par une autorité interne, Apache ne le validera pas
 tant que vous ne lui aurez pas indiqué cette autorité avec `LDAPTrustedGlobalCert`.
