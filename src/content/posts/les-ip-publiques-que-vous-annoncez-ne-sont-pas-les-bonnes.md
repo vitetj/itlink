@@ -1,6 +1,6 @@
 ---
 title: "Les adresses IP publiques que vous annoncez à vos clients ne sont pas les bonnes"
-description: "J'ai envoyé nos nouvelles adresses publiques à tous nos partenaires. Quatre jours plus tard, j'ai dû envoyer un correctif : ce n'étaient pas celles utilisées en production. Récit et méthode pour ne pas recommencer."
+description: "J'ai envoyé nos nouvelles adresses publiques à nos partenaires. Quatre jours plus tard, un correctif : ce n'étaient pas celles utilisées en production. Récit, et la méthode pour ne plus recommencer."
 published: 2026-07-25
 category: retex
 tags: [ip-publique, nat, sase, communication, migration]
