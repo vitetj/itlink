@@ -52,13 +52,15 @@ D'où la synthèse que j'ai envoyée au bureau d'études, en cinq exigences à f
 - **Identités raccordées à l'annuaire**, ou, si c'est techniquement impossible, une procédure de révocation écrite et testée à la réception.
 - **Réseau** : VLAN dédié, zone démilitarisée industrielle, pare-feu entre l'îlot machine et la bureautique. Le fournisseur ne pose pas sa machine à plat sur le réseau d'entreprise, et son accès de télémaintenance non plus.
 
+La version longue, question par question, est dans [les exigences informatiques à imposer avant l'achat d'une machine industrielle](/docs/architecture/exigences-it-pour-lachat-dune-machine-industrielle/).
+
 ## Ce que ça coûte de ne pas l'écrire
 
 Rien, sur le moment. C'est bien le problème.
 
 Ces cinq lignes, écrites avant la commande, sont des points de négociation ordinaires. Le fournisseur les intègre, chiffre éventuellement un supplément, et tout le monde signe en connaissance de cause. Écrites après la commande, ce sont des demandes d'évolution, facturées comme telles, quand elles sont encore possibles. Écrites après la mise en service, ce ne sont plus des exigences : ce sont des regrets, et ils se paient en projets de migration sur un équipement qui tourne en trois-huit et qu'on n'a le droit d'arrêter qu'en août.
 
-J'ai déjà vu à quoi ressemble l'étape suivante : un poste sous un système hors support depuis des années, isolé du réseau à coups de règles de pare-feu, qu'on n'ose plus toucher parce que le fournisseur a disparu et que la ligne, elle, tourne encore. Ça marche. Jusqu'au jour où ça ne marche plus, et là il n'y a plus personne à appeler.
+J'ai déjà vu à quoi ressemble [l'étape suivante](/blog/windows-xp-sur-une-ligne-de-production/) : un poste sous un système hors support depuis des années, isolé du réseau à coups de règles de pare-feu, qu'on n'ose plus toucher parce que le fournisseur a disparu et que la ligne, elle, tourne encore. Ça marche. Jusqu'au jour où ça ne marche plus, et là il n'y a plus personne à appeler.
 
 Alors oui, poser ces questions rallonge la consultation. Oui, ça agace le commercial, et parfois le bureau d'études. Mais c'est la seule fenêtre où mon avis a un poids : entre la réception de l'offre et la signature. Après, je ne suis plus un interlocuteur. Je suis juste celui qui devra faire tenir tout ça, avec les moyens du bord, pendant quinze ans.
 

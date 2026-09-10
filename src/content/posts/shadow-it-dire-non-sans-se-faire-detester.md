@@ -31,9 +31,9 @@ Elle tient sur un demi-écran, et elle m'a évité beaucoup d'inimitiés.
 
 **2. Expliquer le risque en une phrase concrète.** Une phrase, pas un paragraphe, et surtout pas un article de règlement. Les gens raisonnables acceptent très bien une contrainte qu'ils comprennent ; ce qu'ils refusent, c'est un « non » sans motif, ou un motif juridique qu'ils ne peuvent pas vérifier.
 
-**3. Proposer l'alternative le jour même.** C'est le point non négociable. Un refus sans alternative n'est pas une décision, c'est un contournement en préparation : la personne trouvera un autre moyen, sur son téléphone personnel, hors de votre vue. Et si l'alternative est plus pénible que l'outil interdit, c'est l'alternative qui sera contournée.
+**3. Proposer l'alternative le jour même.** C'est le point non négociable. Un refus sans alternative n'est pas une décision, c'est un contournement en préparation — [j'ai raconté ailleurs ce que ça donne sur un service de transfert de fichiers](/blog/wetransfer-interdit-et-alors/) : la personne trouvera un autre moyen, sur son téléphone personnel, hors de votre vue. Et si l'alternative est plus pénible que l'outil interdit, c'est l'alternative qui sera contournée.
 
-**4. Écrire la règle une bonne fois.** Si la question revient trois fois, ce n'est plus une question, c'est un manque de règle. La réponse doit finir dans la charte, pas dans ma boîte d'envoi.
+**4. Écrire la règle une bonne fois.** Si la question revient trois fois, ce n'est plus une question, c'est un manque de règle. La réponse doit finir dans [la charte informatique](/docs/dsi/mettre-a-jour-sa-charte-informatique-pour-nis2/), pas dans ma boîte d'envoi.
 
 Dans le cas du 1er juin, ça a donné : besoin reconnu (suivre la compétition, ce qui est parfaitement humain), risque expliqué en une ligne, alternative proposée (le navigateur, qui affiche exactement la même chose sans rien installer), et rappel de la règle générale sur les installations. Refus accepté sans discussion. Le dossier a duré dix minutes.
 
