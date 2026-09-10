@@ -1,0 +1,75 @@
+---
+title: Le homelab, vue d'ensemble
+description: Trois nœuds Proxmox, du Ceph, une vieille baie SAN, un TrueNAS en DMZ et un UniFi qui segmente tout. Ce qui tourne à la maison, pourquoi, et ce que ça m'a appris.
+published: 2025-10-04
+updated: 2026-08-15
+category: homelab
+status: en production
+stack: [Proxmox VE 8, Ceph, Dell PowerEdge, Dell EqualLogic, TrueNAS SCALE, ZFS, UniFi UDM Pro, Ansible]
+tags: [homelab, proxmox, ceph, truenas, unifi, sauvegarde]
+featured: true
+---
+
+import InfraDiagram from '@/components/InfraDiagram.astro';
+
+Ce homelab n'est pas une vitrine. C'est un environnement de pré-production réaliste, dans lequel je reproduis ce qui
+peut mal se passer au travail (une panne de nœud, une restauration, une compromission simulée, une exposition
+Internet) avant de le vivre pour de vrai. La règle est simple : je ne déploie rien en production qui n'ait déjà survécu ici.
+
+<InfraDiagram />
+
+## Calcul : un cluster Proxmox à trois nœuds
+
+Trois Dell PowerEdge d'occasion, Proxmox VE 8 en haute disponibilité, et Ceph pour le stockage distribué. Trois nœuds,
+c'est le minimum pour un quorum honnête et pour tester une migration à chaud pendant qu'on débranche un serveur
+« par accident ». L'infrastructure est décrite en Ansible et Terraform : si je casse tout, je reconstruis en une soirée,
+et c'est justement l'exercice.
+
+Ce que le cluster m'a appris et que je réutilise au travail :
+
+- une migration à chaud qui échoue est presque toujours un problème de réseau de stockage, pas d'hyperviseur ;
+- Ceph veut de la latence faible et des liens dédiés, sinon il vous le fait payer en IOPS ;
+- un cluster à deux nœuds est une promesse de nuit blanche.
+
+## Stockage : Ceph d'un côté, une baie SAN de l'autre
+
+À côté du Ceph, une baie Dell EqualLogic en iSCSI. Elle n'est pas là pour la performance : elle est là parce que
+beaucoup d'entreprises ont encore ce genre d'architecture « classique » (SAN, multipath, tiering SSD/SAS) et que je
+veux pouvoir comparer les deux mondes sur le même matériel. Le multipathing iSCSI, on ne l'apprend bien qu'en
+débranchant un câble en pleine copie.
+
+## Sauvegarde et PRA : la défense en profondeur
+
+La sauvegarde est physiquement dissociée du cluster. Un serveur indépendant capture les sauvegardes ; un micro-serveur
+TrueNAS SCALE, placé en DMZ, reçoit une copie sur ZFS avec des instantanés immuables, et sert de point de sortie vers
+une réplication hors site. Logique « air-gap » sans l'air-gap : si le cluster est compromis, les sauvegardes ne le sont pas.
+
+:::tip
+Testez la restauration, pas la sauvegarde. Une sauvegarde qui n'a jamais été restaurée est une hypothèse.
+:::
+
+## Réseau : UniFi et des VLAN partout
+
+Une UniFi Dream Machine Pro segmente le tout : management, serveurs, DMZ, IoT, Wi-Fi invités, avec de l'inspection de
+trafic. La segmentation stricte a un coût en confort (le nombre de règles inter-VLAN grimpe vite), mais c'est exactement
+le type de contraintes qu'on retrouve dans un réseau industriel où machines, télémaintenance et bureautique doivent
+rester séparés.
+
+## Ce qui tourne dessus
+
+Des services auto-hébergés utiles (gestionnaire de mots de passe, GLPI, outils réseau), les versions d'essai de ce que
+j'évalue pour le travail, et beaucoup de machines jetables. Le [package GLPI pour Cloudron](/lab/glpi-sur-cloudron/) est
+né ici.
+
+## Ce qui coince encore
+
+- La consommation électrique : trois PowerEdge, ça chauffe et ça se voit sur la facture. Un projet de mesure par prise
+  connectée est en cours.
+- Le bruit : le rack est à la cave, ce n'est pas un hasard.
+- La tentation de tout mettre en production chez soi : un lab qui héberge des services critiques pour la maison n'est
+  plus un lab.
+
+## Et après
+
+Le schéma ci-dessus est volontairement simple. La prochaine étape est de le rendre dynamique à partir de l'inventaire
+réel (Proxmox et UniFi exposent tout ce qu'il faut en API), pour que cette page reste juste sans que j'aie à y penser.

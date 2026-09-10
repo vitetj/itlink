@@ -13,15 +13,10 @@ const isTested = tested ?? testedOn.length > 0;
 ---
 
 {
-  isTested ? (
+  isTested && (
     <span class:list={['inline-flex items-center gap-1.5 font-mono text-xs text-lab', className]}>
       <Icon name="check-circle" size={14} />
       <span>Testé{testedOn.length > 0 && ` sur ${testedOn.join(', ')}`}</span>
-    </span>
-  ) : (
-    <span class:list={['inline-flex items-center gap-1.5 font-mono text-xs text-fg-subtle', className]}>
-      <Icon name="alert" size={14} />
-      <span>Non testé de bout en bout</span>
     </span>
   )
 }

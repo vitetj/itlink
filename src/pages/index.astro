@@ -64,12 +64,12 @@ const counts = { docs: docs.length, blog: posts.length, lab: lab.length, voyages
           <span class="ml-2 text-fg-subtle">jeremie@vitet.info — zsh</span>
         </div>
         <pre class="terminal-body"><span class="prompt">$</span> ls -la ~/vitet.info
-<a href="/docs">docs/</a>      <span class="dim">{String(counts.docs).padStart(3)} fiches</span>   base de connaissances
-<a href="/blog">blog/</a>      <span class="dim">{String(counts.blog).padStart(3)} billets</span>  humeur, veille, retex
-<a href="/lab">lab/</a>       <span class="dim">{String(counts.lab).padStart(3)} projets</span>  homelab &amp; bricolages
-<a href="/voyages">voyages/</a>   <span class="dim">{String(counts.voyages).padStart(3)} carnets</span>  japon, transports, geekeries
+<a href="/docs">docs/</a>      <span class="dim">{String(counts.docs).padStart(3)} fiches</span><span class="hidden sm:inline">   base de connaissances</span>
+<a href="/blog">blog/</a>      <span class="dim">{String(counts.blog).padStart(3)} billets</span><span class="hidden sm:inline">  humeur, veille, retex</span>
+<a href="/lab">lab/</a>       <span class="dim">{String(counts.lab).padStart(3)} projets</span><span class="hidden sm:inline">  homelab &amp; bricolages</span>
+<a href="/voyages">voyages/</a>   <span class="dim">{String(counts.voyages).padStart(3)} carnets</span><span class="hidden sm:inline">  japon, transports, geekeries</span>
 <span class="prompt">$</span> uptime
- 15 ans dans l'IT, load average: infra, réseau, cloud
+ 15 ans dans l'IT<span class="hidden sm:inline">, load average: infra, réseau, cloud</span>
 <span class="prompt">$</span> whoami
  DSI qui garde les mains dans la console<span class="cursor" aria-hidden="true"></span></pre>
       </div>
