@@ -91,6 +91,19 @@ export default defineConfig({
   ],
   vite: {
     plugins: [tailwindcss()],
+    optimizeDeps: {
+      /*
+       * Au démarrage, le scanner de dépendances de Vite (rolldown) reçoit les
+       * fichiers `.astro` en entrée et tente de les analyser comme du JavaScript.
+       * Il échoue sur la partie HTML et affiche « Failed to run dependency scan »,
+       * un avertissement bruyant mais sans effet ici : aucune dépendance npm n'est
+       * envoyée au navigateur (les scripts clients sont en ligne, et Pagefind est
+       * chargé à l'exécution depuis /pagefind/). Il n'y a donc rien à pré-bundler,
+       * et on désactive la découverte automatique.
+       * À retirer quand Astro et Vite s'accorderont sur ce point.
+       */
+      noDiscovery: true,
+    },
   },
   fonts: [
     {

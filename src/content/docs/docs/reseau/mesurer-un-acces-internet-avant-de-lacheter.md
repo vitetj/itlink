@@ -3,7 +3,7 @@ title: "Mesurer un accès Internet avant de l'acheter"
 description: "Un opérateur propose toujours plus gros. Avant de signer, mesurez l'existant, trouvez le vrai goulot d'étranglement et posez cinq questions. Méthode appliquée au déménagement d'un site."
 published: 2026-09-02
 category: reseau
-tags: [internet, fibre, debit, vpn, achat, operateur]
+tags: [internet, fibre, debit, vpn, achats, operateur]
 level: débutant
 status: à jour
 featured: false

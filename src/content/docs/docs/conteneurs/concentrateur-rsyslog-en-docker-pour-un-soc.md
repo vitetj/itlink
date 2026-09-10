@@ -3,7 +3,7 @@ title: "Déployer un concentrateur rsyslog en Docker pour un SOC managé"
 description: "Monter le relais syslog qu'un prestataire de Micro-SOC exige sur site : dimensionnement, installation de Docker sur Ubuntu 24.04, flux à ouvrir, redirection des sources et écriture des parsers maison."
 published: 2025-10-21
 category: conteneurs
-tags: [rsyslog, docker, soc, sekoia, syslog, ubuntu]
+tags: [rsyslog, docker, soc, sekoia, ubuntu]
 level: avancé
 status: à jour
 featured: false

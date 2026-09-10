@@ -4,7 +4,7 @@ description: "Réparation du démarrage, mode sans échec, puis extraction du di
 published: 2025-03-06
 updated: 2025-09-08
 category: microsoft
-tags: [windows, demarrage, recuperation-de-donnees, disque, industrie, obsolescence]
+tags: [windows, redemarrage, recuperation-de-donnees, disque, industrie, obsolescence]
 level: intermédiaire
 status: à jour
 featured: false

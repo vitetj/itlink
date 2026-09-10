@@ -3,7 +3,7 @@ title: "Restaurer une VM cassée par une mise à jour non supportée : snapshot,
 description: "Un prestataire met à jour une passerelle Mitel vers une version incompatible : softphones externes HS. Retour en service en quinze minutes avec la sauvegarde du jour, et une règle : snapshot avant toute intervention."
 published: 2024-09-16
 category: virtualisation
-tags: [vmware, veeam, snapshot, mitel, restauration, prestataire]
+tags: [vmware, veeam, snapshot, mitel, restauration, prestataires]
 level: avancé
 status: à jour
 featured: true

@@ -3,7 +3,7 @@ title: "Exchange hybride : la migration « clé en main » que j'ai finie à la 
 description: "Un prestataire, un attribut Entra Connect, un tenant devenu irréversible et un week-end à monter Exchange 2013 vers 2019 en solo. Ce que cette migration ratée m'a appris sur les experts, et sur moi."
 published: 2026-06-14
 category: retex
-tags: [exchange, exchange-online, migration, entra-connect, prestataire, retex]
+tags: [exchange, exchange-online, migration, entra-connect, prestataires, retex]
 featured: false
 ---
 

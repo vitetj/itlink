@@ -3,7 +3,7 @@ title: "Résumer une réunion Teams : transcription, Clipchamp et Copilot"
 description: "Obtenir un résumé exploitable d'une réunion Teams, y compris quand on n'en est pas l'organisateur : ce qu'il faut annoncer avant d'enregistrer, où trouver le fichier, et le passage par Clipchamp."
 published: 2025-10-08
 category: microsoft-365
-tags: [teams, copilot, clipchamp, sharepoint, microsoft-365, rgpd]
+tags: [teams, ia, clipchamp, sharepoint, microsoft-365, rgpd]
 level: débutant
 status: à jour
 featured: false
