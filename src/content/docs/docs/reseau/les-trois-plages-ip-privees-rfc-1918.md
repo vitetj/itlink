@@ -79,13 +79,14 @@ Quelques autres plages ont un statut particulier, utile à connaître pour ne pa
 Plutôt que de me croire sur parole, vérifiez. Depuis n'importe quel poste Linux, ou depuis le site web du RIPE
 si vous n'avez pas l'outil sous la main :
 
-```bash title="Interroger la base du registre régional"
-whois 195.0.2.1
+```bash title="Comparer une adresse privée et une adresse allouée"
+whois 192.168.1.1     # entrée « special purpose » de l'IANA : plage privée
+whois 203.0.113.10    # entrée de documentation (RFC 5737)
 ```
 
-La réponse contient le `netname`, l'organisation titulaire et le pays. Faites l'essai avec une adresse de la
-plage que vous avez configurée sur votre machine. Si un nom d'entreprise apparaît, vous avez votre réponse : ce
-n'est pas votre adresse.
+Refaites ensuite l'essai avec l'adresse réellement configurée sur votre machine. Si la réponse contient un
+`netname`, une organisation titulaire, un pays et un contact abuse, vous avez votre réponse : cette adresse
+appartient à quelqu'un, et ce quelqu'un n'est pas vous.
 
 ## Ce qui casse concrètement
 

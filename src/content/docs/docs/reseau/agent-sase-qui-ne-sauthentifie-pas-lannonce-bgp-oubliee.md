@@ -71,7 +71,7 @@ un indice.
 
 ```cmd title="Interroger la table de routage du poste"
 route print 10.254.254.0
-tracert -d 10.254.254.1
+tracert -d <adresse retournée par le nslookup>
 ```
 
 Puis regardez comment sort le trafic Internet ordinaire, en forçant une destination publique connue :
