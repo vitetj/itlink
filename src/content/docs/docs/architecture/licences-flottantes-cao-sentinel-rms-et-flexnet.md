@@ -1,6 +1,6 @@
 ---
 title: "Licences flottantes de CAO : renouveler un fichier Sentinel RMS et inventorier des licences FlexNet sans casser la production"
-description: "Renouveler un fichier de licence flottante avec WlmAdmin, éviter le piège du « Remove all features » quand plusieurs éditeurs partagent le serveur, inventorier les jetons PTC via FlexNet, et remettre tout ça en service après une coupure."
+description: "Renouveler un fichier de licence flottante avec WlmAdmin, éviter le piège du « Remove all features » quand plusieurs éditeurs partagent le serveur, et inventorier les jetons PTC via la console FlexNet."
 published: 2025-10-09
 updated: 2026-06-25
 category: architecture
@@ -11,7 +11,7 @@ featured: false
 tested_on: [TopSolid 7, Sentinel RMS License Manager, Creo Elements/Direct V19 M070, Windows Server]
 ---
 
-Une licence flottante, c'est un trousseau de clés posé sur une table au milieu de l'atelier. Chacun prend une clé quand il ouvre son logiciel, la repose quand il le ferme. Tant que la table est là, personne ne se pose de question. Le jour où elle disparaît — le serveur de licences a mal redémarré, le fichier annuel n'a pas été injecté, quelqu'un a effacé les mauvaises entrées — c'est le bureau d'études et la programmation d'usinage qui s'arrêtent en même temps. Et vous l'apprenez par téléphone, pas par une supervision.
+Une licence flottante, c'est un trousseau de clés posé sur une table au milieu de l'atelier. Chacun prend une clé quand il ouvre son logiciel, la repose quand il le ferme. Tant que la table est là, personne ne se pose de question. Le jour où elle disparaît — serveur de licences mal redémarré, fichier annuel non injecté, mauvaises entrées effacées — c'est le bureau d'études et la programmation d'usinage qui s'arrêtent en même temps. Et vous l'apprenez par téléphone, pas par une supervision.
 
 Dans une PME industrielle, deux mondes de licences flottantes cohabitent souvent sans rien savoir l'un de l'autre. Chez moi, c'est TopSolid, la CAO/FAO, qui s'appuie sur **Sentinel RMS**, et Creo Elements/Direct, qui s'appuie sur **FlexNet**. Deux mécaniques, deux outils, deux façons de se planter. Cette fiche rassemble les trois opérations que je fais réellement dessus : le renouvellement annuel du fichier Sentinel, l'inventaire des jetons PTC avant un devis de mise à jour, et la remise en service après une coupure de courant.
 
@@ -25,16 +25,16 @@ Dans une PME industrielle, deux mondes de licences flottantes cohabitent souvent
 
 ## Comprendre pourquoi une licence flottante tombe si facilement
 
-Trois mécanismes expliquent 90 % des incidents, et les connaître change la façon d'intervenir.
+Trois mécanismes expliquent l'essentiel des incidents.
 
-**Le jeton non libéré.** Un poste qui garde l'application ouverte garde le jeton. L'utilisateur est parti déjeuner, son collègue ne peut pas ouvrir sa pièce. Ce n'est pas une panne, c'est de l'occupation. D'où le rappel périodique aux équipes : fermer l'application quand on ne s'en sert pas, c'est libérer une place.
+**Le jeton non libéré.** Un poste qui garde l'application ouverte garde le jeton. L'utilisateur est parti déjeuner, son collègue ne peut pas ouvrir sa pièce. Ce n'est pas une panne, c'est de l'occupation — d'où le rappel périodique aux équipes.
 
-**La licence dite « antivol ».** Certains éditeurs lient l'activation à l'état de la machine. Un arrêt brutal — coupure de courant, VM tuée, hôte qui redémarre sans grâce — et l'activation se désactive d'elle-même, par précaution anti-copie. Le service repart, la licence non. Vécu un matin de juin 2026, après une série de coupures électriques.
+**La licence dite « antivol ».** Certains éditeurs lient l'activation à l'état de la machine. Un arrêt brutal — coupure de courant, VM tuée, hôte qui redémarre sans grâce — et l'activation se désactive d'elle-même, par précaution anti-copie. Le service repart, la licence non.
 
-**Le fichier repris.** Un serveur de licences peut, au redémarrage, recharger l'ancien fichier de licence resté sur disque au lieu de celui que vous venez d'injecter. Vu deux jours après un renouvellement : le serveur PDM refusait de démarrer parce que le serveur de licences avait « repris » le fichier de l'année précédente. Il a fallu réappliquer.
+**Le fichier repris.** Un serveur de licences peut, au redémarrage, recharger l'ancien fichier resté sur disque au lieu de celui que vous venez d'injecter. Vu deux jours après un renouvellement : le serveur PDM refusait de démarrer parce que le serveur de licences avait « repris » le fichier de l'année précédente.
 
 :::note
-Retenez la conséquence pratique : **une opération de licence n'est finie que lorsque vous avez redémarré le serveur et revérifié**. Tant que vous n'avez pas testé un cycle d'arrêt/relance, vous ne savez pas ce qui sera chargé au prochain démarrage.
+Conséquence pratique : **une opération de licence n'est finie que lorsque vous avez redémarré le serveur et revérifié**. Sans un cycle d'arrêt/relance de test, vous ne savez pas ce qui sera chargé au prochain démarrage.
 :::
 
 ## Renouveler le fichier de licence flottante Sentinel RMS
@@ -43,7 +43,7 @@ L'éditeur envoie chaque année un nouveau fichier code flottant. L'opération p
 
 ### Faire fermer l'application sur tous les postes
 
-Un message à tous les utilisateurs concernés : fermez le logiciel. Un jeton encore pris pendant que vous retirez les features, c'est un client dans un état incohérent et un appel de plus dans l'heure qui suit. Expliquez le pourquoi, sinon la moitié des postes reste ouverte.
+Un message à tous les utilisateurs concernés : fermez le logiciel. Un jeton encore pris pendant que vous retirez les features, c'est un client dans un état incohérent et un appel de plus dans l'heure. Expliquez le pourquoi, sinon la moitié des postes reste ouverte.
 
 ### Lancer l'outil d'administration depuis le média d'installation
 
@@ -53,7 +53,7 @@ Sur le serveur de licences, l'outil est fourni avec le produit :
 <média d'installation>\Setup\Redist\Sentinel RMS License Manager\Tools\WlmAdmin.exe
 ```
 
-Vérifiez au passage que le service tourne bien et qu'il est joignable. Le gestionnaire Sentinel RMS écoute par défaut en UDP sur le port 5093 :
+Vérifiez au passage que le service tourne. Le gestionnaire Sentinel RMS écoute par défaut en UDP sur le port 5093 :
 
 ```powershell title="Contrôles rapides côté serveur"
 Get-Service -Name "*Sentinel*" | Format-Table Name, Status, StartType
@@ -62,23 +62,23 @@ Get-NetUDPEndpoint -LocalPort 5093 -ErrorAction SilentlyContinue
 
 ### Retirer les anciennes features — et seulement les vôtres
 
-Dans **Subnet Servers**, dépliez le serveur pour voir la liste des features déclarées. Le réflexe documenté par les éditeurs est un clic droit sur le serveur puis **Remove all features**. Sur un serveur qui n'héberge qu'un seul produit, c'est parfait.
+Dans **Subnet Servers**, dépliez le serveur pour voir les features déclarées. Le réflexe documenté par les éditeurs est un clic droit sur le serveur puis **Remove all features**. Sur un serveur qui n'héberge qu'un seul produit, c'est parfait.
 
 :::danger
 **« Remove all features » enlève tout, y compris les licences des autres éditeurs.** Si votre serveur Sentinel héberge aussi les licences de la GPAO, de l'ERP ou d'un logiciel de métrologie, vous venez d'arrêter trois services au lieu d'en renouveler un — et vous n'aurez pas forcément sous la main les fichiers `.lic` des autres produits pour les réinjecter. Dans ce cas, supprimez les features **une par une**, en ne cochant que celles du produit que vous renouvelez.
 :::
 
-Avant de cliquer, listez ce qui est déclaré et faites une capture d'écran : ce sera votre état de référence.
+Avant de cliquer, faites une capture d'écran de la liste : c'est votre état de référence.
 
 ### Injecter le nouveau fichier
 
 Clic droit sur le serveur → **Add Feature** → **From a File** → **To Server and its File**, puis sélectionnez le nouveau `.lic`.
 
-Le sous-menu compte : **To Server and its File** écrit la licence à la fois en mémoire et dans le fichier de service. Si vous ne l'ajoutez qu'au serveur, elle disparaît au premier redémarrage — et vous retombez sur le symptôme du « fichier repris » décrit plus haut.
+Le sous-menu compte : **To Server and its File** écrit la licence en mémoire *et* dans le fichier de service. Ajoutée au seul serveur, elle disparaît au premier redémarrage — c'est le symptôme du « fichier repris » décrit plus haut.
 
 ### Repointer un poste client et vérifier
 
-Sur un poste de CAO, dans le menu **Aide > Licences > Licences flottantes** : saisissez le nom du serveur (ou son adresse), **Appliquer**, puis **Ajouter la licence**. Préférez le nom DNS à l'adresse IP, comme `srv-licences.example.com` : le jour où la VM change d'adresse, vous n'aurez pas à repasser sur chaque poste.
+Sur un poste de CAO, menu **Aide > Licences > Licences flottantes** : saisissez le nom du serveur, **Appliquer**, puis **Ajouter la licence**. Préférez le nom DNS à l'adresse IP, comme `srv-licences.example.com` : le jour où la VM change d'adresse, vous ne repasserez pas sur chaque poste.
 
 Retournez dans l'outil d'administration et contrôlez que chaque feature affiche la **nouvelle date d'expiration**. C'est la seule preuve qui vaut. Puis redémarrez le service — ou la VM si vous voulez dormir tranquille — et revérifiez.
 
@@ -100,29 +100,29 @@ Construisez ensuite le tableau des modules. Sur mon parc, il ressemble à ceci :
 
 | Module | Nature | Remarque |
 | --- | --- | --- |
-| Modeling Design Productivity | Modeleur | Le cœur, dimensionné sur le nombre de postes BE |
-| Sheet Metal Productivity | Tôlerie | Usage ponctuel, quelques jetons suffisent |
+| Modeling Design Productivity | Modeleur | Dimensionné sur le nombre de postes BE |
+| Sheet Metal Productivity | Tôlerie | Usage ponctuel, peu de jetons |
 | Machine Design Productivity | Conception machine | Idem |
 | Part Library | Bibliothèque | Souvent oublié dans les devis |
 | BOM Editor | Nomenclature | Consommé par les méthodes, pas par le BE |
 | 3D PDF Converter | Publication | Pics d'usage en fin d'affaire |
 | Model Manager | Gestion de données | **Beaucoup moins de jetons que de modeleurs** |
-| Task Agent | Traitements automatiques | Compté séparément |
-| Web Client | Accès léger | Compté séparément |
+| Task Agent | Traitements automatiques | Compté à part |
+| Web Client | Accès léger | Compté à part |
 
 :::caution
-Deux pièges de comptage sur lesquels un devis peut déraper : le **Web Client** et le **Task Agent** consomment des jetons distincts, ils ne sont pas inclus dans le modeleur ; et le nombre de jetons **Model Manager** est en général très inférieur au nombre de personnes qui modélisent. Si vous dimensionnez la gestion de données sur le nombre de licences de modelage, vous achetez trop.
+Deux pièges de comptage font déraper un devis : le **Web Client** et le **Task Agent** consomment des jetons distincts, non inclus dans le modeleur ; et les jetons **Model Manager** sont en général bien moins nombreux que les personnes qui modélisent. Dimensionner la gestion de données sur le nombre de licences de modelage, c'est acheter trop.
 :::
 
 Documentez enfin la version exacte dans votre demande — dans mon cas, « V19 M070, base Oracle 11gR2 ». Un revendeur ne peut pas chiffrer une montée de version sans ça.
 
 ## Remettre les licences en service après une coupure de courant
 
-Le scénario qui vous réveille : série de coupures un matin, l'onduleur a tenu ce qu'il a pu, les serveurs sont revenus — sauf deux VM, dont celle qui porte la CAO. Le téléphone sonne depuis 4 h du matin. L'ordre des opérations n'est pas négociable.
+Le scénario qui vous réveille : série de coupures un matin, l'onduleur a tenu ce qu'il a pu, les serveurs sont revenus — sauf deux VM, dont celle qui porte la CAO. Le téléphone sonne depuis 4 h. L'ordre des opérations n'est pas négociable.
 
 1. **Constater avant d'agir.** État des hôtes et des VM dans la console de virtualisation, alarmes de la sauvegarde. Redémarrez les VM absentes une par une, en vérifiant leurs services.
-2. **Réactiver la licence d'abord.** Sur la VM de CAO, réactivez la licence (procédure ci-dessus, côté client et côté serveur) **avant** de relancer le service applicatif. Si vous relancez le serveur PDM sur une licence encore désactivée, il démarre dans un état bancal et il faut tout recommencer.
-3. **Relancer les services applicatifs ensuite**, dans l'ordre serveur de licences → serveur de données → services métier.
+2. **Réactiver la licence d'abord.** Sur la VM de CAO, réactivez la licence **avant** de relancer le service applicatif. Un serveur PDM relancé sur une licence désactivée démarre dans un état bancal, et il faut tout recommencer.
+3. **Relancer les services applicatifs ensuite** : serveur de licences → serveur de données → services métier.
 
 ```powershell title="Relance ordonnée des services, une fois la licence réactivée"
 Restart-Service -Name "<service-licences>" -Force
@@ -135,13 +135,13 @@ Get-Service -Name "<service-licences>", "<service-pdm>" | Format-Table Name, Sta
 5. **Communiquer, et exiger un ticket.** Quand quinze personnes appellent en direct, personne ne peut prioriser. Un ticket, même bâclé, donne une file d'attente et un historique.
 
 :::tip
-Écrivez cette séquence dans un runbook et rangez-la **hors** du système d'information : un fichier de procédure stocké sur le serveur qui vient de tomber ne vous servira à rien. Papier dans l'armoire, ou copie sur votre téléphone.
+Écrivez cette séquence dans un runbook rangé **hors** du système d'information. Une procédure stockée sur le serveur qui vient de tomber ne sert à rien : papier dans l'armoire, ou copie sur le téléphone.
 :::
 
 ## Pour aller plus loin
 
-- [Redémarrer une infrastructure virtualisée après une coupure](/docs/windows-server/runbook-redemarrer-une-infrastructure-virtualisee-apres-coupure/), pour l'ordre de démarrage global dans lequel s'insère la réactivation des licences.
-- [Dimensionner les onduleurs d'une petite salle serveur](/docs/architecture/dimensionner-les-onduleurs-dune-petite-salle-serveur/), parce que la meilleure procédure de remise en service est celle qu'on n'a pas à dérouler.
+- [Redémarrer une infrastructure virtualisée après une coupure](/docs/windows-server/runbook-redemarrer-une-infrastructure-virtualisee-apres-coupure/), pour l'ordre de démarrage global dans lequel s'insère la réactivation.
+- [Dimensionner les onduleurs d'une petite salle serveur](/docs/architecture/dimensionner-les-onduleurs-dune-petite-salle-serveur/), parce que la meilleure remise en service est celle qu'on n'a pas à dérouler.
 - [Le coffre à programmes de commande numérique](/docs/architecture/coffre-a-programmes-cn-source-unique-en-lecture-seule/), l'autre chantier de fiabilisation côté atelier.
 
 <!-- source : mails « Renouvellement fichier code flottant » 2025-10-07, « PDM bloqué » 2025-10-09, « Demande devis mise à jour CAO » 2025-06 → 2026-03-03, fil « coupures électriques » 2026-06-24 -->
