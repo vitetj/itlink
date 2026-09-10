@@ -1,6 +1,6 @@
 ---
 title: "Lire un devis de téléphonie d'entreprise : licences UCC, contrat de maintenance logicielle et packs"
-description: "Vingt licences à ajouter, et un devis qui en contient six lignes. Distinguer un ajout d'un renouvellement, recompter les packs avant de les payer, refuser une demi-journée pour une injection de clé, et rédiger la contre-proposition."
+description: "Vingt licences à ajouter, un devis d'une page et demie. Distinguer un ajout d'un renouvellement, recompter les packs avant de les payer, refuser la demi-journée d'injection, et rédiger la contre-proposition."
 published: 2026-08-12
 category: dsi
 tags: [telephonie, devis, licences, achats, fournisseurs, negociation]

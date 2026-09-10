@@ -1,6 +1,6 @@
 ---
 title: "Compte invité Entra ID et erreur 53003 : quand l'accès conditionnel d'un client bloque votre connexion"
-description: "Un client vous ouvre son infrastructure par package d'accès Entra, et la connexion s'arrête sur une erreur 53003. Ce que dit vraiment le code, ce qu'il faut demander à l'équipe d'en face, et pourquoi on ne dégrade jamais son propre MFA."
+description: "Un client ouvre son infrastructure par package d'accès Entra, et la connexion s'arrête sur une erreur 53003. Ce que dit vraiment le code, quoi demander à l'équipe d'en face, et pourquoi on ne dégrade jamais son MFA."
 published: 2026-09-09
 category: microsoft-365
 tags: [entra-id, acces-conditionnel, b2b, cato-networks, mfa, sase]

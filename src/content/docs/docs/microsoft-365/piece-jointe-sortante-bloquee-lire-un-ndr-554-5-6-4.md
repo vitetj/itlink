@@ -1,6 +1,6 @@
 ---
 title: "Pièce jointe sortante bloquée : lire un rapport de non-remise 554 5.6.4 et créer la bonne exception"
-description: "Un technicien ne peut plus envoyer un fichier de diagnostic au constructeur. Le rapport de non-remise dit 554 5.6.4, forbidden attachment by company rule. Comment lire le NDR, identifier qui rejette, et ouvrir le bon canal."
+description: "Un technicien ne peut plus envoyer un fichier de diagnostic au constructeur. Lire le rapport de non-remise, identifier qui rejette vraiment, et ouvrir le bon canal sans désactiver le filtrage."
 published: 2026-09-02
 category: microsoft-365
 tags: [exchange-online, ndr, pieces-jointes, hornetsecurity, regle-de-flux, support]

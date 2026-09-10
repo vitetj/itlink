@@ -1,6 +1,6 @@
 ---
 title: "Synchroniser l'annuaire d'entreprise dans les contacts Outlook des mobiles"
-description: "Un job nocturne qui pousse l'annuaire dans les contacts personnels de chaque boîte via Microsoft Graph, avec une catégorie dédiée pour tout reprendre ou tout retirer. Le principe, le code, et ce que ça change sur un téléphone."
+description: "Un job nocturne qui pousse l'annuaire dans les contacts de chaque boîte via Microsoft Graph, avec une catégorie dédiée pour tout retirer d'une commande. Le principe, le code, et ce que ça change sur un mobile."
 published: 2026-07-29
 category: serveurs
 status: en production
