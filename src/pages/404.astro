@@ -5,6 +5,10 @@ import Icon from '@/components/Icon.astro';
 
 <BaseLayout seo={{ title: 'Page introuvable', description: 'Erreur 404 : cette page n’existe pas ou plus.', noindex: true, image: '/og/accueil.png' }}>
   <div class="container-x py-20 md:py-28">
+    <div class="mx-auto mb-8 max-w-xl">
+      <p class="eyebrow">// erreur 404</p>
+      <h1 class="mt-2 font-display text-3xl font-semibold tracking-tight md:text-4xl">Page introuvable</h1>
+    </div>
     <div class="mx-auto max-w-xl rounded-lg border border-line bg-bg-elev p-6 font-mono text-sm">
       <p><span class="text-lab">$</span> curl -I {`https://vitet.info`}<span class="text-fg-subtle">{Astro.url.pathname}</span></p>
       <p class="mt-2 text-danger">HTTP/2 404 Not Found</p>
