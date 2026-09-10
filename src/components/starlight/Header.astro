@@ -1,12 +1,16 @@
 ---
-/** En-tête des pages /docs : la navigation du site avec la recherche et le thème de Starlight. */
+/**
+ * En-tête des pages /docs : la navigation du site, avec la recherche et le thème
+ * de Starlight. Le menu mobile est celui du site, la barre latérale de Starlight
+ * ayant été remplacée par le bandeau de domaines.
+ */
 import Search from '@astrojs/starlight/components/Search.astro';
 import SiteNav from '@/components/SiteNav.astro';
 import ThemeToggle from '@/components/ThemeToggle.astro';
 ---
 
 <div class="h-full">
-  <SiteNav hideMobileMenu>
+  <SiteNav>
     <Search slot="search" />
     <ThemeToggle slot="theme" />
   </SiteNav>

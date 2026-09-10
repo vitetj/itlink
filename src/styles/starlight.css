@@ -10,6 +10,8 @@
   --sl-nav-height: var(--header-h);
   --sl-content-width: 58rem;
   --sl-sidebar-width: 17rem;
+  /* Hauteur du bandeau de domaines qui remplace la barre latérale. */
+  --docs-bar-h: 2.875rem;
   --sl-line-height: 1.72;
   --sl-text-body: 1.0625rem;
   --sl-text-code: 0.875rem;
@@ -197,4 +199,53 @@ site-search button[data-open-modal] {
 }
 site-search kbd {
   font-family: var(--font-mono);
+}
+
+
+/* ------------------------------------------------------------------------ */
+/* Documentation sans barre latérale                                         */
+/* ------------------------------------------------------------------------ */
+
+/*
+ * Starlight continue de poser `data-has-sidebar` sur <html> : on neutralise les
+ * règles qui réservaient la colonne de gauche, et on décale ce qui se calait
+ * sous l'en-tête pour tenir compte du bandeau de domaines.
+ */
+@media (min-width: 50rem) {
+  :root[data-has-sidebar] {
+    --sl-content-inline-start: 0;
+  }
+}
+
+html {
+  scroll-padding-top: calc(1.5rem + var(--sl-nav-height) + var(--docs-bar-h) + var(--sl-mobile-toc-height));
+}
+
+@media (min-width: 72rem) {
+  html {
+    scroll-padding-top: calc(1.5rem + var(--sl-nav-height) + var(--docs-bar-h));
+  }
+
+  /* Le contenu se centre dans l'espace restant, le sommaire garde sa gouttière. */
+  [data-has-sidebar][data-has-toc] .main-pane {
+    --sl-content-margin-inline: auto;
+    order: 1;
+    flex: 1;
+    width: auto;
+    min-width: 0;
+  }
+
+  .right-sidebar {
+    padding-top: calc(var(--sl-nav-height) + var(--docs-bar-h));
+  }
+}
+
+/* Sommaire replié des petits écrans : il se cale sous le bandeau, pas sous l'en-tête. */
+starlight-toc-mobile,
+.mobile-starlight-toc,
+mobile-starlight-toc {
+  --sl-mobile-toc-top: calc(var(--sl-nav-height) + var(--docs-bar-h));
+}
+mobile-starlight-toc nav {
+  top: calc(var(--sl-nav-height) + var(--docs-bar-h));
 }

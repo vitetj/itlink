@@ -45,8 +45,8 @@ export default defineConfig({
       customCss: ['./src/styles/global.css', './src/styles/starlight.css'],
       components: {
         Head: './src/components/starlight/Head.astro',
+        PageFrame: './src/components/starlight/PageFrame.astro',
         Header: './src/components/starlight/Header.astro',
-        MobileMenuFooter: './src/components/starlight/MobileMenuFooter.astro',
         PageTitle: './src/components/starlight/PageTitle.astro',
         Footer: './src/components/starlight/Footer.astro',
         ThemeSelect: './src/components/starlight/ThemeSelect.astro',
