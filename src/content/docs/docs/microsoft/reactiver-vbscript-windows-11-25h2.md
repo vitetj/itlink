@@ -1,6 +1,6 @@
 ---
 title: "Réactiver VBScript sur Windows 11 25H2 pour un installateur industriel"
-description: "Un installateur legacy (Studio 5000) échoue sur Windows 11 25H2 parce que VBScript n'est plus là. Le remettre en une commande, vérifier, déployer via Intune, et comprendre pourquoi ce n'est qu'un sursis."
+description: "Un installateur legacy (Studio 5000) échoue sur Windows 11 25H2 parce que VBScript n'est plus là. Le remettre en une commande, vérifier, déployer via Intune, et savoir quand ça ne suffit plus."
 published: 2026-08-05
 category: microsoft
 tags: [windows-11, vbscript, dism, intune, legacy, automatisme]
@@ -75,9 +75,24 @@ DISM /Online /Get-CapabilityInfo /CapabilityName:VBScript~~~~0.0.1.0
 
 ## Relancer l'installateur, puis décider
 
-Une fois `State : Installed`, relancez l'installateur de Studio 5000. Chez moi, c'était tout ce qui manquait.
+Une fois `State : Installed`, relancez l'installateur. Pour la plupart des scripts et des vieux installateurs
+qui appellent simplement `vbscript.dll`, l'histoire s'arrête là.
 
-Reste la question que la politique de sécurité impose : laisse-t-on VBScript sur le poste ? Deux écoles.
+Pour Studio 5000 sur 25H2, elle ne s'est pas arrêtée là. Composant installé, poste redémarré, et l'assistant
+refusait toujours de s'installer, sur plusieurs postes testés. La version de l'installateur vérifie plus que la
+présence du moteur, et Rockwell n'avait pas encore publié de version compatible. Deux issues honnêtes à ce
+stade, et aucune n'est une commande : attendre le correctif de l'éditeur, ou garder ce poste sur une version
+antérieure de Windows (24H2, où le même installateur passe) le temps qu'il arrive. C'est ce que j'ai répondu au
+ticket, et c'est frustrant, mais un contournement bricolé sur un poste qui programme des automates n'est pas
+une bonne idée.
+
+:::note
+Testez toujours la réactivation avant de la déployer : elle règle le cas général, pas tous les cas. Si votre
+installateur refuse encore, cherchez d'abord une version récente chez l'éditeur avant de creuser plus loin.
+:::
+
+Quand la réactivation suffit, reste la question que la politique de sécurité impose : laisse-t-on VBScript
+sur le poste ? Deux écoles.
 
 - **Le retirer après l'installation**, si le logiciel n'en a besoin qu'au moment de s'installer. Testez le
   logiciel après retrait ; certains outils industriels l'appellent aussi à l'exécution.
@@ -142,8 +157,8 @@ raisons.
 
 ## Ce que cette commande ne règle pas
 
-Le ticket est fermé, le technicien programme ses automates, tout le monde est content. Sauf que VBScript
-n'est que le premier des trois à partir. **ActiveX** et **VBA** suivent le même chemin, et chez moi, ils
+Même quand la réactivation fonctionne, le sursis est court : VBScript n'est que le premier des trois à
+partir. **ActiveX** et **VBA** suivent le même chemin, et chez moi, ils
 portent bien plus que des installateurs : des feuilles Excel métier truffées de macros, et un outil de
 documentation technique qui repose sur VBA. J'avais alerté la direction sur la fin de vie de VBA et ActiveX
 dès juin 2024 ; le cas Studio 5000 en août 2026 a servi de piqûre de rappel concrète.
