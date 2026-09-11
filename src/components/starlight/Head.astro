@@ -46,6 +46,14 @@ if (isArticle && data.published) {
 
 <Default><slot /></Default>
 {/* Applique le thème mémorisé avant le premier rendu (Starlight fait de même, on reste compatibles). */}
+<script is:inline>
+  // Réapplique l'état replié de la barre latérale avant le premier rendu.
+  try {
+    if (localStorage.getItem('docs-sidebar-collapsed') === '1') {
+      document.documentElement.setAttribute('data-sidebar-collapsed', '');
+    }
+  } catch {}
+</script>
 <Font cssVariable="--font-inter" preload />
 <Font cssVariable="--font-plex-mono" />
 <meta property="og:image" content={ogImage} />

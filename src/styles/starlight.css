@@ -8,8 +8,10 @@
   --sl-font-mono: var(--font-plex-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
 
   --sl-nav-height: var(--header-h);
-  --sl-content-width: 58rem;
+  --sl-content-width: 54rem;
   --sl-sidebar-width: 14rem;
+  /* Colonne de lecture propre aux pages de documentation. */
+  --measure: 50rem;
   --sl-line-height: 1.72;
   --sl-text-body: 1.0625rem;
   --sl-text-code: 0.875rem;
@@ -223,4 +225,50 @@ site-search button[data-open-modal] {
 }
 site-search kbd {
   font-family: var(--font-mono);
+}
+
+
+/* ------------------------------------------------------------------------ */
+/* Barre latérale repliable                                                  */
+/* ------------------------------------------------------------------------ */
+
+@media (min-width: 50rem) {
+  /* Repliée, la colonne disparaît et le contenu récupère sa largeur. */
+  :root[data-sidebar-collapsed] .sidebar-pane {
+    display: none;
+  }
+  :root[data-sidebar-collapsed][data-has-sidebar] {
+    --sl-content-inline-start: 0;
+  }
+}
+
+@media (min-width: 72rem) {
+  /*
+   * Par défaut Starlight colle le contenu à la barre latérale, ce qui laisse un
+   * grand vide devant le sommaire. On répartit l'espace des deux côtés.
+   */
+  [data-has-sidebar][data-has-toc] .main-pane {
+    --sl-content-margin-inline: auto;
+  }
+
+  /* Repliée : le contenu prend toute la place laissée par le sommaire. */
+  :root[data-sidebar-collapsed][data-has-sidebar][data-has-toc] .main-pane {
+    order: 1;
+    flex: 1;
+    width: auto;
+    min-width: 0;
+  }
+  :root[data-sidebar-collapsed] {
+    --sl-content-width: 66rem;
+    /* La colonne de lecture s'élargit aussi, sans devenir illisible. */
+    --measure: 58rem;
+  }
+
+  /*
+   * Sans bride, la colonne du sommaire absorbe toute la largeur disponible sur
+   * un grand écran et creuse un vide entre le texte et elle.
+   */
+  .right-sidebar-container {
+    width: 18rem;
+  }
 }
