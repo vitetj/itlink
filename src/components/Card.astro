@@ -16,7 +16,9 @@ interface Props {
   headingLevel?: 'h2' | 'h3';
 }
 
-const { item, variant = 'default', showSection = false, headingLevel: Heading = 'h3' } = Astro.props;
+let { item, variant = 'default', showSection = false, headingLevel: Heading = 'h3' } = Astro.props;
+// Sans image, la variante « cover » n'afficherait qu'un grand cadre vide.
+if (variant === 'cover' && !item.cover) variant = 'default';
 const hue = item.section === 'voyages' ? 'hue-travel' : `hue-${item.section}`;
 const eyebrow = showSection
   ? [item.sectionLabel, item.categoryLabel].filter(Boolean).join(' · ')

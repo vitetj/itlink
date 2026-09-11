@@ -12,7 +12,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "astro": "astro"
+    "astro": "astro",
+    "fetch-blog-images": "node scripts/fetch-blog-images.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^8.0.1",
