@@ -9,6 +9,8 @@ trip:
   to: 2024-08-08
 tags: [japon, carnet-de-voyage, tokyo]
 featured: false
+coverUrl: /images/voyages/2024-07-img_3365.jpg
+coverAlt: "Tokyo — Jour 6 : Journée Tranquille à Akihabara et Ochanomizu"
 ---
 
 Pour notre sixième jour au Japon, nous avons opté pour une journée plus tranquille, centrée sur la découverte des trésors technologiques d’Akihabara, suivie d’une escapade à Ochanomizu et d’un dîner en famille.
@@ -19,21 +21,21 @@ Nous avons commencé notre journée à Akihabara, le paradis des geeks et des am
 
 Explorer ces magasins était une véritable aventure. Chaque étage offrait une variété incroyable de composants : cartes mères, processeurs, cartes graphiques, et bien plus encore. Pour un passionné de technologie, c’était un rêve devenu réalité. Après avoir passé des heures à comparer les différentes options et à discuter avec les vendeurs, nous avons enfin acheté tout ce dont nous avions besoin pour assembler le PC parfait.
 
-![](/images/voyages/img_3365.jpg)
+![](/images/voyages/2024-07-img_3365.jpg)
 
-![](/images/voyages/img_3363.jpg)
+![](/images/voyages/2024-07-img_3363.jpg)
 
 Après-midi à Ochanomizu : Envoyer le PC en France
 
 Avec notre précieux butin en main, nous avons ensuite pris la direction d’Ochanomizu. Là, notre première étape a été la poste locale pour envoyer le PC en France. Le personnel de la poste a été extrêmement serviable, nous aidant à emballer soigneusement chaque composant et à remplir les formalités nécessaires pour l’envoi international. Savoir que notre nouveau PC était en route vers la maison nous a apporté une grande satisfaction.
 
-![](/images/voyages/camphoto_959030623-1.jpg)
+![](/images/voyages/2024-07-camphoto_959030623-1.jpg)
 
 Pause Café au Starbucks
 
 Après nos aventures technologiques et administratives, nous avons décidé de faire une pause bien méritée. Nous nous sommes arrêtés dans un Starbucks à proximité, où nous avons pu nous détendre avec une boisson chaude. C’était le moment parfait pour se reposer et discuter de notre journée tout en profitant de l’atmosphère calme du café.
 
-![](/images/voyages/img_3384.jpg)
+![](/images/voyages/2024-07-img_3384.jpg)
 
 Dîner en Famille
 

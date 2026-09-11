@@ -9,6 +9,8 @@ trip:
   to: 2024-08-08
 tags: [japon, carnet-de-voyage, tokyo]
 featured: false
+coverUrl: /images/voyages/2024-07-img_3093-1.jpg
+coverAlt: "Tokyo — Jour 1 : Mon Aventure à Tokyo"
 ---
 
 ## Mon Aventure à Tokyo
@@ -39,7 +41,7 @@ Hier soir à Otsuki, nous avons eu l'occasion de dîner au yakiniku du quartier.
 
 On a eu une bonne rigolade en voyant le tableau électrique tout noir, il était aussi charbonné que notre viande au grill !
 
-![](/images/voyages/img_3093-1.jpg)
+![](/images/voyages/2024-07-img_3093-1.jpg)
 
 Pour finir la soirée en beauté, nous avons dégusté une délicieuse glace et une petite bière achetée au combini. Que du bonheur !
 

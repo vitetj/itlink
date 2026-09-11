@@ -9,6 +9,8 @@ trip:
   to: 2024-08-08
 tags: [japon, carnet-de-voyage, furano]
 featured: false
+coverUrl: /images/voyages/2024-08-img_4105-1.jpg
+coverAlt: "Furano — Jour 15 : Découverte de la Ferme Tomita et de l’Étang Aoike"
 ---
 
 Aujourd’hui, nous avons consacré notre journée à explorer deux magnifiques sites naturels du Japon. Le voyage a été une véritable aventure, ponctuée par une route de trois heures, en partie à cause d’un arbre tombé qui a bloqué notre chemin. Malgré ce contretemps, l’expérience en valait largement la peine.
@@ -19,9 +21,9 @@ Notre première destination était la célèbre ferme Tomita, située à Furano.
 
 Nous avons pris le temps de nous promener dans les champs, profitant de chaque instant pour capturer des photos et simplement nous imprégner de la beauté des lieux. La boutique de la ferme propose une variété de produits à base de lavande, allant des savons aux huiles essentielles, parfaits pour ramener un peu de cette magie chez soi.
 
-![](/images/voyages/img_4105-1.jpg)
+![](/images/voyages/2024-08-img_4105-1.jpg)
 
-![](/images/voyages/img_4100-1.jpg)
+![](/images/voyages/2024-08-img_4100-1.jpg)
 
 L’Étang Aoike : Une Pureté Cristalline
 
@@ -29,9 +31,9 @@ Après avoir passé une matinée splendide à la ferme Tomita, nous avons repris
 
 À notre arrivée, nous avons été immédiatement frappés par la pureté et la clarté de l’eau de l’étang. L’étang Aoike tire son nom de la teinte bleue intense de ses eaux, un phénomène naturel qui crée une atmosphère presque magique. Nous avons passé un moment serein au bord de l’eau, écoutant les bruits apaisants de la nature environnante.
 
-![](/images/voyages/img_4107-1.jpg)
+![](/images/voyages/2024-08-img_4107-1.jpg)
 
-![](/images/voyages/img_4106-1.jpg)
+![](/images/voyages/2024-08-img_4106-1.jpg)
 
 Conclusion
 

@@ -9,6 +9,8 @@ trip:
   to: 2024-08-08
 tags: [japon, carnet-de-voyage, kyoto]
 featured: false
+coverUrl: /images/voyages/2024-07-img_3403.jpg
+coverAlt: "Kyoto — Jour 7 : De Tokyo à Kyoto via Osaka"
 ---
 
 ## De Tokyo à Kyoto via Osaka
@@ -19,19 +21,19 @@ Vol de Tokyo à Osaka
 
 Nous avons commencé la journée en prenant un vol matinal de Tokyo à Osaka. Le trajet en avion a été rapide et confortable, offrant de magnifiques vues aériennes du Japon. Arriver à Osaka nous a donné un avant-goût de l’atmosphère vibrante et énergique de cette grande ville.
 
-![](/images/voyages/img_3403.jpg)
+![](/images/voyages/2024-07-img_3403.jpg)
 
 Trajet en Bus d’Osaka à Kyoto
 
 Après notre arrivée à l’aéroport d’Osaka, nous avons pris un bus pour Kyoto. Le trajet a été agréable et nous a permis de voir un peu plus de la région du Kansai. Les paysages changeaient progressivement, passant de la métropole animée d’Osaka aux rues plus calmes et historiques de Kyoto. Cette transition a ajouté une dimension supplémentaire à notre voyage, nous préparant à l’expérience unique que Kyoto a à offrir.
 
-![](/images/voyages/img_3410.jpg)
+![](/images/voyages/2024-07-img_3410.jpg)
 
 Arrivée à Kyoto et Repas de okonomiyaki
 
 Une fois arrivés à Kyoto, nous nous sommes installés dans notre hébergement et avons pris un moment pour nous reposer. Pour notre premier repas dans cette ville historique, nous avons choisi de manger de okonomiyaki , un plat traditionnel de nouilles sautées et de choux. Le restaurant local où nous avons dîné nous a servi des okonomiyaki parfaitement assaisonnés, avec des légumes croquants et des morceaux de viande tendre. Ce repas simple mais savoureux était exactement ce qu’il nous fallait après une journée de voyage.
 
-![](/images/voyages/img_3418.jpg)
+![](/images/voyages/2024-07-img_3418.jpg)
 
 Conclusion
 
@@ -47,15 +49,15 @@ Arrivée au Ryokan
 
 En fin d’après-midi, nous sommes arrivés à notre ryokan, une auberge traditionnelle japonaise. L’accueil chaleureux du personnel, vêtu de kimonos, nous a immédiatement plongés dans une ambiance authentique. Le ryokan, avec ses jardins paisibles et son architecture élégante, offrait un cadre parfait pour se détendre après notre journée de voyage.
 
-![](/images/voyages/img_3430.jpg)
+![](/images/voyages/2024-07-img_3430.jpg)
 
 Repas Traditionnel
 
 Le soir, nous avons eu la chance de savourer un kaiseki, un repas traditionnel japonais composé de plusieurs petits plats. Chaque plat était une œuvre d’art culinaire, soigneusement préparée avec des ingrédients de saison. Nous avons dégusté des sashimis frais, des tempuras croustillantes, du tofu délicatement assaisonné, et bien d’autres mets délicieux. Le dîner, servi par une hôtesse attentionnée, était non seulement un festin pour les papilles, mais aussi une expérience culturelle enrichissante.
 
-![](/images/voyages/img_3436.jpg)
+![](/images/voyages/2024-07-img_3436.jpg)
 
-![](/images/voyages/img_3434.jpg)
+![](/images/voyages/2024-07-img_3434.jpg)
 
 Bains Publics Traditionnels
 

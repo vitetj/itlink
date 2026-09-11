@@ -23,7 +23,9 @@ const description =
       featured && (
         <article class="relative mt-10 grid overflow-hidden rounded-lg border border-line bg-bg-elev md:grid-cols-2">
           <div class="aspect-[16/10] bg-bg-muted md:aspect-auto md:min-h-[22rem]">
-            {featured.cover ? (
+            {featured.coverUrl ? (
+              <img src={featured.coverUrl} alt={featured.coverAlt ?? ''} loading="eager" decoding="async" class="h-full w-full object-cover" />
+            ) : featured.cover ? (
               <Image src={featured.cover} alt={featured.coverAlt ?? ''} width={1000} height={625} loading="eager" class="h-full w-full object-cover" />
             ) : (
               <div class="grid h-full w-full place-items-center text-travel/60">

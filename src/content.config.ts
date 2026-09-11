@@ -118,6 +118,8 @@ const travel = defineCollection({
       /** Période du voyage (facultatif, distinct de la date de publication). */
       trip: z.object({ from: date, to: date.optional() }).optional(),
       cover: image().optional(),
+      /** Photo déjà servie depuis `public/`, pour le carnet importé de l'ancien blog. */
+      coverUrl: z.string().optional(),
       coverAlt: z.string().optional(),
     }),
 });

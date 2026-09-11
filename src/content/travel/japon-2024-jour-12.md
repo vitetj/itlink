@@ -9,14 +9,16 @@ trip:
   to: 2024-08-08
 tags: [japon, carnet-de-voyage, sapporo]
 featured: false
+coverUrl: /images/voyages/2024-08-img_3923.jpg
+coverAlt: "Sapporo — Jour 12 : En route vers Sapporo"
 ---
 
 Aujourd’hui fut une journée de transition. Nous avons quitté Kyoto pour nous rendre à l’aéroport d’Osaka. Le vol vers Sapporo s’est déroulé sans encombre. Une fois arrivés, nous avons pris la route vers notre destination finale.
 
-![](/images/voyages/img_3923.jpg)
+![](/images/voyages/2024-08-img_3923.jpg)
 
 Le trajet a pris un certain temps, et il faisait déjà nuit lorsque nous sommes arrivés. Pour le dîner, nous avons opté pour des bentos achetés dans une boutique locale, offrant un aperçu savoureux de la cuisine de Hokkaido. Une journée de voyage, certes, mais une belle anticipation des aventures à venir dans cette nouvelle région du Japon.
 
-![](/images/voyages/image.jpg)
+![](/images/voyages/2024-08-image.jpg)
 
 <!-- source : blog.vitet.info — « Jour 12 : En route vers Sapporo », 2024-08-03 -->

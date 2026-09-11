@@ -62,7 +62,7 @@ const jsonLd = [
     updated: item.updated,
     tags: item.tags,
     section: item.categoryLabel ?? item.sectionLabel,
-    image: item.cover?.src,
+    image: item.coverUrl ?? item.cover?.src,
     wordCount: words,
     proficiencyLevel: level,
   }),
@@ -79,7 +79,7 @@ const jsonLd = [
     updated: item.updated,
     tags: item.tags,
     section: item.categoryLabel ?? item.sectionLabel,
-    image: item.cover?.src,
+    image: item.coverUrl ?? item.cover?.src,
     imageAlt: item.coverAlt,
   }}
   jsonLd={jsonLd}
@@ -113,17 +113,28 @@ const jsonLd = [
           <slot name="meta" />
           <TagList tags={item.tags} class="mt-4" />
           {
-            showCover && item.cover && (
+            showCover && (item.cover || item.coverUrl) && (
               <figure class="mt-8">
-                <Image
-                  src={item.cover}
-                  alt={item.coverAlt ?? ''}
-                  width={1200}
-                  height={675}
-                  loading="eager"
-                  fetchpriority="high"
-                  class="w-full rounded-lg object-cover"
-                />
+                {item.coverUrl ? (
+                  <img
+                    src={item.coverUrl}
+                    alt={item.coverAlt ?? ''}
+                    loading="eager"
+                    fetchpriority="high"
+                    decoding="async"
+                    class="w-full rounded-lg object-cover"
+                  />
+                ) : item.cover ? (
+                  <Image
+                    src={item.cover}
+                    alt={item.coverAlt ?? ''}
+                    width={1200}
+                    height={675}
+                    loading="eager"
+                    fetchpriority="high"
+                    class="w-full rounded-lg object-cover"
+                  />
+                ) : null}
                 {item.coverAlt && <figcaption class="mt-2 font-mono text-xs text-fg-subtle">{item.coverAlt}</figcaption>}
               </figure>
             )

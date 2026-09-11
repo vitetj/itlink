@@ -39,6 +39,8 @@ export interface CardItem {
   readingMinutes: number;
   tested?: boolean | undefined;
   cover?: ImageMetadata | undefined;
+  /** Photo servie telle quelle depuis `public/` (contenu importé). */
+  coverUrl?: string | undefined;
   coverAlt?: string | undefined;
   featured: boolean;
 }
@@ -198,6 +200,7 @@ export function travelToCard(item: Travel): CardItem {
     categoryLabel: item.data.country,
     readingMinutes: readingTime(item.body).minutes,
     cover: item.data.cover,
+    coverUrl: item.data.coverUrl,
     coverAlt: item.data.coverAlt,
     featured: item.data.featured,
   };
