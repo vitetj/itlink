@@ -23,14 +23,14 @@ GLPI aux autres outils : c'est le sujet de la fiche sur
 avant d'installer quoi que ce soit.
 
 :::note
-Les procédures d'origine tournaient sur une 9.x. Les libellés de menus cités existent toujours, mais leur
-emplacement bouge d'une version majeure à l'autre : vérifiez la documentation de la vôtre.
+Les procédures d'origine tournaient sur une 9.x : les libellés de menus cités existent toujours, mais leur
+emplacement bouge d'une version majeure à l'autre.
 :::
 
 ## Prérequis
 
 - Une machine Linux dédiée à l'application, avec Apache ou nginx, PHP et ses extensions usuelles
-  (`mysqlnd`, `gd`, `intl`, `curl`, `zip`, `mbstring`, `ldap`, `xml`), et MariaDB ou MySQL.
+  (`mysqli`, `gd`, `intl`, `curl`, `zip`, `mbstring`, `ldap`, `xml`), et MariaDB ou MySQL.
 - Un nom DNS interne et un certificat : GLPI transporte des identifiants d'annuaire, il n'a rien à faire
   en HTTP.
 - Un compte de service en lecture sur l'annuaire Active Directory ou LDAP.
@@ -49,7 +49,7 @@ sudo mysql_secure_installation
 
 ```sql title="Base et compte applicatif"
 CREATE DATABASE glpi CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-CREATE USER 'glpi'@'localhost' IDENTIFIED BY '<mot de passe généré, rangé dans le coffre>';
+CREATE USER 'glpi'@'localhost' IDENTIFIED BY '<mot de passe du coffre>';
 GRANT ALL PRIVILEGES ON glpi.* TO 'glpi'@'localhost';
 FLUSH PRIVILEGES;
 ```
@@ -70,20 +70,20 @@ sudo tar xzf /tmp/glpi-<version>.tgz
 sudo chown -R www-data:www-data glpi     # « apache » sur les distributions RHEL
 ```
 
-Terminez par l'assistant web, qui crée le schéma et le premier compte d'administration. Trois choses
-juste après, avant d'ouvrir l'accès aux utilisateurs :
+Terminez par l'assistant web, qui crée le schéma et le premier compte d'administration. Trois choses juste
+après, avant d'ouvrir aux utilisateurs :
 
-1. Changer les mots de passe des comptes par défaut créés par l'installateur, ou les désactiver.
+1. Changer ou désactiver les comptes par défaut créés par l'installateur.
 2. Supprimer le fichier d'installation : sinon il reste accessible à qui trouve l'URL.
 3. Planifier la tâche de fond : sans elle, ni notification, ni collecte de mails, ni purge.
 
-```text title="Tâche planifiée (crontab système)"
+```text title="Tâche planifiée (/etc/cron.d/glpi)"
 * * * * * www-data /usr/bin/php /var/www/html/glpi/front/cron.php
 ```
 
 :::danger
-Les anciennes procédures — dont les miennes — recommandent de passer les dossiers `files` et `config` en
-777 pour débloquer l'installation. Ne le faites pas : le bon réglage est le bon propriétaire (l'utilisateur
+Les anciennes procédures — dont les miennes — passent les dossiers `files` et `config` en 777 pour
+débloquer l'installation. Ne le faites pas : le bon réglage est le bon propriétaire (l'utilisateur
 du serveur web) et des droits restreints. Le 777 rend un dossier inscriptible par n'importe quel processus
 de la machine.
 :::
@@ -110,14 +110,13 @@ Les droits, eux, se donnent par profil, et jamais utilisateur par utilisateur :
 | Entité | Cloisonner la visibilité | En créer douze « au cas où » |
 | Profil | Définir ce qu'un rôle peut faire | Donner le profil administrateur pour dépanner |
 | Habilitation | Associer un profil à une entité pour un utilisateur | Oublier l'option récursive sur un profil d'administration |
-| Groupe | Affecter les tickets à une équipe | Affecter uniquement à des personnes, qui prennent des congés |
 
 Affecter les tickets à un groupe plutôt qu'à un individu change tout le jour où la personne est en congés :
 le ticket reste visible par ceux qui peuvent le traiter, au lieu de dormir dans une file personnelle.
 
 ## Régler ce que les utilisateurs vont réellement toucher
 
-Trois réglages font la différence entre un outil adopté et un outil contourné.
+Trois réglages séparent un outil adopté d'un outil contourné.
 
 **Les catégories.** Démarrez avec cinq ou six, dans le vocabulaire des utilisateurs — imprimante,
 messagerie, accès et mots de passe, application de gestion, poste de travail, réseau — et non dans celui de
@@ -147,19 +146,19 @@ demande quand on réclame un ajout), la **catégorie**, un **titre** lisible dan
 
 | Ce qui arrive souvent | Ce qui aurait suffi |
 |---|---|
-| « L'imprimante ne marche pas » | « L'imprimante du bureau d'études n'imprime plus depuis ce matin, message "hors ligne" sur mon poste ; ma collègue imprime normalement. » |
+| « L'imprimante ne marche pas » | « L'imprimante du bureau d'études n'imprime plus depuis ce matin, message *hors ligne* sur mon poste ; ma collègue imprime normalement. » |
 | « Problème Excel » | « Excel met deux minutes à ouvrir les fichiers du partage projets depuis lundi ; en local, c'est immédiat. » |
 
-Publiez donc, en cinq lignes, ce que vous attendez dans une description : ce que vous faisiez, ce que vous
-attendiez, ce qui s'est passé, le message exact, depuis quand, et qui d'autre est touché. Cette
-demi-page rapporte plus que n'importe quel plugin.
+Publiez donc, en cinq lignes, ce que vous attendez dans une description : ce que vous faisiez, ce qui s'est
+passé, le message exact, depuis quand, qui d'autre est touché. Cette demi-page rapporte plus que n'importe
+quel plugin.
 
 Deux règles côté service informatique, à tenir sans exception :
 
 - **Une demande reçue par téléphone ou dans le couloir donne lieu à un ticket**, ouvert par vous. Sinon
   l'outil ne contiendra que les demandes tièdes, et vos statistiques décriront un service qui n'existe pas.
-- **On clôture avec une solution écrite en français**, pas avec « résolu ». C'est ce texte qui servira la
-  prochaine fois que le même incident revient, et c'est ce qui rend la recherche utile.
+- **On clôture avec une solution écrite en français**, pas avec « résolu » : c'est ce texte qui servira la
+  prochaine fois que l'incident revient, et qui rend la recherche utile.
 
 ## Tenir la mise à jour
 
@@ -184,10 +183,10 @@ version précédente. Notez la liste et les versions **avant** de démarrer, sup
 anciens, réinstallez les versions compatibles. C'est la raison numéro un des mises à jour qui s'éternisent.
 :::
 
-Dernier point, l'inventaire : si vous déployez un agent sur les postes, il pointe vers une URL de serveur
-inscrite dans le paquet de déploiement. Après une montée de version majeure, vérifiez que cette URL est
-toujours valide et que la version de l'agent est supportée — les anciennes installations reposent souvent
-sur FusionInventory, remplacé depuis par l'agent natif du projet.
+Dernier point, l'inventaire : l'agent déployé sur les postes pointe vers une URL de serveur inscrite dans le
+paquet de déploiement. Après une montée de version majeure, vérifiez que cette URL est valide et que l'agent
+est encore supporté — les anciennes installations reposent souvent sur FusionInventory, remplacé depuis par
+l'agent natif du projet.
 
 ## Pour aller plus loin
 
