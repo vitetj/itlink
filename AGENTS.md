@@ -38,3 +38,13 @@ montants, numéros de dossier, secrets. Les noms de produits et d'éditeurs sont
 - [ ] Le frontmatter respecte le schéma (catégorie = dossier, niveau valide, date ≤ aujourd'hui).
 - [ ] Aucune donnée confidentielle (voir ci-dessus).
 - [ ] Les liens internes pointent vers des pages existantes.
+
+## Encadrés
+
+Deux encadrés du même type sur une page produisent deux repères de navigation
+portant le même nom, ce que l'audit d'accessibilité signale. Dès qu'une page en
+compte plusieurs du même type, donnez-leur un titre :
+
+```markdown
+:::caution[Supprimez les snapshots d'abord]
+```

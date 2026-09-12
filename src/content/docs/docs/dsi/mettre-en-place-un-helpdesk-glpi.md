@@ -54,7 +54,7 @@ GRANT ALL PRIVILEGES ON glpi.* TO 'glpi'@'localhost';
 FLUSH PRIVILEGES;
 ```
 
-:::caution
+:::caution[N’ouvrez pas le compte à toutes les machines]
 On trouve partout des procédures qui créent le compte en `'glpi'@'%'`, joignable depuis n'importe quelle
 machine. Restreignez à `localhost` si la base est sur le serveur applicatif, sinon nommez explicitement
 l'hôte.
@@ -177,7 +177,7 @@ nouvelle archive à la place de l'ancienne, rétablissez le propriétaire, puis 
 l'interface web : l'application détecte le décalage de schéma et propose de migrer la base. Reconnectez-vous
 et parcourez les écrans principaux avant d'annoncer que c'est fini.
 
-:::caution
+:::caution[Erreur 500 après migration]
 Une page des plugins en erreur 500 juste après la migration, c'est presque toujours un plugin resté en
 version précédente. Notez la liste et les versions **avant** de démarrer, supprimez les dossiers des
 anciens, réinstallez les versions compatibles. C'est la raison numéro un des mises à jour qui s'éternisent.

@@ -51,7 +51,7 @@ fdisk -l /dev/sda
 Ce dernier affichage est le plus important : notez les **secteurs de début** de chaque partition. Si la suite
 tourne mal, c'est la seule information qui permet de reconstruire la table à l'identique.
 
-:::caution
+:::caution[Supprimez les snapshots d’abord]
 Côté hyperviseur, supprimez d'abord tous les snapshots de la VM. Un disque porteur de snapshot ne s'étend pas,
 et forcer la chose sur une chaîne de fichiers de delta est le meilleur moyen de perdre la machine entière.
 :::
@@ -170,7 +170,7 @@ lvextend -l +100%FREE /dev/vg-sys/var
 lvextend -L +150G /dev/vg-sys/var
 ```
 
-:::caution
+:::caution[Le signe plus n’est pas décoratif]
 Le `+` n'est pas décoratif. `-l 100%FREE` demande une taille **égale** à l'espace libre, `-l +100%FREE`
 **ajoute** l'espace libre à la taille actuelle. Même logique pour `-L 150G` (taille finale) et `-L +150G`
 (ajout). Sur un volume déjà gros, l'oubli du `+` produit soit une erreur, soit une réduction — et une
