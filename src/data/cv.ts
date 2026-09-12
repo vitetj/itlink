@@ -38,11 +38,11 @@ export const CV = {
   languages: ['Français (natif)', 'Anglais (professionnel)', 'Japonais (notions, un an à Tokyo)'],
   experiences: [
     {
-      company: 'Ixapack Global — machines d’emballage',
+      company: 'PME industrielle multi-sites — machines de production',
       role: 'DSI, DevOps & administrateur systèmes',
       period: '2019 – aujourd’hui',
       start: 2019,
-      location: 'Mauléon (79) · filiale aux États-Unis',
+      location: 'Deux-Sèvres, France · filiale aux États-Unis',
       summary:
         'Responsable unique du système d’information d’une PME industrielle présente en France, en Espagne et aux États-Unis : infrastructure, réseau, sécurité, Microsoft 365, téléphonie, développement d’outils internes, achats et pilotage des prestataires, avec un alternant et des stagiaires encadrés.',
       highlights: [

@@ -42,6 +42,6 @@ fait quand ça s'arrête et comment on le dit ».
 ## Et le support, dans tout ça ?
 
 Faire du support dans une autre langue oblige à écouter deux fois plus et à parler deux fois moins. On finit par
-comprendre que la plupart des tickets sont des malentendus, pas des pannes. C'est encore vrai à Mauléon.
+comprendre que la plupart des tickets sont des malentendus, pas des pannes. C'est encore vrai en Deux-Sèvres.
 
 J'y retourne dès que possible ; les prochains carnets seront plus photographiques et moins sérieux.
